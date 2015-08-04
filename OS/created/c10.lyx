@@ -1,0 +1,177 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+File System
+\end_layout
+
+\begin_layout Section
+File Concept
+\end_layout
+
+\begin_layout Standard
+OSes abstract from the physical properties of the storage devices they control
+ to define a logical unit of storage, the 
+\series bold
+file
+\series default
+.
+ A file is a named collection of related information recorded on the secondary
+ or non volatile storage.
+ It can contain text, numeric data, binary data, formatted and unformatted
+ data to define audio clips, graphic images and so on.
+ A file has a specific structure, which is determined by its creator.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+For example, a 
+\series bold
+source 
+\series default
+file is a sequence of functions and high level logical constructs stored
+ as text.
+ An 
+\series bold
+object 
+\series default
+file is a sequence of bytes meant to depict actions and addresses, which
+ can be understood by the linker.
+ An 
+\series bold
+executable
+\series default
+ file is a binary section of data that is meant to be executed on the CPU
+ to perform a specific task.
+\end_layout
+
+\begin_layout Subsection
+File Attributes
+\end_layout
+
+\begin_layout Standard
+When a file is created, for convenience it is given a human readable name
+ by which it can be identified.
+ The name of the file makes it independent of the user, process and the
+ system which created it.
+ Typically files store with them their 
+\series bold
+name
+\series default
+, 
+\series bold
+identifier
+\series default
+ (machine readable identifier), 
+\series bold
+type
+\series default
+, 
+\series bold
+location
+\series default
+, 
+\series bold
+size
+\series default
+, 
+\series bold
+access information
+\series default
+ and certain date time records for monitoring like 
+\series bold
+creation datetime
+\series default
+, 
+\series bold
+last modified datetime
+\series default
+ and 
+\series bold
+last used datetime
+\series default
+.
+ Generally the name and the file identifier for a file is stored in the
+ same directory as the file, through which other attributes may be located.
+\end_layout
+
+\begin_layout Subsection
+File Operations
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="900"
+   height="800"
+   viewBox="0 0 900.00001 800.00001"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="div1.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.1310946"
+     inkscape:cx="407.10782"
+     inkscape:cy="619.57704"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     showguides="false"
+     inkscape:window-width="1364"
+     inkscape:window-height="745"
+     inkscape:window-x="0"
+     inkscape:window-y="21"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-252.36216)">
+    <ellipse
+       style="fill:#ffccaa;fill-opacity:1"
+       id="path3336-2"
+       cx="257.44324"
+       cy="985.08252"
+       rx="67.191551"
+       ry="25.63888" />
+    <ellipse
+       style="fill:#ffccaa;fill-opacity:1"
+       id="path3336"
+       cx="260.35626"
+       cy="294.51663"
+       rx="67.191551"
+       ry="25.63888" />
+    <rect
+       style="fill:#ffccaa;fill-opacity:1"
+       id="rect3340"
+       width="132.64658"
+       height="134.29619"
+       x="674.90833"
+       y="391.64484"
+       transform="matrix(0.91302591,0.40790157,-0.90715659,0.42079321,0,0)" />
+    <rect
+       style="fill:#ffccaa;fill-opacity:1"
+       id="rect3340-2"
+       width="114.14965"
+       height="115.67516"
+       x="1025.7544"
+       y="744.21027"
+       transform="matrix(0.89989115,0.43611458,-0.89328744,0.44948587,0,0)" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="239.13788"
+       y="300.70532"
+       id="text3357"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3359"
+         x="239.13788"
+         y="300.70532"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:20px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Medium'">Start</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="179.99815"
+       y="501.02985"
+       id="text3357-6"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3359-8"
+         x="179.99815"
+         y="501.02985"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:20px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Medium'">Remainder &gt;= 0 ?</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 261.91941,325.8176 -0.62515,30.00732 -8.12698,-7.50183 8.12698,7.50183 6.87668,-5.62637"
+       id="path3379"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 120.52991,498.84079 -41.885222,0 0.625153,68.76679 -10.002442,-9.37729 10.002442,9.37729 8.752137,-8.12698"
+       id="path3381"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="11.660484"
+       y="590.21887"
+       id="text3357-6-5"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="11.660484"
+         y="590.21887"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:15px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Medium'"
+         id="tspan4647">(1) shift quotient reg to left</tspan><tspan
+         sodipodi:role="line"
+         x="11.660484"
+         y="608.96887"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:15px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Medium'"
+         id="tspan3488">(2) set quotient0 to 1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="85.010941"
+       y="536.9165"
+       id="text3357-6-5-6"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="85.010941"
+         y="536.9165"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:15px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Medium'"
+         id="tspan3401-4">Yes</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="197.77773"
+       y="833.11188"
+       id="text3357-6-5-5"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="197.77773"
+         y="833.11188"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:15px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Medium'"
+         id="tspan3401-9">32 repetitions ?</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="148.26581"
+       y="733.88348"
+       id="text3357-6-5-5-5"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="148.26581"
+         y="733.88348"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:15px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Medium'"
+         id="tspan3401-9-99">Shift divisor reg right by 1 bit</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 257.0696,889.4342 0,60.01465 -7.50184,-10.00244 7.50184,10.00244 7.50183,-9.37729"
+       id="path3506"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="269.19775"
+       y="922.78125"
+       id="text3357-6-5-6-1"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="269.19775"
+         y="922.78125"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:15px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Medium'"
+         id="tspan3401-4-3">Yes</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="239.19043"
+       y="989.04742"
+       id="text3357-6-5-6-1-9"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="239.19043"
+         y="989.04742"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:20px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Medium'"
+         id="tspan3401-4-3-1">Exit</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 373.08991,826.55572 137.9195,0.8841 -3.5364,-487.13873 -216.60433,0 9.72509,-7.9569 -9.72509,7.9569 8.84099,8.84099"
+       id="path3559"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="406.29239"
+       y="846.5365"
+       id="text3357-6-5-6-1-8"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="406.29239"
+         y="846.5365"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:15px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Medium'"
+         id="tspan3401-4-3-4">No</tspan></text>
+    <path
+       style="fill:#e9afaf;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 594.11474,433.49264 45.08907,-0.8841 17.68198,20.33428 13.26149,-21.21838 47.74137,-1.7682 -31.82758,72.49614 -60.11875,-1.76819 z"
+       id="path3579"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#e9afaf;fill-opacity:1;stroke:none"
+       id="rect4381"
+       width="209.53154"
+       height="52.161861"
+       x="563.17126"
+       y="338.89401" />
+    <rect
+       style="fill:#e9afaf;fill-opacity:1;stroke:none"
+       id="rect4383"
+       width="96.366829"
+       height="51.277763"
+       x="578.20093"
+       y="546.65735" />
+    <ellipse
+       style="fill:#e9afaf;fill-opacity:1;stroke:none"
+       id="path4387"
+       cx="734.24445"
+       cy="673.52563"
+       rx="76.474594"
+       ry="35.806023" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="667.70276"
+       y="369.55698"
+       id="text3357-0"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="667.70276"
+         y="369.55698"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:20px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Medium';text-align:center;text-anchor:middle"
+         id="tspan4407">Divisor Shift Right</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="657.01416"
+       y="469.96942"
+       id="text3357-0-4"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="657.01416"
+         y="469.96942"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:20px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Medium';text-align:center;text-anchor:middle"
+         id="tspan4407-2">64-bit</tspan><tspan
+         sodipodi:role="line"
+         x="657.01416"
+         y="494.96942"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:20px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Medium';text-align:center;text-anchor:middle"
+         id="tspan4432">ALU</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="625.99231"
+       y="577.08356"
+       id="text3357-0-1-7"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="625.99231"
+         y="577.08356"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:17.5px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Medium';text-align:center;text-anchor:middle"
+         id="tspan4478">Remainder</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="736.43475"
+       y="668.00769"
+       id="text3357-0-1-7-6"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="736.43475"
+         y="668.00769"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:20px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Medium';text-align:center;text-anchor:middle"
+         id="tspan4478-0">Control</tspan><tspan
+         sodipodi:role="line"
+         x="736.43475"
+         y="693.00769"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:20px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Medium';text-align:center;text-anchor:middle"
+         id="tspan4503">Test</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 709.93175,399.89686 -7.95689,-3.53639 0,31.82757 -7.0728,-7.95689 7.0728,7.95689 5.30459,-7.07279 -6.18869,7.07279 0,-31.82757 -5.3046,5.30459"
+       id="path4507"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="673.57367"
+       y="332.03992"
+       id="text3357-0-4-3"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="673.57367"
+         y="332.03992"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:20px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Medium';text-align:center;text-anchor:middle"
+         id="tspan4432-4">64-bit</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="621.4118"
+       y="539.04175"
+       id="text3357-0-4-3-40"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="621.4118"
+         y="539.04175"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:20px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Medium';text-align:center;text-anchor:middle"
+         id="tspan4432-4-2">64-bit</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 566.70766,571.41213 -18.56608,0.8841 0,-111.39651 40.66857,0 -7.9569,-6.1887 7.9569,7.0728 -7.0728,6.18869"
+       id="path4568"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 667.14508,514.37395 0,20.63004 -5.62638,-7.50184 6.25153,8.12699 7.50183,-8.12699"
+       id="path3453-4-5"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 664.84269,641.25598 -0.8841,-32.71168 -7.9569,8.841 7.0728,-7.9569 9.72509,7.0728"
+       id="path4585"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="399.763"
+       y="483.18356"
+       id="text3357-6-5-6-1-8-0"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="399.763"
+         y="483.18356"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:15px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Medium'"
+         id="tspan3401-4-3-4-9">No</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="619.2514"
+       y="634.33771"
+       id="text3357-6-5-6-1-8-7"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="619.2514"
+         y="634.33771"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:15px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Medium'"
+         id="tspan3401-4-3-4-3">write</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 679.52247,610.74077 0,20.63004 -5.62638,-7.50184 6.25153,8.12699 7.50183,-8.12699"
+       id="path3453-4-5-3"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="112.02681"
+       y="374.64462"
+       id="text3357-6-5-0"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="112.02681"
+         y="374.64462"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:15px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Medium'"
+         id="tspan4647-1">(1) subtract divisor reg from remainder reg</tspan><tspan
+         sodipodi:role="line"
+         x="112.02681"
+         y="393.39462"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:15px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Medium'"
+         id="tspan3444">(2) place result in remainder reg</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 261.18677,402.0201 -0.62515,30.00732 -8.12698,-7.50183 8.12698,7.50183 6.87668,-5.62637"
+       id="path3379-2"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="15.795385"
+       y="476.70807"
+       id="text3357-6-5-6-2"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="15.795385"
+         y="476.70807"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:15px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Medium'"
+         id="tspan3401-4-2">Divisor &lt;= Dividend </tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 389.00371,493.1315 42.43677,0 1.7682,73.38024 -9.72509,-7.07279 8.84099,7.95689 9.72509,-6.18869"
+       id="path3490"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="279.70001"
+       y="584.2132"
+       id="text3357-6-5-3"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="279.70001"
+         y="584.2132"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:15px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Medium'"
+         id="tspan3488-5">(1) restore value by adding</tspan><tspan
+         sodipodi:role="line"
+         x="279.70001"
+         y="602.9632"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:15px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Medium'"
+         id="tspan3515">back divisor to remainder reg</tspan><tspan
+         sodipodi:role="line"
+         x="279.70001"
+         y="621.7132"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:15px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Medium'"
+         id="tspan3517">(2) shift quotient reg to left</tspan><tspan
+         sodipodi:role="line"
+         x="279.70001"
+         y="640.4632"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:15px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Medium'"
+         id="tspan3519">(3) set quotient0 to 1</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 77.800743,621.80578 0,48.62546 120.237507,-1.7682 -0.8841,39.78447 -6.18869,-8.84099 7.95689,9.72509 7.0728,-8.84099"
+       id="path3521"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 427.72595,651.86515 0,16.79789 -113.16472,0.8841 0.8841,39.78447 -7.95689,-7.95689 7.95689,8.84099 7.9569,-8.84099"
+       id="path3523"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 257.27291,744.69559 0.8841,23.87068 -7.07279,-5.3046 7.07279,7.0728 6.1887,-6.1887"
+       id="path3527"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#e9afaf;fill-opacity:1;stroke:none"
+       id="rect4383-7"
+       width="144.1082"
+       height="65.423355"
+       x="721.86713"
+       y="502.45236" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="795.03333"
+       y="530.17181"
+       id="text3357-0-1-7-8"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="795.03333"
+         y="530.17181"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:17.5px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Medium';text-align:center;text-anchor:middle"
+         id="tspan4478-2">Quotient</tspan><tspan
+         sodipodi:role="line"
+         x="795.03333"
+         y="552.04681"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:17.5px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Medium';text-align:center;text-anchor:middle"
+         id="tspan3564">Shift Left</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="799.11578"
+       y="490.41629"
+       id="text3357-0-4-3-40-1"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="799.11578"
+         y="490.41629"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:20px;font-family:Inconsolata;-inkscape-font-specification:'Inconsolata Medium';text-align:center;text-anchor:middle"
+         id="tspan4432-4-2-6">32-bit</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 758.55724,627.11037 -0.8841,-52.16186 -7.07279,11.49329 7.07279,-11.49329 8.841,8.84099"
+       id="path3584"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>

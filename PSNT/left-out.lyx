@@ -1,0 +1,4230 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman newcent
+\font_sans default
+\font_typewriter default
+\font_math eulervm
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 10
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 3cm
+\topmargin 3cm
+\rightmargin 3cm
+\bottommargin 5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation 0bp
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+PSNT Notes
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\emph on
+Courtesy : PSNT Sir
+\end_layout
+
+\begin_layout Standard
+\align center
+Prepared by : agaurav77
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Probability Distributions
+\end_layout
+
+\begin_layout Subsection
+One Random Variable 
+\begin_inset Formula $X$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Suppose we have a random variable 
+\begin_inset Formula $X$
+\end_inset
+
+ which may assume any 
+\emph on
+state
+\emph default
+ in 
+\begin_inset Formula $\{x_{1},x_{2}\cdots x_{n}\}$
+\end_inset
+
+ with probabilities 
+\begin_inset Formula $\{p(x_{1}),p(x_{2})\cdots p(x_{n})\}$
+\end_inset
+
+.
+ The sum of these probabilities would be 1, since the outcome set is exhaustive.
+\begin_inset Formula 
+\[
+\sum_{i=1}^{n}p(x_{i})=1
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Let us consider a coin toss event.
+ Let 
+\begin_inset Formula $\omega$
+\end_inset
+
+ be the result.
+ Then 
+\begin_inset Formula $\omega\in\{\mbox{Heads},\mbox{Tails}\}$
+\end_inset
+
+.
+ For mathematical reasons, it is often desirable to talk in terms of numbers,
+ thus we try to denote the outcome by a random variable 
+\begin_inset Formula $X$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $X$
+\end_inset
+
+ be the number of heads in one coin toss, so that
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X\in\{1,0\}\mbox{ corresponds to }\omega\in\{\mbox{Heads},\mbox{Tails}\}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In a general (fair/unfair) coin toss event, if the probability of heads
+ is 
+\begin_inset Formula $p$
+\end_inset
+
+, then the probability of tails is 
+\begin_inset Formula $1-p$
+\end_inset
+
+.
+ Thus for the variable 
+\begin_inset Formula $X\in\{1,0\}$
+\end_inset
+
+, 
+\begin_inset Formula $p(X)\in\{p,1-p\}$
+\end_inset
+
+.
+ In terms of 
+\begin_inset Formula $X$
+\end_inset
+
+, 
+\begin_inset Formula $p(X)$
+\end_inset
+
+ can be written as
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p(X)=p^{X}(1-p)^{1-X}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This probability function is called the 
+\emph on
+probability mass function
+\series bold
+\emph default
+ 
+\series default
+in the case of 
+\emph on
+discrete
+\emph default
+ random variables, i.e.
+ the outcomes are distinct and form a countable set.
+ In the case of 
+\emph on
+continuous
+\emph default
+ random variables, where the random variable's outcome set is a range of
+ values, this function is called the 
+\emph on
+probability distribution function
+\emph default
+.
+ As usual, these hold -
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\int_{X=a}^{X=b}p(X)dx=1\mbox{, \ensuremath{X} is continuous, \ensuremath{a\leq X\leq b}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sum_{X=a}^{X=b}p(X)=1\mbox{, \ensuremath{X} is discrete, \ensuremath{a\leq X\leq b}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Two Random Variables 
+\begin_inset Formula $X,Y$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When two random variables are considered, then the PMF or PDF form a 3D
+ plot with 
+\begin_inset Formula $X,Y,p(X,Y)$
+\end_inset
+
+ along the axes.
+ In these cases, the relation relating two dependent variables holds.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p(X=x,Y=y)=p(X=x)\cdot p(Y=y\mbox{ given }X=x)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Obviously, if 
+\begin_inset Formula $X$
+\end_inset
+
+ and 
+\begin_inset Formula $Y$
+\end_inset
+
+ are independent, then the relation boils down to
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p(X=x,Y=y)=p(X=x)\cdot p(Y=y)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Types of Distributions on the basis of Probability Functions
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Marginal distributions
+\emph default
+ have one variable, and have probability functions like 
+\begin_inset Formula $p(X)$
+\end_inset
+
+.
+
+\series bold
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Joint distributions
+\emph default
+ signify the relation between mutiple variables, and have probability functions
+ like 
+\begin_inset Formula $p(X,Y)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+The third type of distributions are called 
+\emph on
+conditional distributions
+\emph default
+, and these have probability functions like 
+\begin_inset Formula $p(X\mbox{ given }Y)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Of course, these concepts may be extended to more than 2 variables.
+\end_layout
+
+\begin_layout Subsection
+Conversion Rules
+\end_layout
+
+\begin_layout Standard
+To convert probability functions from those of a joint distribution to a
+ marginal distribution, we sum over all possible values of other variables.
+ For example, if we have two random variables
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X\in\{1,2,3,4,5\}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Y\in\{6,7,8,9,10\}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and we are given 
+\begin_inset Formula $p(X,Y)$
+\end_inset
+
+, then to find 
+\begin_inset Formula $p(X)$
+\end_inset
+
+ alone, we can do
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p(X)=\sum_{y\in Y}p(X,Y=y)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In the case of continuous variables,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p(X)=\int_{y\in Y}p(X,Y=y)dy
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Moments and their Applications
+\end_layout
+
+\begin_layout Standard
+We will consider moments only till certain statistical features of distributions.
+ In the following discussions, 
+\begin_inset Formula $r$
+\end_inset
+
+ is a positive integer, and 
+\begin_inset Formula $E[\cdots]$
+\end_inset
+
+ denotes the expectation.
+\end_layout
+
+\begin_layout Subsection
+Raw Moments
+\end_layout
+
+\begin_layout Standard
+These are also called 
+\emph on
+moments about origin
+\emph default
+.
+ Raw moments of degree 
+\begin_inset Formula $r$
+\end_inset
+
+ are defined as
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mu_{r}'=E[X^{r}]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Central Moments
+\end_layout
+
+\begin_layout Standard
+These are also called the 
+\emph on
+moments about the statistical mean
+\emph default
+, which, as we'll use later, is 
+\begin_inset Formula $E[X]$
+\end_inset
+
+.
+ Thus, central moments of degree 
+\begin_inset Formula $r$
+\end_inset
+
+ are defined as
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mu_{r}=E[(X-E[X])^{r}]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Calculations for 
+\begin_inset Formula $r=1,2$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For 
+\begin_inset Formula $r=1$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+\mu_{1}' & = & E[X]=\mbox{statistical mean}\\
+\mu_{1} & = & E[(X-E[X])]\\
+ & = & E[X]-E[E[X]]\\
+ & = & E[X]-E[X]\cdot E[1]\\
+ & = & 0
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For 
+\begin_inset Formula $r=2$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+\mu_{2}' & = & E[X^{2}]\\
+\mu_{2} & = & E[(X-E[X])^{2}]\\
+ & = & E[X^{2}-2\cdot X\cdot E[X]+E[X]^{2}]\\
+ & = & E[X^{2}]-2E[X\cdot E[X]]+E[E[X]^{2}]\\
+ & = & E[X^{2}]-2E[X]\cdot E[X]+E[X]^{2}\cdot E[1]\\
+ & = & E[X^{2}]-E[X]^{2}=\mbox{var(\ensuremath{X})}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Skewness
+\end_layout
+
+\begin_layout Standard
+Generally saying, 
+\emph on
+skewness
+\emph default
+ is the lack of symmetry.
+ In symmetric distributions, the mean, median and the mode are equal.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/drawing.svg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In asymmetric or 
+\emph on
+skewed
+\emph default
+ distributions, the mean, median, and mode are not all equal.
+ Folplowing this idea, there are two types of skewed distributions - positively
+ skewed (
+\begin_inset Formula $mean\leq median\leq mode$
+\end_inset
+
+) and negatively skewed (
+\begin_inset Formula $mode\leq median\leq median$
+\end_inset
+
+).
+ Note that in these inequalities, both equalities can never hold simultaneously.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/drawing-2.svg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Pearson's Coefficient of Skewness
+\end_layout
+
+\begin_layout Standard
+This is a measure of skewness, defined as 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{\mbox{mean}-\mbox{mode}}{\mbox{standard deviation}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When the mode is not well defined, then we use a measure 
+\begin_inset Formula $\beta_{1}$
+\end_inset
+
+ for skewness, which is defined as
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\beta_{1}=\frac{\mu_{3}^{2}}{\mu_{2}^{3}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+There is still an issue with this.
+ 
+\begin_inset Formula $\mu_{2}$
+\end_inset
+
+, which we proved earlier to be 
+\begin_inset Formula $\mbox{var(\ensuremath{X})}$
+\end_inset
+
+ is always positive, and the numerator is also always positive (due to squaring)
+, thus 
+\begin_inset Formula $\beta_{1}$
+\end_inset
+
+ is always positive.
+ But skewness can be negative as well.
+ Hence, a better measure of skewness is 
+\begin_inset Formula $\gamma_{1}$
+\end_inset
+
+, defined as
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\gamma_{1}=\sqrt{\beta_{1}}=\frac{\mu_{3}}{\mu_{2}^{3/2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\gamma_{1}$
+\end_inset
+
+ can be both positive and negative, depending on 
+\begin_inset Formula $\mu_{3}$
+\end_inset
+
+.
+ That is, if 
+\begin_inset Formula $\mu_{3}>0$
+\end_inset
+
+, the distribution is positively skewed, and 
+\begin_inset Formula $\mu_{3}<0$
+\end_inset
+
+ says that the distribution is negatively skewed.
+\end_layout
+
+\begin_layout Subsection
+Kurtosis
+\end_layout
+
+\begin_layout Standard
+Kurtosis refers to the 
+\emph on
+steepness
+\emph default
+ of a probability distribution.
+ It is measured by 
+\begin_inset Formula $\beta_{2}$
+\end_inset
+
+, defined as
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\beta_{2}=\frac{\mu_{4}}{\mu_{2}^{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\beta_{2}$
+\end_inset
+
+ has been, by practice found to be concentrated near 3.
+ Thus, a better measure is 
+\begin_inset Formula $\gamma_{2}$
+\end_inset
+
+, defined as 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\gamma_{2}=\beta_{2}-3
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/drawing-3.svg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Moment Generating Functions (MGF)
+\end_layout
+
+\begin_layout Standard
+The moment generating function of a random variable 
+\begin_inset Formula $X$
+\end_inset
+
+ is defined as (for real 
+\begin_inset Formula $t$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+M_{X}(t)=E[e^{tX}]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+It is possible to use to moment generating function to reach to any raw
+ moment 
+\begin_inset Formula $\mu_{r}'$
+\end_inset
+
+ for the given 
+\begin_inset Formula $X$
+\end_inset
+
+.
+ That is,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mu_{r}'={\displaystyle \frac{d^{r}}{dt^{r}}\bigg(M_{X}(t)\bigg)\bigg|_{t=0}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Proofs
+\end_layout
+
+\begin_layout Standard
+The definition can be verified using
+\end_layout
+
+\begin_layout Enumerate
+the definition of 
+\emph on
+expectation
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+{\displaystyle \frac{d}{dt}M_{X}(t)} & = & {\displaystyle \frac{d}{dt}E[e^{tX}]}\\
+ & = & {\displaystyle \frac{d}{dt}\sum_{x\in X}e^{tx}p(X=x)}\\
+ & = & {\displaystyle \sum_{x\in X}\frac{d}{dt}e^{tx}p(X=x)}\\
+ & = & {\displaystyle \sum_{x\in X}xe^{tx}p(X=x)}\\
+{\displaystyle \frac{d^{r}}{dt^{r}}M_{X}(t)} & = & {\displaystyle \sum_{x\in X}x^{r}e^{tx}p(X=x)}\\
+\therefore{\displaystyle \frac{d^{r}}{dt^{r}}\bigg(M_{X}(t)\bigg)}\bigg|_{t=0} & = & {\displaystyle \sum_{x\in X}x^{r}p(X=x)}\\
+ & = & E[X^{r}]=\mu_{r}'
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+differentiation under the integral sign
+\end_layout
+
+\begin_layout Enumerate
+expansion of 
+\begin_inset Formula $e^{tX}$
+\end_inset
+
+ as
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+e^{tX}=1+tX+\frac{t^{2}X^{2}}{2!}+\cdots
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Properties
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Uniqueness - 
+\emph default
+If MGF exists, it is unique.
+\end_layout
+
+\begin_layout Itemize
+The MGF of sum of independent random variables is the product of their individua
+l MGFs.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Thus,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+M_{X_{1}+X_{2}\cdots X_{n}}(t)=M_{X_{1}}(t)\cdot M_{X_{2}}(t)\cdots M_{X_{n}}(t)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This can be proved easily using the definition of MGF, expectation and independe
+nce.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Types of Probability Distributions
+\end_layout
+
+\begin_layout Subsection
+Binomial Distribution
+\end_layout
+
+\begin_layout Standard
+Assumptions are
+\end_layout
+
+\begin_layout Itemize
+Every trial in a random experiment can result in one of the two possible
+ outcomes, which we call 
+\emph on
+success 
+\emph default
+and 
+\emph on
+failure
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Trials are independent, that is, the result of one trial does not affect
+ the result of another.
+\end_layout
+
+\begin_layout Itemize
+The probability of success is fixed in every trial, say 
+\begin_inset Formula $P$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Suppose the assumptions hold, and there are 
+\begin_inset Formula $n$
+\end_inset
+
+ trials out of which 
+\begin_inset Formula $x$
+\end_inset
+
+ are successes.
+ There can be 
+\begin_inset Formula $\,^{n}C_{x}$
+\end_inset
+
+ such orderings.
+ Thus the probability distribution function is
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\,^{n}C_{x}\cdot p(\mbox{x successes})=\,^{n}C_{x}\cdot P^{x}(1-P)^{n-x}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Also, notice that these functions form the coefficients of the binomial
+ expansion
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+1^{n}=\{(1-P)+P\}^{n}=\,^{n}C_{0}P^{0}(1-P)^{n}+\,^{n}C_{1}P^{1}(1-P)^{n-1}+\cdots+\,^{n}C_{x}P^{x}(1-P)^{n-x}+\cdots+\,^{n}C_{n}P^{n}(1-P)^{0}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\emph on
+moment generating function 
+\emph default
+
+\begin_inset Formula $M_{X}(t)$
+\end_inset
+
+ would be
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+M_{X}(t) & = & \sum_{x\in X}e^{tx}\cdot p(X=x)\\
+ & = & \sum_{x\in X}e^{tx}\cdot\,^{n}C_{x}\cdot P^{x}(1-P)^{n-x}\\
+ & = & \sum_{x\in X}\,^{n}C_{x}\cdot(Pe^{t})^{x}(1-P)^{n-x}\\
+ &  & \mbox{\ensuremath{X} is a random variable, equal to number of successes, \ensuremath{X=\{0,1,2\cdots n\}}}\\
+ &  & \mbox{Assuming \ensuremath{1-P=Q}}\\
+M_{X}(t) & = & (Q+Pe^{t})^{n}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Some moments are -
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+\mu_{1}' & = & E[X]\\
+ & = & \frac{d}{dt}M_{X}(t)\bigg|_{t=0}\\
+ & = & n(Q+Pe^{t})^{n-1}\cdot Pe^{t}\bigg|_{t=0}\\
+ & = & n(Q+P)^{n-1}\cdot P\\
+ & = & nP\\
+\mu_{1} & = & 0\mbox{, as discussed earlier}\\
+\mu_{2} & '= & E[X^{2}]\\
+ & = & \frac{d^{2}}{dt^{2}}M_{X}(t)\bigg|_{t=0}\\
+ & = & nP\cdot\frac{d}{dt}\{(Q+Pe^{t})^{n-1}e^{t}\}\bigg|_{t=0}\\
+ & = & nP\cdot\{e^{t}(Q+Pe^{t})^{n-1}+e^{t}(n-1)(Q+Pe^{t})^{n-2}Pe^{t}\}\bigg|_{t=0}\\
+ & = & nP\cdot\{(Q+P)^{n-1}+(n-1)(Q+P)^{n-2}P\}\\
+ & = & nP\cdot\{1+(n-1)P\}\\
+ & = & nP\cdot\{nP+Q\}\\
+\mu_{2} & = & \mbox{var(\ensuremath{X})}=E[X^{2}]-E[X]^{2}\\
+ & = & nP\cdot(nP+Q)-(nP)^{2}\\
+ & = & nPQ
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+It is interesting to note that statistical mean is greater than variance
+ in binomial distributions, since
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+nP>nPQ\mbox{, because \ensuremath{Q=1-P} is less than 1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Bernoulli Distribution
+\end_layout
+
+\begin_layout Standard
+Bernoulli distribution is a special case of binomial distribution, where
+ 
+\begin_inset Formula $n=1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Combining Two Binomial Distributions
+\end_layout
+
+\begin_layout Standard
+Let us have two binomial distributions, with variables 
+\begin_inset Formula $X_{1}\sim B(n_{1},P_{1})$
+\end_inset
+
+ and 
+\begin_inset Formula $X_{2}\sim B(n_{2},P_{2})$
+\end_inset
+
+.
+ Then we want to find out when 
+\begin_inset Formula $X_{1}+X_{2}$
+\end_inset
+
+ will form a binomial distribution.
+ Because 
+\begin_inset Formula $X_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $X_{2}$
+\end_inset
+
+ are independent, so the resultant MGF is 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+M_{X_{1}+X_{2}}(t) & = & M_{X_{1}}(t)\cdot M_{X_{2}}(t)\\
+ & = & (Q_{1}+P_{1}e^{t})^{n_{1}}\cdot(Q_{2}+P_{2}e^{t})^{n_{2}}\\
+ & = & (Q+Pe^{t})^{n}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We wish to find if 
+\begin_inset Formula $n_{1},n_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $P_{1},P_{2}$
+\end_inset
+
+ can ever give 
+\begin_inset Formula $n,P$
+\end_inset
+
+ or not, and if yes, then when.
+ One trivial possibility is when 
+\begin_inset Formula $P_{1}=P_{2}$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula $Q_{1}=1-P_{1}=1-P_{2}=Q_{2}$
+\end_inset
+
+ and the MGFs can be combined to give
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+M_{X_{1}+X_{2}}(t)=(Q+Pe^{t})^{n}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $Q=Q_{1}=Q_{2}$
+\end_inset
+
+, 
+\begin_inset Formula $P=P_{1}=P_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $n=n_{1}+n_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Poisson Distribution
+\end_layout
+
+\begin_layout Standard
+This is a limiting case of binomial distribution.
+ It is used to characterise 
+\emph on
+rare events
+\emph default
+ (very less 
+\begin_inset Formula $P$
+\end_inset
+
+) over a very large sample (large 
+\begin_inset Formula $n$
+\end_inset
+
+).
+ The assumptions are thus
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+n\rightarrow\infty,P\rightarrow0\mbox{ such that }nP=\lambda\mbox{ (some constant)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\bar under
+Exercise
+\bar default
+ : 
+\series default
+Prove that through some calculations, the 
+\emph on
+probability mass function
+\emph default
+ of a poisson distribution can be found out to be
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p(X=x)=\frac{e^{-\lambda}\lambda^{x}}{x!}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where x is a non negative integer, and 
+\begin_inset Formula $\lambda>0$
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Using this value of 
+\begin_inset Formula $p(X)$
+\end_inset
+
+, the MGF can be found out as
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+M_{X}(t) & = & E[e^{tX}]\\
+ & = & \sum_{x\in X}e^{tx}\cdot P(X=x)\\
+ & = & \sum_{x\in X}e^{tx}\cdot\frac{e^{-\lambda}\lambda^{x}}{x!}\\
+ & = & e^{-\lambda}\sum_{x\in X}\frac{(\lambda e^{t})^{x}}{x!}\\
+ & = & e^{-\lambda}\cdot e^{\lambda e^{t}}\\
+M_{X}(t) & = & e^{\lambda(e^{t}-1)}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Some moments are -
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+\mu_{1}' & = & E[X]\\
+ & = & \frac{d}{dt}M_{X}(t)\bigg|_{t=0}\\
+ & = & e^{\lambda(e^{t}-1)}\cdot\lambda e^{t}\bigg|_{t=0}\\
+ & = & e^{\lambda(1-1)}\cdot\lambda\\
+ & = & \lambda\\
+\mu_{1} & = & 0\mbox{, as discussed already}\\
+\mu_{2}' & = & E[X^{2}]\\
+ & = & \frac{d^{2}}{dt^{2}}M_{X}(t)\bigg|_{t=0}\\
+ & = & \lambda\cdot\frac{d}{dt}e^{\lambda(e^{t}-1)+t}\bigg|_{t=0}\\
+ & = & \lambda e^{\lambda(e^{t}-1)+t}\cdot(\lambda e^{t}+1)\bigg|_{t=0}\\
+ & = & \lambda\cdot(\lambda+1)\\
+\mu_{2} & = & \mbox{var(\ensuremath{X})}\\
+ & = & E[X^{2}]-E[X]^{2}\\
+ & = & \lambda\cdot(\lambda+1)-\lambda^{2}\\
+ & = & \lambda
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Thus, in a poisson distribution, the statistical mean and the variance are
+ equal.
+\end_layout
+
+\begin_layout Subsection
+Combining Two Poisson Distributions
+\end_layout
+
+\begin_layout Standard
+Let us consider two poisson distributions with random variables 
+\begin_inset Formula $X_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $X_{2}$
+\end_inset
+
+, such that 
+\begin_inset Formula $X_{1}\sim P(\lambda_{1})$
+\end_inset
+
+ and 
+\begin_inset Formula $X_{2}\sim P(\lambda_{2})$
+\end_inset
+
+.
+ Then the MGF of 
+\begin_inset Formula $X_{1}+X_{2}$
+\end_inset
+
+ would be (since they are independent), 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+M_{X_{1}+X_{2}}(t)=M_{X_{1}}(t)\cdot M_{X_{2}}(t)=e^{\lambda_{1}(e^{t}-1)}\cdot e^{\lambda_{2}(e^{t}-1)}=e^{(\lambda_{1}+\lambda_{2})(e^{t}-1)}\sim P(\lambda_{1}+\lambda_{2})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Normal Distribution & Standard Normal Distribution
+\end_layout
+
+\begin_layout Standard
+Normal distribution is also a limiting case of binomial distribution, with
+ the difference being that 
+\begin_inset Formula $P$
+\end_inset
+
+ is neither too large (
+\begin_inset Formula $P\nrightarrow1$
+\end_inset
+
+), nor too small (
+\begin_inset Formula $P\nrightarrow0$
+\end_inset
+
+), for a large 
+\begin_inset Formula $n$
+\end_inset
+
+, i.e.
+ 
+\begin_inset Formula $n\rightarrow\infty$
+\end_inset
+
+.
+ Thus for a variable 
+\begin_inset Formula $X\sim B(n,P)$
+\end_inset
+
+, we define another variable
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Z=\frac{X-nP}{\sqrt{nPQ}}=\frac{X-\mu}{\sigma}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Under the limiting conditions, 
+\begin_inset Formula $X\sim N(\mu,\sigma^{2})$
+\end_inset
+
+ whereas 
+\begin_inset Formula $Z\sim N(0,1)$
+\end_inset
+
+.
+ 
+\begin_inset Formula $Z$
+\end_inset
+
+'s distribution is also called 
+\emph on
+standard normal 
+\emph default
+distribution - the mean is 
+\begin_inset Formula $0$
+\end_inset
+
+ and variance is 1.
+ The probability functions are
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+\phi(Z) & = & \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}Z^{2}}\\
+f(X) & = & \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}\big(\frac{X-\mu}{\sigma}\big)^{2}}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Important definite integrals involving 
+\begin_inset Formula $\phi(Z)$
+\end_inset
+
+ are
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\int_{z=0}^{1.645}\phi(Z=z)dz=0.45
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\int_{z=0}^{1.96}\phi(Z=z)dz=0.475
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Student's 
+\begin_inset Formula $t$
+\end_inset
+
+ Distribution
+\end_layout
+
+\begin_layout Standard
+Let a sample distribution have 
+\begin_inset Formula $n$
+\end_inset
+
+ values 
+\begin_inset Formula $\{x_{1},x_{2}\cdots x_{n}\}$
+\end_inset
+
+.
+ Let us define a 
+\emph on
+statistic
+\emph default
+ 
+\begin_inset Formula $t$
+\end_inset
+
+ as
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+t=f(x_{1},x_{2}\cdots x_{n})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Further, if we define a random variable 
+\begin_inset Formula $Z$
+\end_inset
+
+ based on the value of 
+\begin_inset Formula $t$
+\end_inset
+
+ as
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Z=\frac{t-E[t]}{S.E.(t)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $S.E.(t)$
+\end_inset
+
+ is the standard error, i.e.
+ the standard deviation of the statistic 
+\begin_inset Formula $t$
+\end_inset
+
+.
+ 
+\begin_inset Formula $Z$
+\end_inset
+
+ behaves as the standard normal variant for large 
+\begin_inset Formula $n$
+\end_inset
+
+ (
+\begin_inset Formula $n\geq30$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Section
+Statistics
+\end_layout
+
+\begin_layout Subsection
+Types
+\end_layout
+
+\begin_layout Enumerate
+Descriptive - describing data
+\end_layout
+
+\begin_layout Enumerate
+Inferential - inferring the population via samples
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Estimation
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Point Based
+\end_layout
+
+\begin_layout Enumerate
+Interval
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Testing of Hypotheses
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+What is estimation?
+\end_layout
+
+\begin_layout Standard
+Estimation is the process of making an intelligent guess about the parameter
+ using a statistic.
+ The statistic involved in the process is called an 
+\emph on
+estimator
+\emph default
+ and its value for a particular sample is called the 
+\emph on
+estimate
+\emph default
+.
+\end_layout
+
+\begin_layout Subsection
+Properties of a Good Estimator
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+unbiasedness
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+If 
+\begin_inset Formula $E[t]=\theta$
+\end_inset
+
+, then the statistic 
+\begin_inset Formula $t$
+\end_inset
+
+ is called an 
+\emph on
+unbiased
+\emph default
+ estimator of 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+ For example, statistical mean is, by definition, an unbiased estimator.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+consistency
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula $t$
+\end_inset
+
+ is 
+\emph on
+consistent
+\emph default
+ for 
+\begin_inset Formula $\theta$
+\end_inset
+
+ if 
+\begin_inset Formula $t\rightarrow\theta$
+\end_inset
+
+ as 
+\begin_inset Formula $n\rightarrow N$
+\end_inset
+
+, or size of the sample increases to a large value (near the size of the
+ population).
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+efficiency
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+If there are two estimators 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $t_{2}$
+\end_inset
+
+, then 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+ is called more 
+\emph on
+efficient 
+\emph default
+than 
+\begin_inset Formula $t_{2}$
+\end_inset
+
+ iff 
+\begin_inset Formula $\mbox{var(\ensuremath{t_{1}})\ensuremath{<}var(\ensuremath{t_{2}})}$
+\end_inset
+
+.
+ A lesser variance indicates a more stable value.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+sufficiency
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+An estimator 
+\begin_inset Formula $t$
+\end_inset
+
+ is called 
+\emph on
+sufficient
+\emph default
+ for estimating 
+\begin_inset Formula $\theta$
+\end_inset
+
+ if it utilises all information about 
+\begin_inset Formula $\theta$
+\end_inset
+
+ available for the sample.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Hypotheses
+\end_layout
+
+\begin_layout Standard
+A 
+\emph on
+hypothesis 
+\emph default
+is a statement which has not yet been proved.
+ A 
+\emph on
+statistical hypothesis
+\emph default
+ is a statement about a population which we are trying to prove, through
+ a sample.
+ Statistical hypotheses can be 
+\emph on
+parametric 
+\emph default
+or 
+\emph on
+non parametric
+\emph default
+.
+ Parametric hypotheses involve parameters of the population.
+ Non parametric hypotheses are general statements about a population and
+ are not concerned about parameters.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Usually, for tests, we start with the 
+\emph on
+null hypothesis
+\emph default
+ 
+\emph on
+
+\begin_inset Formula $H_{0}$
+\end_inset
+
+
+\emph default
+.
+ In it, we assume equality of conditions.
+ For example, if our test is about the success of a new medicine in market,
+ we assume in 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+ that it will fail.
+ The hypothesis against which the null hypothesis is tested is called the
+ 
+\emph on
+alternative hypothesis
+\emph default
+ or 
+\begin_inset Formula $H_{1}$
+\end_inset
+
+.
+ So, in the previous example, in 
+\begin_inset Formula $H_{1}$
+\end_inset
+
+ we say that the medicine will succeed.
+\end_layout
+
+\begin_layout Subsection
+Errors Associated with 
+\begin_inset Formula $H_{0},H_{1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Type I Error
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+This happens when we reject a null hypothesis 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+ but in actuality, it is true.
+ The probability of its occurrence is called the 
+\emph on
+producer's risk
+\emph default
+ or 
+\begin_inset Formula $\alpha$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\emph on
+Type II Error
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+This happens when we accept a false null hypothesis 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+.
+ The probability of its occurrence is called 
+\emph on
+consumer's risk 
+\emph default
+or 
+\begin_inset Formula $\beta$
+\end_inset
+
+.
+ The 
+\emph on
+power of the test 
+\emph default
+is signified by 
+\begin_inset Formula $1-\beta$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Typically, the sample distribution has a region in which it satisfies 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+, called the 
+\series bold
+acceptance region
+\series default
+.
+ 
+\begin_inset Formula $\alpha,\beta$
+\end_inset
+
+ both depend on the size of the acceptance region, and its location.
+ Since it is not possible to minimise both 
+\begin_inset Formula $\alpha,\beta$
+\end_inset
+
+ simultaneously, thus we fix one of 
+\begin_inset Formula $\alpha,\beta$
+\end_inset
+
+ and minimise the other.
+\end_layout
+
+\begin_layout Subsection
+Test of Significance & Its Relation to Testing of Hypothesis
+\end_layout
+
+\begin_layout Standard
+By 
+\emph on
+test of significance
+\emph default
+, we mean a statistical test which is used to test the significance of the
+ difference between what is assumed in the population, and what is observed
+ in the sample.
+ What is practically called the test of significance is called the 
+\emph on
+test of hypothesis
+\emph default
+ in theory.
+ The analogy between the two can be explained as follows.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Suppose we have a random sample 
+\begin_inset Formula $X\in\{x_{1},x_{2}\cdots x_{n}\}$
+\end_inset
+
+.
+ Consider it as an 
+\begin_inset Formula $n$
+\end_inset
+
+-dimensional point in the 
+\begin_inset Formula $n$
+\end_inset
+
+-dimensional space composed of all possible such points (or such samples).
+ Now divide the 
+\begin_inset Formula $n$
+\end_inset
+
+-dimensional space into two parts - 
+\end_layout
+
+\begin_layout Itemize
+acceptance region (AR)
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+rejection region
+\emph default
+ or 
+\emph on
+critical region 
+\emph default
+(CR)
+\end_layout
+
+\begin_layout Standard
+and see what region the point 
+\begin_inset Formula $X$
+\end_inset
+
+ falls into.
+ If it falls into the acceptance region, it supports 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+ and otherwise it rejects 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When the size of the CR is fixed, practically we are actually fixing 
+\begin_inset Formula $\alpha$
+\end_inset
+
+.
+ Further fixing the location of CR decides the value of 
+\begin_inset Formula $\beta$
+\end_inset
+
+ practically.
+ For a given sample size 
+\begin_inset Formula $n$
+\end_inset
+
+, it is not possible to simultaneously reduce 
+\begin_inset Formula $\alpha,\beta$
+\end_inset
+
+ thus 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ is fixed at a tolerable low level, say 
+\begin_inset Formula $1\%$
+\end_inset
+
+ or 
+\begin_inset Formula $10\%$
+\end_inset
+
+, and corresponding 
+\begin_inset Formula $\beta$
+\end_inset
+
+ is minimised.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Tests
+\end_layout
+
+\begin_layout Subsection
+Test of Single Proportion
+\end_layout
+
+\begin_layout Standard
+Suppose we wish to determine if the given coin is fair, and we are provided
+ the heads ratio for every few tosses.
+ A fair coin would mean that the heads ratio is always typically around
+ 
+\begin_inset Formula $P_{0}=0.5$
+\end_inset
+
+.
+ So,
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $H_{0}:$
+\end_inset
+
+ 
+\begin_inset Formula $p=P_{0}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $H_{1}:$
+\end_inset
+
+ 
+\begin_inset Formula $p\neq P_{0}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $\alpha:$
+\end_inset
+
+ fixed at 
+\begin_inset Formula $5\%$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Our test statistic 
+\begin_inset Formula $Z$
+\end_inset
+
+ is
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Z=\frac{X-nP_{0}}{\sqrt{nP_{0}Q_{0}}}\sim N(0,1)\mbox{, provided \ensuremath{H_{0}} holds, i.e. \ensuremath{p=P_{0}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Also 
+\begin_inset Formula $n\geq30$
+\end_inset
+
+, if we want our statistic to behave like a standard normal variant (normal
+ distributions have large sample size).
+ Using the previous definite integrals (in normal distributions),
+\end_layout
+
+\begin_layout Description
+CR: 
+\begin_inset Formula $|Z|\geq1.96$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This is because at 
+\begin_inset Formula $Z\geq1.96$
+\end_inset
+
+ or 
+\begin_inset Formula $Z\leq-1.96$
+\end_inset
+
+ we get two regions which sum to give a probability 
+\begin_inset Formula $0.025+0.025=0.05=5\%$
+\end_inset
+
+ for 
+\begin_inset Formula $\alpha$
+\end_inset
+
+.
+ Also note that 
+\begin_inset Formula $1-\alpha$
+\end_inset
+
+ is called the 
+\emph on
+confidence
+\emph default
+.
+ Actually, through this CR we say that
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p(|Z|\geq1.96\mbox{ given that \ensuremath{H_{0}} holds})=5\%
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For the coin toss example,
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\begin_inset Formula 
+\[
+Z=\frac{X-0.5n}{\sqrt{n\times0.5\times0.5}}=\frac{2X-n}{\sqrt{n}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Similarly, if we want to test a hypothesis which says that the probability
+ of non smokers in a population is greater than 
+\begin_inset Formula $10\%$
+\end_inset
+
+, then our hypotheses would be
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $H_{0}:$
+\end_inset
+
+ 
+\begin_inset Formula $p=0.1\mbox{, \ensuremath{p} is the probability of finding a non smoker}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $H_{1}:$
+\end_inset
+
+ 
+\begin_inset Formula $p>0.1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The test statistic can be similarly found out.
+ But there is a significant difference between this example and the coin
+ toss example.
+ The coin toss example looked for critical regions, on both sides of the
+ distribution
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p\neq P_{0}\implies p>P_{0}\mbox{ and }p<P_{0}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Thus such tests are called 
+\emph on
+two-tail tests
+\emph default
+.
+ However, in the smokers example, we wanted a greater than 
+\begin_inset Formula $P_{0}$
+\end_inset
+
+ region only, so we are looking on one side of the normal distribution.
+ Thus such a test is also called 
+\emph on
+one-tail test
+\emph default
+\SpecialChar \@.
+
+\end_layout
+
+\begin_layout Subsection
+Test of Two Proportions
+\end_layout
+
+\begin_layout Standard
+Here, we want to check if the probability of two parameters 
+\begin_inset Formula $P_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $P_{2}$
+\end_inset
+
+ are the same or not.
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $H_{0}:$
+\end_inset
+
+ 
+\begin_inset Formula $P_{1}=P_{2}=P\mbox{ (say)}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $H_{1}:$
+\end_inset
+
+ 
+\begin_inset Formula $P_{1}\neq P_{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $\alpha:$
+\end_inset
+
+ fixed at 
+\begin_inset Formula $5\%$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The test statistic is
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Z=\frac{p_{1}-p_{2}}{\sqrt{\hat{p}\hat{q}{\displaystyle \bigg(\frac{1}{n_{1}}+\frac{1}{n_{2}}\bigg)}}}\sim N(0,1)\mbox{ under \ensuremath{H_{0}} provided \ensuremath{n_{1},n_{2}\geq30}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This is a 2-tail test, so
+\end_layout
+
+\begin_layout Description
+CR: 
+\begin_inset Formula $|Z|\geq1.96$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Deriving that 
+\begin_inset Formula $X=p_{1}-p_{2}$
+\end_inset
+
+ is a good statistic
+\end_layout
+
+\begin_layout Standard
+Because 
+\begin_inset Formula $p_{1},p_{2}$
+\end_inset
+
+ are two statistics defined on different samples,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p_{1}=\frac{x_{1}}{n_{1}},p_{2}=\frac{x_{2}}{n_{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We estimate a common 
+\begin_inset Formula $\hat{p}$
+\end_inset
+
+ and 
+\begin_inset Formula $\hat{q}$
+\end_inset
+
+ to use in standard error calculations, through combining the samples.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\hat{p}=\frac{x_{1}+x_{2}}{n_{1}+n_{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Expected value of statistic is
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+E[p_{1}-p_{2}] & = & E[p_{1}]-E[p_{2}]\\
+ &  & \mbox{assuming that \ensuremath{p_{1}}and \ensuremath{p_{2}} are defined by population's \ensuremath{P_{1}} and \ensuremath{P_{2}}}\\
+ & = & P_{1}-P_{2}\\
+ & = & 0\mbox{ (under \ensuremath{H_{0}})}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Variance of the statistic is
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+\mbox{var}(p_{1}-p_{2}) & = & \mbox{var}(p_{1})+\mbox{var}(p_{2})\\
+ &  & \mbox{since covariance is 0 (independence)}\\
+ & = & \frac{1}{n_{_{1}}^{2}}\mbox{var}(x_{1})+\frac{1}{n_{2}^{2}}\mbox{var}(x_{2})\\
+ &  & \mbox{from previous proof}\\
+ & = & \frac{1}{n_{1}^{2}}n_{1}P_{1}Q_{1}+\frac{1}{n_{2}^{2}}n_{2}P_{2}Q_{2}\\
+ & = & PQ\bigg(\frac{1}{n_{1}}+\frac{1}{n_{2}}\bigg)\mbox{, under \ensuremath{H_{0}}}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Because we don't know 
+\begin_inset Formula $P,Q$
+\end_inset
+
+ so we estimate it through 
+\begin_inset Formula $\hat{p},\hat{q}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Thus the statistic comes out to be
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Z=\frac{X-E[X]}{S.E.(X)}=\frac{(p_{1}-p_{2})-0}{\sqrt{\hat{p}\hat{q}{\displaystyle \bigg(\frac{1}{n_{1}}+\frac{1}{n_{2}}\bigg)}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Also note that for one tail tests, the critical region comes out to be
+\end_layout
+
+\begin_layout Description
+CR: 
+\begin_inset Formula $Z>1.645$
+\end_inset
+
+, when null hypothesis is 
+\begin_inset Formula $P_{1}>P_{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+CR: 
+\begin_inset Formula $Z<-1.645$
+\end_inset
+
+, when null hypothesis is 
+\begin_inset Formula $P_{1}<P_{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Test of Single Mean
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $(X_{1},X_{2}\cdots X_{n})\overset{iid}{\sim}N(\mu,\sigma^{2})$
+\end_inset
+
+, where 
+\emph on
+iid
+\emph default
+ stands for an independent and identical distribution.
+\end_layout
+
+\begin_layout Description
+To
+\begin_inset space ~
+\end_inset
+
+test
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $H_{0}:$
+\end_inset
+
+ 
+\begin_inset Formula $\mu=\mu_{0}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+against
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $H_{1}:$
+\end_inset
+
+ 
+\begin_inset Formula $\mu\neq\mu_{0}$
+\end_inset
+
+ (two tail)
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $\alpha:$
+\end_inset
+
+ fixed at 
+\begin_inset Formula $5\%$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Case I.
+ 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ is known (say 
+\begin_inset Formula $\sigma=\sigma_{0}$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+The test statistic becomes
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Z=\frac{\bar{X}-\mu_{0}}{\sigma_{0}/\sqrt{n}}\sim N(0,1)\mbox{ under \ensuremath{H_{0}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The statistic is 
+\begin_inset Formula $\bar{X}$
+\end_inset
+
+, 
+\begin_inset Formula $E[\bar{X}]$
+\end_inset
+
+ and standard error can be found out like
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+E[\bar{X}] & = & E[\frac{1}{n}\sum X_{i}]\\
+ & = & \frac{n\mu_{0}}{n}=\mu_{0}\\
+S.E.(\bar{X}) & = & \mbox{var}(\mbox{\bar{X}})\\
+ & = & \frac{1}{n^{2}}\mbox{var}(\sum X_{i})\\
+ & = & \frac{n\sigma_{0}^{2}}{n^{2}}=\frac{\sigma_{0}^{2}}{n}\mbox{ (under \ensuremath{H_{0}})}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+CR: calculated 
+\begin_inset Formula $|Z|\geq1.96$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Case II.
+ 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ is unknown and sample size is large (
+\begin_inset Formula $n\geq30$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+We estimate 
+\begin_inset Formula $\hat{\sigma}^{2}=s^{2}$
+\end_inset
+
+, also called the sample mean square as
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+s^{2}=\frac{1}{n-1}\sum_{i=1}^{n}(X_{i}-\bar{X})^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that the sample mean square is taken because of its unbiasedness.
+ We do not use the sample variance because it is biased.
+ Sample variance 
+\begin_inset Formula $S^{2}$
+\end_inset
+
+ is calculated as
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+S^{2}=\frac{1}{n}\sum_{i=1}^{n}(X_{i}-\bar{X})^{2}\mbox{, biased thus not used}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Following a similar proof as in case I, we get a test statistic like
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+t=\frac{\bar{X}-\mu_{0}}{s/\sqrt{n}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+CR: calculated 
+\begin_inset Formula $|t|\geq1.96$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Actually, this is a case of Student's 
+\begin_inset Formula $t$
+\end_inset
+
+ distribution, but for large sample size, it approximates a normal distribution.
+\end_layout
+
+\begin_layout Subsubsection*
+Case III.
+ 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ is unknown and sample size is not large (
+\begin_inset Formula $n<30$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+Now, we have to use the table value of Student's 
+\begin_inset Formula $t$
+\end_inset
+
+ distribution, (which will be given in the questions as needed).
+ The statistic is the same as that in case II, and the critical region is
+\end_layout
+
+\begin_layout Description
+CR: calculated 
+\begin_inset Formula $|t|\geq t_{5\%,n-1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where the 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $t_{5\%,n-1}$
+\end_inset
+
+ denotes the value of Student's 
+\begin_inset Formula $t$
+\end_inset
+
+ distribution at 
+\begin_inset Formula $5\%$
+\end_inset
+
+ and 
+\begin_inset Formula $n-1$
+\end_inset
+
+ degrees of freedom.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Student's 
+\begin_inset Formula $t$
+\end_inset
+
+ distribution is an 
+\family default
+\series default
+\shape default
+\size default
+\emph on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+exact sampling 
+\emph default
+distribution, and occurs frequently in small samples where normal distributions
+ can not be applied.
+ 
+\emph on
+Degree of freedom
+\emph default
+ is defined as the number of independent pieces of information.
+ For example, in this case, we had 
+\begin_inset Formula $n$
+\end_inset
+
+ 
+\begin_inset Formula $X_{i}$
+\end_inset
+
+'s which accounted for 
+\begin_inset Formula $n$
+\end_inset
+
+ degrees of freedom, but approximating 
+\begin_inset Formula $\hat{\sigma}^{2}$
+\end_inset
+
+ caused a relation between 
+\begin_inset Formula $X_{i}$
+\end_inset
+
+'s, so that by fixing 
+\begin_inset Formula $n-1$
+\end_inset
+
+ of the 
+\begin_inset Formula $X_{i}$
+\end_inset
+
+'s we could arrive at the last 
+\begin_inset Formula $X_{i}$
+\end_inset
+
+.
+ Thus the total degrees of freedom were 
+\begin_inset Formula $n-1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Test of Two Means
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $(X_{1},X_{2}\cdots X_{n})\overset{iid}{\sim}N(\mu_{1},\sigma^{2})$
+\end_inset
+
+ and 
+\begin_inset Formula $(Y_{1},Y_{2}\cdots Y_{n})\overset{iid}{\sim}N(\mu_{2},\sigma^{2})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+To
+\begin_inset space ~
+\end_inset
+
+test
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $H_{0}:$
+\end_inset
+
+ 
+\begin_inset Formula $\mu_{1}=\mu_{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+against
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $H_{1}:$
+\end_inset
+
+ 
+\begin_inset Formula $\mu_{1}\neq\mu_{2}$
+\end_inset
+
+ (two tail)
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $\alpha:$
+\end_inset
+
+ fixed at 
+\begin_inset Formula $5\%$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Case I.
+ 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ is known (say 
+\begin_inset Formula $\sigma=\sigma_{0}$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+The test statistic, derived similarly as in test of two proportions is
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Z=\frac{\bar{X}-\bar{Y}}{\sigma_{0}{\displaystyle \sqrt{\bigg(\frac{1}{n_{1}}+\frac{1}{n_{2}}\bigg)}}}\sim N(0,1)\mbox{ under \ensuremath{H_{0}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The non standard statistic is 
+\begin_inset Formula $\bar{X}-\bar{Y}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+E[\bar{X}-\bar{Y}] & = & E[\bar{X}]-E[\bar{y}]\\
+ & = & \mu_{1}-\mu_{2}=0\mbox{ (under \ensuremath{H_{0}})}\\
+\mbox{var}(\bar{X}-\bar{Y}) & = & \mbox{var}(\bar{X})-\mbox{var}(\bar{Y})\\
+ & = & \frac{\sigma_{0}^{2}}{n_{1}}+\frac{\sigma_{0}^{2}}{n_{2}}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Case II.
+ 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ is unknown and sample size is large (
+\begin_inset Formula $n_{1},n_{2}\geq30$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+We estimate 
+\begin_inset Formula $\hat{\sigma}^{2}=s^{2}$
+\end_inset
+
+, as
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+s^{2}=\frac{(n_{1}-1)s_{1}^{2}+(n_{2}-1)s_{2}^{2}}{n_{1}+n_{2}-2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $s_{1}^{2},s_{2}^{2}$
+\end_inset
+
+ are sample mean squares of the individual distributions.
+\end_layout
+
+\begin_layout Standard
+Test statistic is Fischer's 
+\begin_inset Formula $t$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+t=\frac{\bar{X}-\bar{Y}}{s{\displaystyle \sqrt{\bigg(\frac{1}{n_{1}}+\frac{1}{n_{2}}\bigg)}}}\sim t_{n_{1}+n_{2}-2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Fischer's 
+\begin_inset Formula $t$
+\end_inset
+
+ is also a sampling distribution, and it too, tends to normal distributions
+ for large 
+\begin_inset Formula $n_{1},n_{2}$
+\end_inset
+
+ (greater than equal to 
+\begin_inset Formula $30$
+\end_inset
+
+).
+ Thus the critical region is
+\end_layout
+
+\begin_layout Description
+CR: 
+\begin_inset Formula $|t|\geq1.96$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Case III.
+ 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ is unknown and sample size is not large (
+\begin_inset Formula $n_{1},n_{2}<30$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+The test statistic is the same as in case II.
+ The critical region is
+\end_layout
+
+\begin_layout Description
+CR: 
+\begin_inset Formula $|t|\geq t_{5\%,n_{1}+n_{2}-2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $t_{5\%,n_{1}+n_{2}-2}$
+\end_inset
+
+ is the Fischer's 
+\begin_inset Formula $t$
+\end_inset
+
+ table value at 
+\begin_inset Formula $5\%$
+\end_inset
+
+, at 
+\begin_inset Formula $n_{1}+n_{2}-2$
+\end_inset
+
+ degrees of freedom.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note the difference between theory and practice here.
+ Theory can be done here with 
+\begin_inset Formula $n_{1},n_{2}=1$
+\end_inset
+
+, but that will lead to 
+\begin_inset Formula $0$
+\end_inset
+
+ degrees of freedom.
+ Thus in practice, we should have 
+\begin_inset Formula $n_{1},n_{2}>1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset Formula $\chi^{2}$
+\end_inset
+
+ Distribution
+\end_layout
+
+\begin_layout Standard
+This distribution is obtained by squaring the standard normal distribution
+ with 
+\begin_inset Formula $1$
+\end_inset
+
+ degree of freedom.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+X & \sim & N(\mu,\sigma^{2})\\
+\bigg(\frac{X-\mu}{\sigma}\bigg) & \sim & N(0,1)\\
+\bigg(\frac{X-\mu}{\sigma}\bigg)^{2} & \sim & \chi^{2}(0,1)\mbox{, one degree of freedom}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\chi^{2}$
+\end_inset
+
+ distribution follows additivity, thus
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\chi_{1}^{2}+\chi_{2}^{2}\sim\chi^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where the resultant distribution has degrees of freedom equal to the sum
+ of the degrees of the freedoms of the adding 
+\begin_inset Formula $\chi^{2}$
+\end_inset
+
+ distributions 
+\begin_inset Formula $\chi_{1}^{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $\chi_{2}^{2}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\chi^{2}$
+\end_inset
+
+ distribution has a probability function like
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f(\chi^{2})=\frac{e^{-\chi^{2}/2}(\chi^{2})^{n/2-1}}{2^{n/2}\Gamma(n/2)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $\Gamma(\cdots)$
+\end_inset
+
+ is the gamma function.
+ Also, the mean of 
+\begin_inset Formula $\chi^{2}$
+\end_inset
+
+ distribution is 
+\begin_inset Formula $n$
+\end_inset
+
+ whereas its variance is 
+\begin_inset Formula $2n$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Subsection
+\begin_inset Formula $\chi^{2}$
+\end_inset
+
+ Test for Goodness of Fit
+\end_layout
+
+\begin_layout Standard
+This test is non parametric, as compared to other parametric tests discussed
+ above.
+ For example, consider a pattern of accidents on the seven days of the week
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="8">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sun
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mon
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Tue
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Wed
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Thu
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fri
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sat
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+observed that day, 
+\begin_inset Formula $O_{i}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+15
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+22
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+However, considering an equal rate of accidents every day, the expected
+ accidents in a day are 13.
+\end_layout
+
+\begin_layout Description
+To
+\begin_inset space ~
+\end_inset
+
+test
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $H_{0}:$
+\end_inset
+
+ accidents are uniformly distributed over days of the week, i.e.
+ uniform model is a good fit.
+\end_layout
+
+\begin_layout Description
+against
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $H_{1}:$
+\end_inset
+
+ some days are more prone to accidents than others, i.e.
+ uniform model is not a good fit.
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $\alpha:$
+\end_inset
+
+ fixed at 
+\begin_inset Formula $5\%$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A good test statistic, through computations can be
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Z=\frac{1}{E[O_{i}]}\sum_{i=0}^{k}(O_{i}-E[O_{i}])^{2}\sim\chi^{2}(0,1)_{k-1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $k$
+\end_inset
+
+ is the number of variables whose squares are added.
+\end_layout
+
+\begin_layout Description
+CR: calculated 
+\begin_inset Formula $|Z|\geq\mbox{table value of \ensuremath{\chi_{5\%,k-1}^{2}}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Even though in this example, we have individual observations not exceeding
+ 20, in actuality the individual observations should be greater than equal
+ to 60.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset Formula $\chi^{2}$
+\end_inset
+
+ Test for Independence of Attributes
+\end_layout
+
+\begin_layout Standard
+This test is also non parametric.
+ Suppose we want to test whether a vaccine is effective or not.
+ Based on the possible groups, we create a 
+\begin_inset Formula $2\times2$
+\end_inset
+
+ contingency table.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="4">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+diseased
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+not diseased
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+row sums
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+vaccinated
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O_{11}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O_{12}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $R_{1}=O_{11}+O_{12}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+non vaccinated
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O_{21}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O_{22}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $R_{2}=O_{21}+O_{22}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+column sums
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $C_{1}=O_{11}+O_{21}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $C_{2}=O_{12}+O_{22}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+total 
+\begin_inset Formula $=G$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+To
+\begin_inset space ~
+\end_inset
+
+test
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $H_{0}:$
+\end_inset
+
+ vaccine is not effective, i.e vaccine and disease are independent of one
+ another
+\end_layout
+
+\begin_layout Description
+against
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $H_{1}:$
+\end_inset
+
+ vaccine is affective
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $\alpha:$
+\end_inset
+
+ fixed at 
+\begin_inset Formula $5\%$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that 
+\begin_inset Formula $G=C_{1}+C_{2}=R_{1}+R_{2}=O_{11}+O_{12}+O_{21}+O_{22}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We define the expected population in each of the groups as 
+\begin_inset Formula 
+\[
+E_{ij}=\frac{R_{i}C_{j}}{G}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Test statistic is
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Z=\sum_{i,j}\frac{(O_{ij}-E_{ij})^{2}}{E_{ij}}\sim\chi_{1}^{2}\mbox{, that is one deg freedom}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For the general case of 
+\begin_inset Formula $p\times q$
+\end_inset
+
+ 
+\emph on
+contingency table
+\emph default
+, there will be 
+\begin_inset Formula $(p-1)\times(q-1)$
+\end_inset
+
+ degrees of freedom.
+ Critical region would be
+\end_layout
+
+\begin_layout Description
+CR: calculated 
+\begin_inset Formula $\chi^{2}\geq\mbox{table value of \ensuremath{\chi_{5\%,(p-1)(q-1)}^{2}=\chi_{5\%,1}^{2}}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+\begin_inset Formula $\chi^{2}$
+\end_inset
+
+ Test for Single Variance
+\end_layout
+
+\begin_layout Standard
+This is a 
+\emph on
+parametric 
+\emph default
+test.
+ Let 
+\begin_inset Formula $(X_{1},X_{2}\cdots X_{n})\overset{iid}{\sim}N(\mu,\sigma^{2})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+To
+\begin_inset space ~
+\end_inset
+
+test
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $H_{0}:$
+\end_inset
+
+ 
+\begin_inset Formula $\sigma^{2}=\sigma_{0}^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+against
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $H_{1}:$
+\end_inset
+
+ 
+\begin_inset Formula $\sigma^{2}\neq\sigma_{0}^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $\alpha:$
+\end_inset
+
+ fixed at 
+\begin_inset Formula $5\%$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Case I.
+ mean 
+\begin_inset Formula $\mu$
+\end_inset
+
+ is known (say 
+\begin_inset Formula $\mu=\mu_{0}$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+The test statistic is
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sum_{i=1}^{n}\bigg(\frac{X_{i}-\mu_{0}}{\sigma_{0}}\bigg)^{2}\sim\chi_{n}^{2}\mbox{ under \ensuremath{H_{0}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+CR: calculated 
+\begin_inset Formula $\chi^{2}\geq\mbox{table value of \ensuremath{\chi_{5\%,n}^{2}}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Case II.
+ mean 
+\begin_inset Formula $\mu$
+\end_inset
+
+ is unknown
+\end_layout
+
+\begin_layout Standard
+We estimate 
+\begin_inset Formula $\mu$
+\end_inset
+
+ by 
+\begin_inset Formula $\hat{\mu}=\bar{X}$
+\end_inset
+
+ (this decreases degrees of freedom by 1).
+ The test statistic is
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sum_{i=1}^{n}\bigg(\frac{X_{i}-\bar{X}}{\sigma_{0}}\bigg)^{2}\sim\chi_{n-1}^{2}\mbox{ under \ensuremath{H_{0}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+CR: calculated 
+\begin_inset Formula $\chi^{2}\geq\mbox{table value of \ensuremath{\chi_{5\%,n-1}^{2}}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Paired 
+\begin_inset Formula $t$
+\end_inset
+
+ Test
+\end_layout
+
+\begin_layout Standard
+Suppose we want to test a medicine which lowers the blood pressure.
+ Then our sample could be
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+BP before medicine
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+BP after medicine
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $X_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $Y_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $X_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $Y_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $X_{n}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $Y_{n}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Even though it seems that we have two independent samples, in actuality,
+ every 
+\begin_inset Formula $X_{i}$
+\end_inset
+
+ makes sense only for corresponding 
+\begin_inset Formula $Y_{i}$
+\end_inset
+
+.
+ Thus the values are linked.
+ So it is feasible to have a parameter 
+\begin_inset Formula $d_{i}=X_{i}-Y_{i}$
+\end_inset
+
+ which measures the change made by the medicine.
+\end_layout
+
+\begin_layout Description
+To
+\begin_inset space ~
+\end_inset
+
+test
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $H_{0}:$
+\end_inset
+
+ medicine is not effective, so, 
+\begin_inset Formula $\mu_{d}=E[d]=E[X-Y]=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+against
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $H_{1}:$
+\end_inset
+
+ 
+\begin_inset Formula $\mu_{d}>0$
+\end_inset
+
+, thus the BP reduces after taking medicine (hence it is effective)
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $\alpha:$
+\end_inset
+
+ fixed at 
+\begin_inset Formula $5\%$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The test statistic is 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+t=\frac{\bar{d}-0}{s_{d}/\sqrt{n}}\sim t_{n-1}\mbox{ (under \ensuremath{H_{0}})}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $s_{d}^{2}$
+\end_inset
+
+ is the sample mean square, and 
+\begin_inset Formula $\bar{d}$
+\end_inset
+
+ is the non standard statistic, defined by
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\begin_inset Formula 
+\[
+\bar{d}=\frac{1}{n}\sum_{i=1}^{n}d_{i}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+CR: calculated 
+\begin_inset Formula $t\geq\mbox{table \ensuremath{t_{5\%,n-1}}}$
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

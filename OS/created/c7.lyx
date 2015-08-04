@@ -1,0 +1,1802 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter Inconsolata
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts true
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 10
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 4cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation 0bp
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Deadlocks
+\end_layout
+
+\begin_layout Standard
+In a multiprogramming environment, processes compete for resources.
+ If the resources requested by a process are not available at the time,
+ it goes to 
+\family typewriter
+WAITING
+\family default
+ state.
+ However, it can hold some resources.
+ When a process is 
+\family typewriter
+WAITING
+\family default
+, and it requires resources held by other waiting processes, none of the
+ processes would ever start running.
+ This situation is called a 
+\series bold
+deadlock
+\series default
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Operating systems do not typically provide deadlock prevention schemes.
+ So, it is the programmer's work to ensure that his/her program doesn't
+ cause a deadlock, in the general case.
+\end_layout
+
+\begin_layout Section
+System Model
+\end_layout
+
+\begin_layout Standard
+A system has a limited number of resources, which include quantities and
+ objects like memory space, CPU cycles (time), files, IO devices etc.
+ Each resource can have multiple 
+\series bold
+instances
+\series default
+.
+ What processes get for themselves are not actually resources, but are instances
+ of resources.
+ So, for example, if a program requires a CPU to run (CPU is a resource),
+ it gets allocated to an instance of a CPU (there may exist multiple CPU
+ cores).
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The ground rule is simple - 
+\end_layout
+
+\begin_layout Quote
+
+\emph on
+Every process must request a resource before using it, and release it after
+ using it.
+\end_layout
+
+\begin_layout Standard
+A process can acquire as many resources as it needs to complete its task,
+ provided they are available, of course.
+\end_layout
+
+\begin_layout Subsection*
+Sequence of Resource Utilisation
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Request
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Process requests a resource.
+ If not granted immediately, process waits.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Use
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Process utilises the resource to do its work.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Release
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Process releases the resource, since no more work required.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Request and release of resources by processes occur via system calls like
+ 
+\family typewriter
+request()
+\family default
+ and 
+\family typewriter
+release()
+\family default
+ for devices, 
+\family typewriter
+open()
+\family default
+ and 
+\family typewriter
+close()
+\family default
+ for files, 
+\family typewriter
+allocate()
+\family default
+ and 
+\family typewriter
+free()
+\family default
+ for memory etc.
+ For kernel managed resources, OS makes sure the resources are well requested
+ and released.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In addition, the OS maintains a 
+\series bold
+system table
+\series default
+ indicating which resource is being currently used by what process.
+ If a resource is not used, it can be allocated on request, otherwise the
+ process requesting the resource can be added to the waiting queue for that
+ resource.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A set of processes is deadlocked iff every process in that set depends upon
+ a waiting process in the same set.
+ Obviously that would never happen, since then that process also might be
+ waiting for another process, and so on.
+ Moreover, waiting processes do not give up resources.
+\end_layout
+
+\begin_layout Section
+Deadlock Characterisation
+\end_layout
+
+\begin_layout Subsection
+Necessary Conditions
+\end_layout
+
+\begin_layout Standard
+A deadlock occurs if all of these hold simultaneously.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Mutual Exclusion
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+At least one resource must be held in a non-share-able manner, i.e.
+ only one process can use that resource at any instant of time.
+ Further requests to such resources are delayed until release.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Hold and Wait
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+A process must be holding at least one resource and waiting for resources
+ held by other processes.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+No Preemption
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Processes cannot be preempted, or forced to release their resources.
+ All resources must be released voluntarily by the processes that hold them.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Circular Wait
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+A set 
+\begin_inset Formula $\{P_{0},P_{1},P_{2}\cdots P_{n}\}$
+\end_inset
+
+ must exist such that for all 
+\begin_inset Formula $0\leq i\leq n$
+\end_inset
+
+, 
+\begin_inset Formula $P_{i}$
+\end_inset
+
+ is waiting for a resource held by 
+\begin_inset Formula $P_{(i+1)\mod(n+1)}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Note that these four conditions are not independent of each other.
+\end_layout
+
+\begin_layout Subsection
+Resource Allocation Graph
+\end_layout
+
+\begin_layout Standard
+\align left
+A resource allocation graph is a graph whose vertices correspond to 
+\begin_inset Formula $P\cup R$
+\end_inset
+
+, where 
+\begin_inset Formula $P$
+\end_inset
+
+ is the set of all processes in consideration, and 
+\begin_inset Formula $R$
+\end_inset
+
+ is the set of all resources which can be occupied by processes in 
+\begin_inset Formula $R$
+\end_inset
+
+.
+ Further, the edges are of two types - directed edges of the type 
+\begin_inset Formula $P_{i}\rightarrow R_{j}$
+\end_inset
+
+ (denoting that 
+\begin_inset Formula $P_{i}$
+\end_inset
+
+ is requesting for 
+\begin_inset Formula $R_{j}$
+\end_inset
+
+), and directed edges of the type 
+\begin_inset Formula $R_{i}\rightarrow P_{j}$
+\end_inset
+
+ (denoting that 
+\begin_inset Formula $R_{i}$
+\end_inset
+
+ is allocated to 
+\begin_inset Formula $P_{j}$
+\end_inset
+
+).
+ The former type of edges indicate request, and are thus called 
+\series bold
+request edges
+\series default
+, and the latter type of edges indicate allocation, and are called 
+\series bold
+assignment edges.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Graphics
+	filename img/res-all-1.svg
+	lyxscale 60
+	scale 30
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+Visually, every process is drawn as a circle, and every resource is drawn
+ as a rectangle, instances being dots inside the rectangle.
+ Every request points to a rectangle, but every assignment start from an
+ instance dot.
+ So, when a process 
+\begin_inset Formula $P_{i}$
+\end_inset
+
+ requests an instance of 
+\begin_inset Formula $R_{j}$
+\end_inset
+
+, a request edge is create instantaneously.
+ As soon as there is atleast one instance of 
+\begin_inset Formula $R_{j}$
+\end_inset
+
+, the request edge turns into an assignment edge.
+ When the process completes, the request edge is deleted.
+ 
+\emph on
+If each resource type has exactly one instance, then a cycle implies a deadlock.
+ 
+\emph default
+In cases where each resource has only one instance, a cycle is a necessary
+ and sufficient condition for deadlock.
+ For example, in the below example, 
+\begin_inset Formula $P_{1}$
+\end_inset
+
+, 
+\begin_inset Formula $P_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $P_{3}$
+\end_inset
+
+ are deadlocked, due to cyclic wait.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/res-all-2.svg
+	lyxscale 60
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P_{2}$
+\end_inset
+
+ waits for 
+\begin_inset Formula $R_{3}$
+\end_inset
+
+, held by 
+\begin_inset Formula $P_{3}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $P_{3}$
+\end_inset
+
+ waits for 
+\begin_inset Formula $R_{2}$
+\end_inset
+
+, held by 
+\begin_inset Formula $P_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $P_{2}$
+\end_inset
+
+.
+ Also, 
+\begin_inset Formula $P_{1}$
+\end_inset
+
+ waits for 
+\begin_inset Formula $P_{2}$
+\end_inset
+
+ to release 
+\begin_inset Formula $R_{1}$
+\end_inset
+
+.
+ Its a deadlock.
+ Note that, however, in cases where multiple instances of atleast one resource
+ exist, 
+\emph on
+a cycle is necessary but insufficient
+\emph default
+ 
+\emph on
+to cause a deadlock
+\emph default
+.
+ For example, in the below graph, there is a cycle 
+\begin_inset Formula $P_{1}\rightarrow R_{1}\rightarrow P_{3}\rightarrow R_{2}\rightarrow P_{1}$
+\end_inset
+
+, but 
+\begin_inset Formula $P_{4}$
+\end_inset
+
+ may release 
+\begin_inset Formula $R_{2}$
+\end_inset
+
+ (or 
+\begin_inset Formula $P_{2}$
+\end_inset
+
+ may release 
+\begin_inset Formula $R_{1}$
+\end_inset
+
+) at any time, breaking the cycle.
+ So, even though a cycle is there, there is no deadlock.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/res-all-3.svg
+	lyxscale 60
+	scale 30
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\emph on
+Obviously, no cycle means no deadlock.
+\end_layout
+
+\begin_layout Section
+Methods for Handling Deadlocks
+\end_layout
+
+\begin_layout Standard
+We can deal with deadlocks in three ways - 
+\end_layout
+
+\begin_layout Itemize
+use a protocol to 
+\series bold
+prevent 
+\series default
+or 
+\series bold
+avoid 
+\series default
+deadlocks, ensuring the system never goes into a deadlock
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+allow
+\series default
+ the system to enter a deadlock, 
+\series bold
+detect 
+\series default
+it and 
+\series bold
+recover
+\series default
+ from it
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+ignore
+\series default
+ the problem, and restart whenever a deadlock occurs
+\end_layout
+
+\begin_layout Standard
+Generally, the third solution is used by most operating systems (including
+ UNIX, Windows).
+ It then becomes the responsibility of the programmer to ensure that his/her
+ program doesn't cause a deadlock.
+ To ensure that deadlocks never occur, the system can either use a deadlock
+ prevention scheme, or a deadlock avoidance scheme.
+ The system must have manual recovery methods for such situations, and may
+ use these methods for recovery from deadlocks.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In 
+\series bold
+deadlock prevention
+\series default
+, we use a set of methods to ensure that at least one of the necessary condition
+s for deadlocks to occur, do not hold, by constraining how requests for
+ resources are made.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In 
+\series bold
+deadlock avoidance
+\series default
+, it is essential that the OS knows additionally in advance which resources
+ a process may use during its lifetime.
+ This way, it could decide optimally when to make a process wait, so that
+ no deadlock occurs.
+ In this kind of scheme, both the current status of requests and the future
+ requests must be considered.
+\end_layout
+
+\begin_layout Section
+Deadlock Prevention
+\end_layout
+
+\begin_layout Standard
+By ensuring that at least one of the necessary conditions required for a
+ deadlock doesn't hold, we can prevent deadlocks from occurring.
+ Let us examine each of the conditions.
+\end_layout
+
+\begin_layout Subsection
+Mutual Exclusion
+\end_layout
+
+\begin_layout Standard
+By default, non shareable resources are mutually exclusive.
+ For example, a printer cannot be simultaneously accessed by two different
+ processes that require it to print something.
+ For a shared resource, the resource can be made read only, and allowed
+ simultaneous accesses.
+ Generally, this condition cannot be denied, since most of the resources
+ are non shareable, and therefore, by default, this condition holds for
+ them.
+\end_layout
+
+\begin_layout Subsection
+Hold and Wait
+\end_layout
+
+\begin_layout Standard
+To ensure this condition never occurs, we should make sure that any process
+ which requests a resource, doesn't have any held resources.
+ 
+\emph on
+One protocol
+\emph default
+ is to make all processes request and get resources allocated to it before
+ it begins executing.
+ So, the system calls requesting resources must precede execution calls.
+ 
+\emph on
+An alternative protocol
+\emph default
+ is to allow a process to request resources, when it doesn't have any resources.
+ That is, it must deliberately give up all resources before requesting for
+ additional resources.
+ This way, the system will get the resources, and it can decide whether
+ or not to allocate resources to the process, so as to prevent a deadlock
+ situation.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Both these protocols have two disadvantages -
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Resource utilisation may be low
+\emph default
+, since resources that are allocated may stay unused for a long period of
+ time.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Starvation is possible
+\emph default
+, because if it is requesting resources frequently used otherwise, it may
+ have to wait for a long time before it actually gets all the resources
+ to execute its part.
+\end_layout
+
+\begin_layout Subsection
+No Preemption
+\end_layout
+
+\begin_layout Standard
+For ensuring that this condition doesn't hold, we can 
+\emph on
+use a protocol
+\emph default
+ like : if a process is holding some resources, and is requesting for resources
+ that cannot be immediately allocated to it, then all its held resources
+ are preempted, and the process restarts only when it can regain both its
+ previously held resources as well as the new resources it needs.
+ In general, if a process requests some resources, and those resources are
+ held by a waiting process, then the waiting process is preempted to release
+ its resources, and they are allocated to the requesting process.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If the resources are neither held by nor available through waiting processes,
+ then the requesting process is itself deemed waiting.
+ Note that this protocol is applicable only when the process can be restarted
+ easily.
+\end_layout
+
+\begin_layout Subsection
+Circular Wait
+\end_layout
+
+\begin_layout Standard
+To ensure that this never holds, we impose a 
+\emph on
+ranking criteria
+\emph default
+, and make sure that all processes request resources in the increasing order
+ of the ranking enumeration.
+ For example, if 
+\begin_inset Formula $R=\{R_{1},R_{2}\cdots R_{m}\}$
+\end_inset
+
+ are the resources, we assign ranks 
+\begin_inset Formula $F=\{F(R_{1}),F(R_{2})\cdots F(R_{m})\}$
+\end_inset
+
+ to all of them such that all 
+\begin_inset Formula $F(R_{i})$
+\end_inset
+
+'s are distinct.
+ Then for some sequence 
+\begin_inset Formula $i_{1},i_{2}\cdots i_{m}$
+\end_inset
+
+ we have 
+\begin_inset Formula 
+\[
+F(R_{i_{1}})<F(R_{i_{2}})<\cdots<F(R_{i_{m}})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Because all resources should be requested in an increasing order of enumeration,
+ a process can initially request any number of instances of resources 
+\begin_inset Formula $R_{i}$
+\end_inset
+
+.
+ But later on, when it wants the resource 
+\begin_inset Formula $R_{j}$
+\end_inset
+
+ such that 
+\begin_inset Formula $F(R_{j})<F(R_{i})$
+\end_inset
+
+, then it must release all instances of 
+\begin_inset Formula $R_{i}$
+\end_inset
+
+ before it can do so.
+ After 
+\begin_inset Formula $R_{j}$
+\end_inset
+
+ is allocated to it, it may request 
+\begin_inset Formula $R_{i}$
+\end_inset
+
+.
+ If this criteria is used, then a circular wait condition cannot occur.
+ Let us prove this by contradiction.
+ Suppose, a circular wait condition did arise.
+ Then there must be 
+\begin_inset Formula $n$
+\end_inset
+
+ processes such that 
+\begin_inset Formula $P_{1}$
+\end_inset
+
+ is having 
+\begin_inset Formula $R_{j_{1}}$
+\end_inset
+
+ and is requesting 
+\begin_inset Formula $R_{j_{2}}$
+\end_inset
+
+, 
+\begin_inset Formula $P_{2}$
+\end_inset
+
+ is having 
+\begin_inset Formula $R_{j_{2}}$
+\end_inset
+
+ and is requesting 
+\begin_inset Formula $R_{j_{3}}$
+\end_inset
+
+, and continuing, 
+\begin_inset Formula $P_{n}$
+\end_inset
+
+ is holding 
+\begin_inset Formula $R_{j_{n}}$
+\end_inset
+
+ and requesting for 
+\begin_inset Formula $R_{j_{1}}$
+\end_inset
+
+.
+ But the last request cannot occur - because requests are in increasing
+ order of enumeration.
+ Therefore, having such a request leads to
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+F(R_{j_{1}})<F(R_{j_{2}})<\cdots<F(R_{j_{n}})<F(R_{j_{1}})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+which is a contradiction, since 
+\begin_inset Formula $F(R_{j_{1}})\nless F(R_{j_{1}})$
+\end_inset
+
+.
+ Hence, a circular wait condition cannot happen.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that 
+\begin_inset Formula $F$
+\end_inset
+
+ should be defined according to the usage order of resources in the system.
+ Also, software like 
+\series bold
+witness 
+\series default
+(UNIX) exist, which can be used to cross check if a program can cause a
+ circular wait or subsequent deadlock condition.
+\end_layout
+
+\begin_layout Section
+Deadlock Avoidance
+\end_layout
+
+\begin_layout Standard
+Side affects of deadlock prevention include 
+\emph on
+low device utilisation
+\emph default
+ and 
+\emph on
+reduced system throughput
+\emph default
+.
+ That is why, alternatively, some operating systems go for deadlock avoidance
+ schemes.
+ In deadlock avoidance, we require that additional information about how
+ resources are to be requested are known.
+ Then, an algorithm can be applied to generate a possible execution plan,
+ through which the OS can see through, to detect if a deadlock can occur.
+ If it finds that a deadlock can occurs, it decides on a different plan,
+ which doesn't cause a deadlock.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\series bold
+simplest solution model
+\series default
+ requires that each process declares the maximum number of resources of
+ each type they can need.
+ From this information, it is possible to construct a plan which ensures
+ that the system will never enter a deadlock.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+At this point, we will define what a resource allocation 
+\series bold
+state
+\series default
+ is.
+ The resource allocation state is defined by the number of available and
+ allocated resources for all the processes in a system, and the maximum
+ demands of the processes.
+\end_layout
+
+\begin_layout Subsection
+Safe State
+\end_layout
+
+\begin_layout Standard
+A state is 
+\emph on
+safe
+\emph default
+ if the system can allocate resources to processes maximally, and still
+ avoid a deadlock scenario.
+ Mathematically, a sequence of process 
+\begin_inset Formula $P=\{P_{1},P_{2}\cdots P_{n}\}$
+\end_inset
+
+ is a safe sequence for the current state, if the demands of every process
+ 
+\begin_inset Formula $P_{i}$
+\end_inset
+
+ can be met by the available resources at that time, and all the resources
+ held by 
+\begin_inset Formula $P_{j}$
+\end_inset
+
+'s such that 
+\begin_inset Formula $j<i$
+\end_inset
+
+.
+ If all the resources are not immediately available, 
+\begin_inset Formula $P_{i}$
+\end_inset
+
+ can wait until other previous processes can finish, and it can get the
+ resources it needs.
+ If no such sequence exists, then the state is called 
+\emph on
+unsafe
+\emph default
+.
+ Not all unsafe states can lead to a deadlock, however some of them can.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/safe-unsafe-state.svg
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For illustration, consider a system with 12 tapes, and three processes -
+ 
+\begin_inset Formula $P_{1}$
+\end_inset
+
+, 
+\begin_inset Formula $P_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $P_{3}$
+\end_inset
+
+.
+ Let the maximum requirements of 
+\begin_inset Formula $P_{1}$
+\end_inset
+
+ be 10 tapes, 
+\begin_inset Formula $P_{2}$
+\end_inset
+
+ be 4 tapes, and 
+\begin_inset Formula $P_{3}$
+\end_inset
+
+ be 9 tapes.
+ Also, assume that currently they are holding 5, 2 and 2 tapes.
+ Thus 
+\begin_inset Formula $12-(5+2+2)=3$
+\end_inset
+
+ tapes are available.
+ The system is in a safe state because the sequence 
+\begin_inset Formula $\{P_{2},P_{1},P_{3}\}$
+\end_inset
+
+ satisfies the safety condition.
+ After 
+\begin_inset Formula $P_{2}$
+\end_inset
+
+ gets 
+\begin_inset Formula $2$
+\end_inset
+
+ more tapes to have 
+\begin_inset Formula $2+2=4$
+\end_inset
+
+ tapes, it will finish its work and release 4 tapes, to make the total of
+ available tapes to 
+\begin_inset Formula $1+4=5$
+\end_inset
+
+ tapes.
+ Then 
+\begin_inset Formula $P_{1}$
+\end_inset
+
+ can take 
+\begin_inset Formula $5$
+\end_inset
+
+ more tapes to have 
+\begin_inset Formula $5+5=10$
+\end_inset
+
+ tapes, complete its work, and release 10 tapes to make the total of available
+ tapes to 
+\begin_inset Formula $0+10=10$
+\end_inset
+
+ tapes, which can be used by 
+\begin_inset Formula $P_{3}$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Note however, that a system may go from a safe state to an unsafe state.
+ 
+\emph default
+For instance, if after 
+\begin_inset Formula $P_{2}$
+\end_inset
+
+ has finished its work, instead of 
+\begin_inset Formula $P_{1}$
+\end_inset
+
+, 
+\begin_inset Formula $P_{3}$
+\end_inset
+
+ requested at least a tape, then neither of 
+\begin_inset Formula $P_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $P_{3}$
+\end_inset
+
+ would be able to complete their work, and they will both end up holding
+ and waiting for resources, thus causing a deadlock.
+ In deadlock avoidance, the system decides instantaneously whether or not
+ to grant the requests by processes, depending upon whether the grant will
+ lead to a safe state or not.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In this scenario, 
+\emph on
+resource utilisation reduces
+\emph default
+ because a process may have to wait for a resource even though its available
+ immediately.
+\end_layout
+
+\begin_layout Subsection
+Resource Allocation Graph Algorithm
+\end_layout
+
+\begin_layout Standard
+If we have a system with one instance of each resource, then it is possible
+ to implement deadlock avoidance using the resource allocation graph.
+ For this, we introduce the 
+\emph on
+claim edge
+\emph default
+, represented by a dotted edge.
+ A claim edge can be defined as an edge 
+\begin_inset Formula $P_{i}\rightarrow R_{j}$
+\end_inset
+
+ from a process 
+\begin_inset Formula $P_{i}$
+\end_inset
+
+ to a request 
+\begin_inset Formula $R_{j}$
+\end_inset
+
+ iff the process can request the resource in the future.
+ So, in the beginning of the algorithm, all the claim edges would appear
+ directly, since deadlock avoidance requires each process to declare the
+ resources it will use beforehand.
+ As time passes, the processes will request resources, and the claim edges
+ would turn into request edges, and possibly assignment edges, and then
+ vanish after use.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/rag-algo.svg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In this version of the avoidance algorithm, we make a claim edge a request
+ edge iff it doesn't create a cycle, i.e.
+ keep the process waiting for the resource.
+ This is because we know that a cycle in a resource allocation graph with
+ single instances of all resources is the deadlock necessity.
+ This makes it safe.
+\end_layout
+
+\begin_layout Subsection
+Banker's Algorithm
+\end_layout
+
+\begin_layout Standard
+The previous algorithm is not applicable in cases where there are multiple
+ instances of at least one resource.
+ In such cases, the 
+\series bold
+banker's algorithm
+\series default
+ is applicable.
+ The idea is basically the same.
+ Every process must declare the maximum amount of instances of each resource
+ it will use.
+ Whenever a process requests for resources, its request is granted iff the
+ resulting state is safe.
+ For this, multiple data structures must be maintained, assuming there are
+ 
+\begin_inset Formula $n$
+\end_inset
+
+ processes and 
+\begin_inset Formula $m$
+\end_inset
+
+ resources - 
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+Available[1..m]
+\family default
+, which tells how many instances of each of the 
+\begin_inset Formula $m$
+\end_inset
+
+ resources are available currently.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+Max[1..n][1..m]
+\family default
+, which tells the maximum demands of 
+\begin_inset Formula $n$
+\end_inset
+
+ processes, for each of the 
+\begin_inset Formula $m$
+\end_inset
+
+ processes.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+Allocation[1..n][1..m]
+\family default
+, which tells for all the 
+\begin_inset Formula $n$
+\end_inset
+
+ processes, how many instances of the 
+\begin_inset Formula $m$
+\end_inset
+
+ resources are allocated currently.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+Need[1..n][1..m]
+\family default
+, which tells for all the 
+\begin_inset Formula $n$
+\end_inset
+
+ processes, how many more instances of 
+\begin_inset Formula $m$
+\end_inset
+
+ resources are required.
+\end_layout
+
+\begin_layout Subsection*
+Safety Algorithm (
+\begin_inset Formula $m\times n^{2}$
+\end_inset
+
+ operations)
+\end_layout
+
+\begin_layout Standard
+This tells whether or not the system is currently in safe state.
+\end_layout
+
+\begin_layout Enumerate
+Let 
+\family typewriter
+Work[1..m] = Available[1..m]
+\family default
+, and 
+\family typewriter
+finish[1..n]
+\family default
+ denote whether each of the 
+\begin_inset Formula $n$
+\end_inset
+
+ processes have completed, and be initialised to 
+\family typewriter
+false
+\family default
+.
+\end_layout
+
+\begin_layout Enumerate
+For the first incomplete process in list (i.e.
+ 
+\family typewriter
+finish[i] = false
+\family default
+), if 
+\family typewriter
+Need[i][1..m]
+\family default
+ 
+\begin_inset Formula $\leq$
+\end_inset
+
+ 
+\family typewriter
+Work[1..m]
+\family default
+, do step 3.
+ If no such process is found, go to step 4.
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+Work[1..m] = Work[1..m] + Allocation[i][1..m]
+\family default
+, and 
+\family typewriter
+finish[i] = true
+\family default
+, i.e.
+ do the process 
+\family typewriter
+i.
+ 
+\family default
+Go to step 2.
+\end_layout
+
+\begin_layout Enumerate
+If 
+\family typewriter
+finish[1..n]
+\family default
+ is 
+\family typewriter
+true
+\family default
+, then system is in a safe state.
+\end_layout
+
+\begin_layout Subsection*
+Resource Request Algorithm
+\end_layout
+
+\begin_layout Standard
+This tells if after granting the requests, the system would remain in a
+ safe state or not.
+ Let us assume that the requests to be judged are in 
+\family typewriter
+Request[1..n]
+\family default
+.
+ If process 
+\begin_inset Formula $P_{i}$
+\end_inset
+
+ requests for a resource, then
+\end_layout
+
+\begin_layout Enumerate
+Check if the process is asking within limits.
+ If 
+\family typewriter
+Request[i][1..m]
+\family default
+ 
+\begin_inset Formula $\leq$
+\end_inset
+
+ 
+\family typewriter
+Need[i][1..m]
+\family default
+, then go to next step, otherwise raise an 
+\series bold
+error
+\series default
+.
+\end_layout
+
+\begin_layout Enumerate
+Check if resources are available.
+ If 
+\family typewriter
+Request[i][1..m]
+\family default
+ 
+\begin_inset Formula $\leq$
+\end_inset
+
+ 
+\family typewriter
+Available[1..m]
+\family default
+, go to next step, otherwise make 
+\begin_inset Formula $P_{i}$
+\end_inset
+
+ wait.
+\end_layout
+
+\begin_layout Enumerate
+Check if after allocation, system is in safe state.
+ So, apply safety algorithm after temporarily changing state as
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\family typewriter
+Available[1..m] = Available[1..m] - Request[i][1..m]
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+Allocation[i][1..m] = Allocation[i][1..m] + Request[i][1..m]
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+Need[i][1..m] = Need[i][1..m] - Request[i][1..m]
+\end_layout
+
+\begin_layout Standard
+If system will be in safe state, then grant the request, otherwise make
+ 
+\begin_inset Formula $P_{i}$
+\end_inset
+
+ wait.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+** Example on Pg 300
+\end_layout
+
+\begin_layout Section
+Deadlock Detection
+\end_layout
+
+\begin_layout Standard
+If the system doesn't try to prevent or avoid a deadlock, then there should
+ be
+\end_layout
+
+\begin_layout Itemize
+an algorithm to detect if a deadlock has occurred
+\end_layout
+
+\begin_layout Itemize
+an algorithm to recover from deadlock
+\end_layout
+
+\begin_layout Standard
+Note that, a deadlock detection and recovery scheme will require some overhead
+ in keeping system information, and time of running the algorithms, and
+ sometimes a full recovery might not be possible.
+\end_layout
+
+\begin_layout Subsection
+Single Instance of All Resources
+\end_layout
+
+\begin_layout Standard
+This can use a variant of the resource allocation graph algorithm, called
+ 
+\series bold
+wait-for
+\series default
+ graph algorithm.
+ Remove all resources, and collapse the edges.
+ An edge from 
+\begin_inset Formula $P_{i}\rightarrow P_{j}$
+\end_inset
+
+ would indicate that 
+\begin_inset Formula $P_{i}$
+\end_inset
+
+ is waiting for a resource that 
+\begin_inset Formula $P_{j}$
+\end_inset
+
+ is holding.
+ A cycle would mean a deadlock, as before.
+ To detect a deadlock, the system must maintain a wait-for graph and keep
+ checking for cycles at regular intervals.
+ This requires 
+\begin_inset Formula $n^{2}$
+\end_inset
+
+ operations per run, if 
+\begin_inset Formula $n$
+\end_inset
+
+ processes exist.
+\end_layout
+
+\begin_layout Subsection
+Multiple Instances (
+\begin_inset Formula $m\times n^{2}$
+\end_inset
+
+ operations)
+\end_layout
+
+\begin_layout Standard
+Data structures used in this case are similar to those in Banker's algorithm.
+ We need the 
+\family typewriter
+Available[1..m]
+\family default
+, 
+\family typewriter
+Allocation[1..n][1..m]
+\family default
+ and 
+\family typewriter
+Request[1..n][1..m]
+\family default
+.
+ Comparably, we do something similar to Banker's algorithm -
+\end_layout
+
+\begin_layout Enumerate
+Let 
+\family typewriter
+Work[1..m] = Available[1..m]
+\family default
+, and 
+\family typewriter
+finish[1..n]
+\family default
+ be declared such that 
+\family typewriter
+finish[i] = true
+\family default
+ if 
+\family typewriter
+Allocation[i]
+\family default
+ is empty, and 
+\family typewriter
+false
+\family default
+ otherwise.
+\end_layout
+
+\begin_layout Enumerate
+For the first 
+\family typewriter
+i 
+\family default
+such that 
+\family typewriter
+finish[i] = false
+\family default
+, and 
+\family typewriter
+Request[i][1..m]
+\family default
+ 
+\begin_inset Formula $\leq$
+\end_inset
+
+ 
+\family typewriter
+Work[1..m]
+\family default
+, do step 3, otherwise skip to step 4 if no such process exists.
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+Work[1..m] = Work[1..m] + Allocation[i][1..m]
+\family default
+ and 
+\family typewriter
+finish[i] = true
+\family default
+.
+ Go to step 2.
+\end_layout
+
+\begin_layout Enumerate
+If 
+\family typewriter
+finish[i] = false
+\family default
+ for any 
+\family typewriter
+i
+\family default
+, then system is in a deadlock, and all such 
+\begin_inset Formula $P_{i}$
+\end_inset
+
+'s are deadlocked.
+\end_layout
+
+\begin_layout Subsection
+Algorithm Usage
+\end_layout
+
+\begin_layout Standard
+How often should these algorithms be used depends on how likely deadlocks
+ are, and how many processes are affected by deadlocks.
+ Moreover, once a deadlock occurs, it might affect more processes as time
+ passes.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Deadlocks happen when a request cannot be granted immediately.
+ So, at the worst, we could check for deadlocks everytime a request cannot
+ be granted.
+ But because this can cause a lag in other computations, a better alternative
+ is to switch to calling these algorithms at definite intervals of time.
+ Like, a deadlock reduces throughput and thus reduces CPU utilisation, so
+ we could call an algorithm whenever the CPU utilisation drops below a value.
+ But, then we cannot pinpoint the source of the deadlock.
+\end_layout
+
+\begin_layout Section
+Deadlock Recovery
+\end_layout
+
+\begin_layout Standard
+After detecting that a deadlock has occurred, we have many alternatives.
+\end_layout
+
+\begin_layout Subsection
+Process Termination
+\end_layout
+
+\begin_layout Itemize
+Abort all deadlocked processes.
+ This might lead to a loss of all the computations done by these processes.
+\end_layout
+
+\begin_layout Itemize
+Abort deadlocked processes one by one, until the system is no longer in
+ a deadlock.
+ But we need to check after every abort if the system is still in a deadlock.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Aborting is not always easy.
+ For instance, if the process was modifying a file, the file may be left
+ in an incorrect state.
+ So, one way is abort the processes so that 
+\series bold
+minimum cost is incurred
+\series default
+.
+ Many factors affect the choice of the process to be aborted.
+\end_layout
+
+\begin_layout Itemize
+process priority
+\end_layout
+
+\begin_layout Itemize
+process elapsed time and required time to finish itself
+\end_layout
+
+\begin_layout Itemize
+what resources the process has used, and will use later
+\end_layout
+
+\begin_layout Itemize
+interactive process or batch process
+\end_layout
+
+\begin_layout Itemize
+how many process will be terminated afterwards
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Resource Preemption
+\end_layout
+
+\begin_layout Standard
+In this method, we preempt the resources of certain deadlocked processes
+ and give them to other processes to let them finish their tasks.
+ Three ideas -
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+How to select a victim ?
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Choose victim so that the cost is minimised.
+ Factors could be time elapsed so far for that process and resources held.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Rollback
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Choose a process and roll back it to some safe state.
+ In general, the rollback is done to the absolute beginning, but if some
+ information regarding process states is maintained, then other types of
+ rollbacks are possible.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Starvation
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Guarantee that the same process is not preempted always, by including the
+ number of rollbacks in computing costs.
+\end_layout
+
+\end_deeper
+\end_body
+\end_document

@@ -1,0 +1,627 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter Inconsolata
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts true
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 10
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 4cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation 0bp
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+Principle of Locality
+\end_layout
+
+\begin_layout Standard
+The program accesses a relatively small portion of address space at any
+ instant of time.
+\end_layout
+
+\begin_layout Itemize
+temporal locality - locality in time
+\end_layout
+
+\begin_layout Itemize
+spatial locality - locality in space
+\end_layout
+
+\begin_layout Standard
+If an item is referenced, then by tendency, it will be referenced soon.
+\end_layout
+
+\begin_layout Standard
+If an item is referenced, then the items which are close by are by tendency,
+ referenced soon.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/5-1-memory-levels.svg
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Handling Cache Misses
+\end_layout
+
+\begin_layout Standard
+The following steps can be taken on an instruction cache miss -
+\end_layout
+
+\begin_layout Itemize
+Send the PC value to memory, i.e.
+ PC-4
+\end_layout
+
+\begin_layout Itemize
+Instruct the main memory to perform a read and wait for the main memory
+ to complete its access.
+\end_layout
+
+\begin_layout Itemize
+Write the cache entry putting the data from the memory in the data part
+ of the entry (writing upper bits from the ALU) into the tag field, and
+ turning the valid bit on.
+\end_layout
+
+\begin_layout Itemize
+Restart the instruction execution at the first step and refetch the instruction.
+\end_layout
+
+\begin_layout Section
+Handling Writes
+\end_layout
+
+\begin_layout Subsection
+Write Through
+\end_layout
+
+\begin_layout Standard
+In this scheme, writes always update both cache and lower levels in memory
+ hierarchy, ensuring that the data is always consistent between the two.
+ This one is a simple technique with low performance.
+\end_layout
+
+\begin_layout Subsection*
+Write Buffers
+\end_layout
+
+\begin_layout Standard
+A write buffer is a queue that holds data while the data is waiting to be
+ written to memory.
+ After the data is written to cache and write buffers, the processor continues
+ its execution.
+\end_layout
+
+\begin_layout Subsection
+Write Back
+\end_layout
+
+\begin_layout Standard
+It is a scheme that handles writes by updating values only to the block
+ in the cache, and then writing the modified block to the lower level of
+ the hierarchy when the block is replaced.
+ It has better performance than the write-through scheme.
+\end_layout
+
+\begin_layout Section
+Cache Performance
+\end_layout
+
+\begin_layout Subsection
+Memory Organisations
+\end_layout
+
+\begin_layout Standard
+Consider, that in a memory organisation scenario, we need 1 cycle to send
+ a 4 byte address from processor to cache, 15 cycles per byte for a DRAM
+ access, and 1 cycle per byte to store the word in cache.
+ Then, considering the three organisations below,
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/6-3-cache-performance.svg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+in one word wide organisation, we need 
+\begin_inset Formula $1+15\times4+1\times4$
+\end_inset
+
+ = 
+\begin_inset Formula $65$
+\end_inset
+
+ cycles to get a miss into cache.
+\end_layout
+
+\begin_layout Itemize
+in wider organisation, we need 
+\begin_inset Formula $1+15\times2+1\times2$
+\end_inset
+
+ = 
+\begin_inset Formula $33$
+\end_inset
+
+ cycles to get a miss into cache, since the cache memory link is wider.
+\end_layout
+
+\begin_layout Itemize
+in interleaved memory organisation, we need 
+\begin_inset Formula $1+15\times1+4\times1$
+\end_inset
+
+ = 
+\begin_inset Formula $20$
+\end_inset
+
+ cycles to get a miss into cache, since 
+\begin_inset Quotes eld
+\end_inset
+
+parallel memory access is possible
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+DDR RAM, SD RAM
+\end_layout
+
+\begin_layout Standard
+DDR RAM = Double Data Rate RAM
+\end_layout
+
+\begin_layout Standard
+Operations are done both at the leading and ending edge of a clock cycle.
+\end_layout
+
+\begin_layout Standard
+SD RAM = Synchronised DRAM
+\end_layout
+
+\begin_layout Subsection
+Basic Formulae
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mbox{CPU time}=(\mbox{CPU exec clock cycles}+\mbox{Mem stall cycles)}\times\mbox{Clock cycle time}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Mem stall cycles = Read stall cycles + Write stall cycles
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Read stall cycles = (Reads per program)
+\begin_inset Formula $\times$
+\end_inset
+
+(Read miss rate)
+\begin_inset Formula $\times$
+\end_inset
+
+(Read miss penalty)
+\end_layout
+
+\begin_layout Enumerate
+Write stall cycles = (Writes per program)
+\begin_inset Formula $\times$
+\end_inset
+
+(Write miss rate)
+\begin_inset Formula $\times$
+\end_inset
+
+(Write miss penalty) + Write buffer stalls
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Mem stall cycles = (Mem access per program)
+\begin_inset Formula $\times$
+\end_inset
+
+(Miss rate)
+\begin_inset Formula $\times$
+\end_inset
+
+ (Miss penalty)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+...
+ assuming that write through read penalty = write penalty
+\end_layout
+
+\begin_layout Standard
+= (Instructions per program)
+\begin_inset Formula $\times$
+\end_inset
+
+(Misses per instruction)
+\begin_inset Formula $\times$
+\end_inset
+
+(Miss penalty)
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+AMAT = (Time for a hit) + (Miss rate)
+\begin_inset Formula $\times$
+\end_inset
+
+(Miss penalty)
+\begin_inset Formula $\times$
+\end_inset
+
+
+\begin_inset Formula $P$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Practice Questions
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Q1.
+ Assume that the miss rate of an instruction cache is 
+\begin_inset Formula $2\%$
+\end_inset
+
+, and the miss rate of the data cache is 
+\begin_inset Formula $4\%$
+\end_inset
+
+.
+ If the CPI is 
+\begin_inset Formula $2$
+\end_inset
+
+ without memory stalls and miss penalty is 
+\begin_inset Formula $100$
+\end_inset
+
+ cycles for all misses, determine how much faster a processor would run
+ with perfect cache that never missed.
+ Assume the frequency of loads and stores in the program to be 
+\begin_inset Formula $36\%$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+A1.
+ Let the instructions in the program be 
+\begin_inset Formula $I$
+\end_inset
+
+.
+ Then,
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+\mbox{Instruction miss cycles} & = & \mbox{(Instructions in program)}\times\mbox{(Miss rate)}\times\mbox{(Miss penalty)}\\
+ & = & I\times2\%\times100\\
+ & = & 2I\mbox{ cycles}\\
+\mbox{Data miss cycles} & = & (I\times36\%)\times4\%\times100\\
+ & = & 1.44I\mbox{ cycles}\\
+\mbox{Total mem stall cycles} & = & 3.44I\mbox{ cycles}\\
+\mbox{CPI due to mem stall} & = & 3.44\\
+\mbox{Total CPI} & = & 3.44+2\\
+ & = & 5.44\\
+\mbox{Ideal CPI (no cache miss)} & = & 2
+\end{eqnarray*}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+A processor with no misses would run 
+\begin_inset Formula $5.44/2=2.52$
+\end_inset
+
+ times faster than this processor.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Q2.
+ Find the AMAT for a processor with clock period of 
+\begin_inset Formula $1$
+\end_inset
+
+ ns, miss penalty of 
+\begin_inset Formula $20$
+\end_inset
+
+ cycles, miss rate of 
+\begin_inset Formula $0.05$
+\end_inset
+
+ misses per instruction, cache access of 
+\begin_inset Formula $1$
+\end_inset
+
+ cycle.
+ (
+\begin_inset Formula $2P$
+\end_inset
+
+ cycles)
+\end_layout
+
+\begin_layout Subsection
+Reducing Cache Misses
+\end_layout
+
+\begin_layout Standard
+This can be done in multiple ways -
+\end_layout
+
+\begin_layout Enumerate
+Placement
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Direct Mapped Cache
+\end_layout
+
+\begin_layout Enumerate
+Fully Associative Cache
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+A block can be placed at any location in the cache.
+ For faster access, the searching can be made parallel.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Set Associative Cache
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+This is a cache which has a fixed number of locations (at least 2) where
+ each block may be placed.
+ A set associative cache with 
+\begin_inset Formula $n$
+\end_inset
+
+ locations for a block is called as an 
+\begin_inset Formula $n$
+\end_inset
+
+ - way set associative cache.
+ It consists of a number of sets, each having 
+\begin_inset Formula $n$
+\end_inset
+
+ blocks.
+ Each block in the main memory maps to a unique set in the cache, given
+ by the index field, and a block can be placed in any element of that set.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+Multilevel Cache
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+We can reduce the access time when using this over DRAM.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/6-3-5-reducing-cache-misses.svg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Practice Questions
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Q1.
+ Suppose we have a processor of base CPI 
+\begin_inset Formula $1.0$
+\end_inset
+
+, and suppose that all references hit the primary cache at a clock rate
+ of 
+\begin_inset Formula $4$
+\end_inset
+
+ GHz.
+ Assume that the main memory access time is 
+\begin_inset Formula $100$
+\end_inset
+
+ ns, including all misses and hits.
+ Suppose that the miss rate per instruction for the primary cache is 
+\begin_inset Formula $2\%$
+\end_inset
+
+.
+ How much faster will the processor be if we add a secondary cache that
+ needs 
+\begin_inset Formula $5$
+\end_inset
+
+ ns time for a hit/miss, and which is enough to reduce the miss rate of
+ main memory to 
+\begin_inset Formula $0.5\%$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+A1.
+ For a 1-level cache, miss penalty will be 
+\begin_inset Formula $100\times10^{-9}/(4\times10^{9})^{-1}$
+\end_inset
+
+ or 
+\begin_inset Formula $400$
+\end_inset
+
+ cycles.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\mbox{CPI}=1.0+\frac{2}{100}\times400=9.0
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+For a 2-level cache, miss penalty will be 
+\begin_inset Formula $5\times10^{-9}/(4\times10^{9})^{-1}$
+\end_inset
+
+ or 
+\begin_inset Formula $20$
+\end_inset
+
+ cycles.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\mbox{CPI}=1+\frac{2}{100}\times20+\frac{0.5}{100}\times400=3.4
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

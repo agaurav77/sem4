@@ -1,0 +1,1541 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 4cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Process Scheduling
+\end_layout
+
+\begin_layout Section
+Basic Concepts
+\end_layout
+
+\begin_layout Standard
+The idea behind multiprogramming is to utilise the CPU maximally.
+ Generally, a process executes for some time and then it has to wait for
+ IO.
+ During this wait process, the CPU sits idle.
+ Using multiprogramming, we try to minimise the wait time.
+ A 
+\series bold
+pool
+\series default
+ of processes are loaded into the memory, each of which may be executed.
+ When a process waits for IO, the CPU is taken away from it and given to
+ another ready process, and the trend continues.
+ This trend is so basic that CPU is scheduled nowadays to handle processes
+ in this way.
+\end_layout
+
+\begin_layout Subsection
+CPU IO Burst Cycle
+\end_layout
+
+\begin_layout Standard
+From observation, one finds that any process that eventually terminates
+ actually executes as a series of CPU bursts and IO waits.
+ Through extensive observations, it has been found that the CPU burst duration
+ histogram shows an exponential pattern.
+ This pattern, is important in the selection of the algorithm we use for
+ CPU scheduling.
+\end_layout
+
+\begin_layout Subsection
+CPU Scheduler
+\end_layout
+
+\begin_layout Standard
+CPU Scheduler is the 
+\series bold
+short term scheduler
+\series default
+.
+ Its function is to select processes to be run on the CPU, such that CPU
+ usage is maximal.
+ The processes are stored in the ready queue, in the memory.
+ However, the ready queue can be implemented in many ways - it could be
+ a FIFO queue, a priority queue, a tree or a linked list.
+\end_layout
+
+\begin_layout Subsection
+Preemptive Scheduling
+\end_layout
+
+\begin_layout Standard
+The CPU scheduler needs to make decisions in the following four circumstances
+ -
+\end_layout
+
+\begin_layout Enumerate
+When a process requires IO, it switches from 
+\family typewriter
+RUNNING 
+\family default
+to 
+\family typewriter
+WAITING
+\family default
+.
+ Then the CPU scheduler decides which process to run next.
+\end_layout
+
+\begin_layout Enumerate
+When an interrupt for IO occurs, the CPU stops whatever it is doing.
+ The currently running process goes from 
+\family typewriter
+RUNNING
+\family default
+ to 
+\family typewriter
+READY
+\family default
+.
+\end_layout
+
+\begin_layout Enumerate
+When the IO for a process has been done, it interrupts and changes a 
+\family typewriter
+WAITING
+\family default
+ process to 
+\family typewriter
+READY
+\family default
+.
+ Then the scheduler must decide what process to run next, based on the priority.
+\end_layout
+
+\begin_layout Enumerate
+When a process terminates, the scheduler chooses a process to run next.
+\end_layout
+
+\begin_layout Standard
+For situations 1 and 4, a process voluntarily gives up the CPU and a new
+ process is loaded by the scheduler.
+ So, once a process has been allocated the CPU, it either terminates or
+ goes to 
+\family typewriter
+WAITING
+\family default
+.
+ The scheduling scheme here is 
+\series bold
+cooperative 
+\series default
+or 
+\series bold
+non preemptive
+\series default
+.
+ This scheme was used in Windows 3.x and previous versions of Mac OS.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+For situations 2 and 3, there is a choice between multiple ready processes,
+ and processes preempt, so this scheme is called the 
+\series bold
+preemptive 
+\series default
+scheme.
+ It is the more popular scheme as of now.
+ However, it does have certain limitations - 
+\end_layout
+
+\begin_layout Itemize
+Consider two processes that 
+\emph on
+share data
+\emph default
+.
+ If one of them is running, and is preempted, and then the second process
+ uses the CPU, the shared data may not be in a usable state.
+\end_layout
+
+\begin_layout Itemize
+What will happen if the kernel is busy with something related to a process
+ and another process preempts it to use the same data the kernel was earlier
+ working with?
+\end_layout
+
+\begin_layout Standard
+Because interrupts may occur at any time, and it is essential that they
+ are dealt with immediately, the sections of code affected by the kernel
+ must be safeguarded if the kernel is preempted for ISR.
+\end_layout
+
+\begin_layout Subsection
+Dispatcher
+\end_layout
+
+\begin_layout Standard
+The 
+\series bold
+dispatcher
+\series default
+ is the module which stops a process and starts another process on the CPU.
+ It is the fundamental module for 
+\end_layout
+
+\begin_layout Itemize
+context & user mode switching
+\end_layout
+
+\begin_layout Itemize
+process resumption
+\end_layout
+
+\begin_layout Standard
+The time it takes for the dispatcher to stop a process and start another
+ is called as the 
+\series bold
+dispatch latency
+\series default
+.
+\end_layout
+
+\begin_layout Section
+Scheduling Criteria
+\end_layout
+
+\begin_layout Standard
+There exist many algorithms which can be used to select the next process
+ in any of the aforementioned four circumstances.
+ Generally, we want any CPU scheduling algorithm to -
+\end_layout
+
+\begin_layout Itemize
+maximise 
+\series bold
+CPU Utilisation 
+\series default
+(typically 40%-90%)
+\end_layout
+
+\begin_layout Itemize
+maximise 
+\series bold
+throughput
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Throughput is the number of processes completed per time unit.
+ It is ideally 1 process per hour for long processes and 10 processes per
+ second for short processes.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+minimise 
+\series bold
+turnaround time 
+\series default
+& 
+\series bold
+waiting time
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Turnaround time is the time required by a process to get finished, including
+ the IO wait and burst time.
+ Waiting time is the time a process spends in the ready queue.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+minimise 
+\series bold
+response time
+\series default
+, for interactive systems
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Turnaround time & waiting time might not be the best criteria for judging
+ the quality of scheduling.
+ Response time is the time between an input request and the first response
+ by a process, for some task.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Generally, it is the average criterion that we are concerned about.
+ For instance, in general, we want to maximise average CPU utilisation and
+ throughput for a scenario.
+ However, it may be possible that we want to optimise the extremal values
+ of a criterion.
+ An example can be the fact that we are concerned about minimising the maximum
+ response time (and not the average response time, in general) for interactive
+ systems.
+ Even further, sometimes we are concerned about the variation (variance)
+ of a criterion.
+\end_layout
+
+\begin_layout Section
+Scheduling Algorithms
+\end_layout
+
+\begin_layout Subsection
+First Come, First Served
+\end_layout
+
+\begin_layout Standard
+In this kind of scheduling, the ready queue is implemented as a FIFO queue.
+ The process which comes first into the ready queue is allocated the CPU
+ first.
+ This method is 
+\series bold
+non preemptive
+\series default
+, so until the process which has been allocated CPU stops for IO or terminates,
+ it doesn't allow other processes to run.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Even though the code for this is quite simple to write, FCFS doesn't always
+ favour the shorter jobs, and hence it might increase the average waiting
+ time, if the longer job comes first.
+ In addition, there might be a 
+\series bold
+convoy effect
+\series default
+ as smaller processes (if added to the queue later) have to wait for the
+ big process to get over.
+ This results in lower CPU and device utilisation, and is obviously not
+ suited for time sharing systems, where users require the OS to respond
+ equally to each of their requests from time to time.
+\end_layout
+
+\begin_layout Subsection
+Shortest Job First
+\end_layout
+
+\begin_layout Standard
+In SJF scheduling, we assign to every process in the ready queue its next
+ CPU burst.
+ Then we choose the shortest job to execute.
+ In this manner, we put shorter jobs ahead of bigger jobs, and because this
+ reduces the waiting time of shorter jobs more than it increases the waiting
+ time of bigger jobs, it actually reduces the average waiting time.
+ Therefore, SJF is quite 
+\emph on
+optimal
+\emph default
+ in itself.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The problem however, is the fact that we may not know the CPU burst time
+ for a process.
+ So, for 
+\series bold
+long term scheduling
+\series default
+, where the user specifies the time for which the process has to be run,
+ SJF can be well implemented.
+ But for 
+\series bold
+short term scheduling
+\series default
+, where the processes are short, it is quite not possible to know the CPU
+ burst times for the processes.
+ Hence, then we go for 
+\series bold
+burst estimation
+\series default
+.
+ We estimate the burst time for each process and then choose the shortest
+ job, as according to the SJF paradigm.
+ Generally, the estimate is an exponential average.
+ Let 
+\begin_inset Formula $t_{n}$
+\end_inset
+
+ be the length of 
+\begin_inset Formula $n$
+\end_inset
+
+th CPU burst (assuming 
+\begin_inset Formula $n$
+\end_inset
+
+ bursts have occurred already, due to IO waits and bursts).
+ If 
+\begin_inset Formula $\tau_{n+1}$
+\end_inset
+
+ is the approximate burst time for the next occupation, then for 
+\begin_inset Formula $0\leq\alpha\leq1$
+\end_inset
+
+, we can estimate 
+\begin_inset Formula $\tau_{n+1}$
+\end_inset
+
+ as
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\tau_{n+1}=\alpha t_{n}+(1-\alpha)\tau_{n}
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Upon iterative substitution, we find that
+\begin_inset Formula 
+\[
+\tau_{n+1}=\alpha t_{n}+(1-\alpha)\alpha t_{n-1}+\cdots+(1-\alpha)^{j}\alpha t_{n-j}+\cdots+(1-\alpha)^{n}\alpha t_{0}
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Because 
+\begin_inset Formula $(1-\alpha)$
+\end_inset
+
+ is less than 
+\begin_inset Formula $1$
+\end_inset
+
+, so each approximation has less weight than the previous approximation.
+ Typically, for 
+\begin_inset Formula $\alpha=0$
+\end_inset
+
+, the actual burst time 
+\begin_inset Formula $t_{n}$
+\end_inset
+
+ is neglected and 
+\begin_inset Formula $\alpha=1$
+\end_inset
+
+, the history of approximations stored in 
+\begin_inset Formula $\tau_{n}$
+\end_inset
+
+ is neglected, so 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ is kept at 
+\begin_inset Formula $1/2$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The SJF algorithm can be preemptive or non preemptive.
+ The preemptive version, described above can be thought of as 
+\series bold
+shortest next CPU burst 
+\series default
+next
+\series bold
+.
+ 
+\series default
+In the non preemptive case, however, as soon as a new process enters the
+ ready queue, the scheduler may choose to end the current running process
+ and shift to the new process, if it has a smaller burst time than the left
+ burst time for current process.
+ This design is called the 
+\series bold
+shortest remaining time first
+\series default
+ or SRTF scheduling.
+ This reduces the waiting time even further.
+\end_layout
+
+\begin_layout Subsection
+Priority Scheduling
+\end_layout
+
+\begin_layout Standard
+Priority Scheduling is a general purpose algorithm.
+ In priority scheduling, each process is assigned a priority.
+ This priority might be 
+\series bold
+internal
+\series default
+, i.e.
+ computed on need using the process properties, or 
+\series bold
+external
+\series default
+, i.e.
+ assigned by the process creator.
+ Then, every time a new process is required, the process with the highest
+ priority is picked up and given the CPU.
+ The 
+\series bold
+non preemptive
+\series default
+ version is quite simple - once a process has been assigned, it gives up
+ control of the CPU only if it terminates or stops due to IO wait.
+ In the 
+\series bold
+preemptive
+\series default
+ version, each time a new process enters the ready queue, it is cross checked
+ with the currently running process.
+ If it has more priority than the running process, the running process is
+ preempted and the new process runs.
+ Each interrupt basically, calls for a process switch, which happens, if
+ possible.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+FCFS and SJF are special cases of priority scheduling.
+ Priority scheduling where all processes have the same priority is FCFS
+ - the process which comes first gets executed first.
+ Similarly, if we assign to each process a priority which depends on the
+ next burst time for the process inversely (more burst meaning less priority,
+ and less burst meaning more priority), then it acts exactly like SJF.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+A major problem with priority scheduling algorithms is the fact that lower
+ priority processes might not get the CPU for long times if there is a constant
+ influx of higher priority processes - a phenomenon which we call 
+\series bold
+starvation
+\series default
+.
+ Fortunately, there is a fix for this.
+ We 
+\series bold
+age
+\series default
+ the processes (increase their priority) as they spend more and more time
+ in the ready queue.
+ This way, all processes are guaranteed to be run.
+ Please note the fact that priorities in actual systems are denoted by numbers.
+ Some systems use larger numbers for higher priorities and others use the
+ vice versa.
+ It depends upon the implementation.
+\end_layout
+
+\begin_layout Subsection
+Round Robin Scheduling
+\end_layout
+
+\begin_layout Standard
+Round Robin scheduling is a preemptive version of FCFS scheduling.
+ A small unit of time, a 
+\series bold
+quantum
+\series default
+ is defined.
+ Every process in the ready queue is assigned the CPU for a quantum and
+ dispatched.
+ If the burst of the process is less than a quantum, then it terminates
+ and the scheduler has to choose the next process in the queue.
+ Otherwise, if the process burst exceeds a quantum, it causes an interrupt
+ after a quantum, and the process is stopped and put at the end of the queue,
+ and the next process is loaded.
+ So, if there are 
+\begin_inset Formula $n$
+\end_inset
+
+ processes and the quantum size is 
+\begin_inset Formula $q$
+\end_inset
+
+, then it is guaranteed that a process will at the most, get the CPU after
+ 
+\begin_inset Formula $(n-1)q$
+\end_inset
+
+ time.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The performance of RR depends heavily on the size of the quantum.
+ A large enough quantum size might exceed the maximum burst, and the entire
+ system behaves like FCFS.
+ On the other hand, a very small quantum value can cause the effect of 
+\series bold
+processor sharing
+\series default
+, whereby if there are 
+\begin_inset Formula $n$
+\end_inset
+
+ processes, it looks as if each of the processes are running on separate
+ processors, with speeds 
+\begin_inset Formula $1/n$
+\end_inset
+
+ of the speed of the original processor.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+In practice, we also need to take care of the time it takes to switch from
+ a process to another process.
+ For smaller quantums, context switches might occupy a major portion of
+ CPU time.
+ So, it is desired that a quantum is chosen in such a way that it is large
+ enough than context switch time.
+ Context switching and quantum size also affects the average 
+\emph on
+turnaround
+\emph default
+ time.
+ In general, smaller quantums lead to more context switching and hence,
+ more turnaround time.
+ A rule of thumb to choose an appropriate quantum size is : choose the quantum
+ such that 80% of the processes have bursts less than the quantum.
+\end_layout
+
+\begin_layout Subsection
+Multilevel Queue Scheduling
+\end_layout
+
+\begin_layout Standard
+In practicality, all processes do not have the same requirements.
+ For instance, a foreground interactive process may require faster response
+ than a background process.
+ So, we might divide the ready queue into separate queues, each with a different
+ priority, and each time we get a new ready process, we add it to one of
+ the queues.
+ This kind of scheme is called 
+\series bold
+multilevel queue scheduling
+\series default
+ or MQS.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Based upon our need, we can even go ahead and use different schemes for
+ each of the queues.
+ For example, a background queue might use FCFS whereas a foreground queue
+ might go well with RR.
+ It is completely upon the designer as to what scheme to use for each queue.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+In practice, a possibility is to have absolute priority of higher level
+ queues.
+ In this way, a lower level queue can run its processes if and only if all
+ the higher level queues are empty.
+ Another possibilility is to use 
+\series bold
+time division
+\series default
+.
+ For example, we could dedicate some portion of the CPU time to each level
+ of the ready queue, which they can dedicate to their respective processes
+ using their respective algorithms.
+\end_layout
+
+\begin_layout Subsection
+Multilevel Feedback Queue Scheduling
+\end_layout
+
+\begin_layout Standard
+Normally, if multilevel queue scheduling is used, once a process has been
+ assigned a queue, it cannot change its queue.
+ Even though it has easier to implement, it is not quite flexible.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+In 
+\series bold
+multilevel feedback queue scheduling
+\series default
+ or MFQS, we allow a process to move between queues.
+ Such scheduling is characterised by -
+\end_layout
+
+\begin_layout Itemize
+the number of queues used & scheduling algorithms used for the queues
+\end_layout
+
+\begin_layout Itemize
+moving a process to a lower level if it requires more CPU time & moving
+ a process to a higher level if it requires lesser CPU time
+\end_layout
+
+\begin_layout Standard
+It is essential to choose methods that decide what queue a process enters
+ when it comes for the first time, what criterion will allow it a higher
+ level queue, or what criterion will allow it a lower level queue.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The definition of multilevel feedback queue scheduling makes it the most
+ general purpose scheduling algorithm.
+ It can be customised to implement any of the aforementioned algorithms,
+ with or without aging or promotion.
+ Unfortunately, it is quite complex to implement, since we need to carefully
+ handpick the parameters that characterise it.
+\end_layout
+
+\begin_layout Section
+Multiple Processor Scheduling
+\end_layout
+
+\begin_layout Standard
+So far, we've discussed scheduling on systems with one CPU.
+ If, however, multiple CPUs are available, then it is possible to have 
+\series bold
+load sharing
+\series default
+ between the CPUs.
+ Even though there is no single best solution for multiple processor scheduling,
+ a lot of approaches are possible.
+ Note that here we are discussing about multiple 
+\series bold
+homogeneous 
+\series default
+CPUs.
+ A process may be run on any of these CPUs, even though restrictions exist
+ (if a device uses only a single CPU's bus, its operations must be scheduled
+ to that CPU).
+\end_layout
+
+\begin_layout Subsection
+Approaches to Multiple Processor Scheduling
+\end_layout
+
+\begin_layout Standard
+In general, there are two ways we can schedule processes for multiple homogeneou
+s CPUs - 
+\end_layout
+
+\begin_layout Itemize
+In 
+\series bold
+asymmetric multiprocessing
+\series default
+, we make a CPU the master CPU and others slave CPUs.
+ All scheduling is done on the master CPU, so there is less overhead of
+ data sharing.
+ This method is therefore, easier to implement.
+\end_layout
+
+\begin_layout Itemize
+In 
+\series bold
+symmetric multiprocessing
+\series default
+, we allow each CPU to access the ready queue and choose a process by itself.
+ However, it is essential that no two CPUs choose the same process, and
+ that no process is lost while scheduling.
+ Virtually, all modern OSes including Windows XP, Solaris etc.
+ use this kind of approach.
+\end_layout
+
+\begin_layout Subsection
+Processor Affinity
+\end_layout
+
+\begin_layout Standard
+Processes tend to have associated data - most of which is stored as 
+\series bold
+cache
+\series default
+ in the cache memory.
+ Because cache memories are differently implemented for different processors,
+ if a process migrates from a processor to another, its associated cache
+ must be flushed from the cache memory of the original processor and repopulated
+ into the cache memory of the latter.
+ Because of the overhead involved in doing this, it is often desirable to
+ run a process on a single processor (or a set of processors).
+ This is called 
+\series bold
+processor affinity
+\series default
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+When an OS has the tendency to keep a process on a specific processor without
+ guarantee, it is called 
+\series bold
+soft affinity
+\series default
+.
+ On the other hand, if the process specifies by itself that it shouldn't
+ be allowed to migrate, that falls under 
+\series bold
+hard affinity
+\series default
+.
+ Linux and Solaris systems often implement both forms of affinity.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The main memory architecture can also affect the processor affinity.
+ For instance, if some CPUs and main memories are integrated onto a single
+ board by design, it is easier to intra-migrate processes, than it would
+ be, if it were to be done between two CPUs on different boards.
+ This kind of architectural design is called 
+\series bold
+non uniform memory access
+\series default
+ or NUMA, and even though it is not theoretically studied much, it does
+ occur in practice.
+\end_layout
+
+\begin_layout Subsection
+Load Balancing
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Load balancing 
+\series default
+is a technique via which SMPs tend to have the workload evenly distributed.
+ Otherwise, it is possible that some processors may stay idle, while others
+ are overloaded with processes, which wouldn't exactly be 
+\begin_inset Quotes eld
+\end_inset
+
+good use
+\begin_inset Quotes erd
+\end_inset
+
+ of the processing power.
+ Load balancing is achieved via two schemes - 
+\series bold
+push migration 
+\series default
+& 
+\series bold
+pull migration
+\series default
+.
+ In push migration, a specific task periodically checks the load on each
+ processor and redistributes processes from overloaded to idle processes,
+ if possible.
+ In pull migration, once a processor's queue becomes empty or a processor
+ becomes almost idle, it pulls in processes from busier processors.
+ Even though these seem conjugated schemes, many systems implement both,
+ including Linux & ULE (BSD) schedulers.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Load balancing often counteracts the benefits of processor affinity, since
+ it demands for processes to be moved between processors.
+ However, there is no absolute rule on the degree of load balancing and
+ use of processor affinity.
+ One might choose to use either of them, or a mix of both of them as found
+ suitable.
+\end_layout
+
+\begin_layout Subsection
+Multicore Processors
+\end_layout
+
+\begin_layout Standard
+Even though it is a difficult task to migrate processes between different
+ processors, recent developments have made possible the integration of multiple
+ processors cores onto a single processor chip, thus creating a 
+\series bold
+multicore processor
+\series default
+.
+ Migrating tasks amongst these cores has a lesser cost than the previous
+ migrations, which occurred between different processors (on different chips).
+ SMPs using multicore processors are therefore, faster.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+However, having multicore processors might complicate scheduling.
+ For instance, it is well known that most of the time a process is run,
+ the processor needs data that might not be available as cache.
+ So, the processor has to get the data (
+\series bold
+memory stall
+\series default
+), and then run the process.
+ Every process is a series of bursts and stalls.
+ To adapt to the waste of time, many processor cores actually run multiple
+ threads of processes.
+ So, in a multicore processor, each core can run multiple processes on different
+ threads.
+ Therefore, each scheduling implementation must make use of both levels
+ of execution.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+In general, a processor may be multithreaded in two ways - 
+\series bold
+coarsely grained 
+\series default
+and 
+\series bold
+finely grained
+\series default
+.
+ In coarsely grained multithreading, the instructions for a process on a
+ thread are flushed when the thread is switched.
+ In finely grained multithreading, the instructions are not flushed, but
+ the other thread's instructions are read by some logic, so that the thread
+ switch actually costs less.
+\end_layout
+
+\begin_layout Subsection
+Virtualisation & Scheduling
+\end_layout
+
+\begin_layout Standard
+Virtualisation has made it possible to run multiple OSes on a single machine
+ concurrently.
+ Typically, for any virtualisation environment, there is a host OS and one
+ or more guest OSes.
+ Each of the guest OS can be fine tuned for specific purposes.
+ Any virtualisation environment, however, works by alloting a share of the
+ host CPU cycles to the guest OS processes.
+ As a result, it is possible that the scheduling algorithm designed for
+ use on a machine doesn't work well, if used instead on a virtual machine.
+ Moreover, the host's performance is affected greatly as well.
+\end_layout
+
+\begin_layout Section
+Operating System Examples
+\end_layout
+
+\begin_layout Subsection
+Solaris Scheduling
+\end_layout
+
+\begin_layout Standard
+Solaris systems use priority based thread scheduling, whereby each process
+ is assigned a priority from any of the following classes -
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Time Sharing
+\series default
+ (TS) class is the default class for any process.
+ It uses MFQS with priorities assigned such that higher priorities correspond
+ to lesser time requirements, and vice versa.
+ So, interactive processes have higher priorities than CPU bound processes.
+ This guarantees better response for interactive processes and good throughput
+ for CPU bound processes.
+ Any process in the TS class is dispatched on one of the 60 priority levels,
+ each of which have predefined priorities if the time quantum expires without
+ preemption or if the process is brought from 
+\family typewriter
+WAITING
+\family default
+ state to 
+\family typewriter
+READY 
+\family default
+state.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Interactive
+\series default
+ (IA) class uses a policy similar to that of the TS class.
+ However, window manager & display processes are assigned higher priorities
+ by default here, which guarantees faster graphical performance.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Real Time
+\series default
+ (RT) class threads have the highest priority, more than that of any other
+ class.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+System 
+\series default
+(SYS) class threads are reserved for kernel processes and paging tasks.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Fair Share 
+\series default
+(FSS) & 
+\series bold
+Fixed Priority 
+\series default
+(FP) class threads were introduced beginning from Solaris 9.
+ These two classes have the same levels of priority.
+ The former class allows for processes whose priorities are not meant to
+ be modified in the future, whereas the latter class allows for processes
+ whose priorities are meant to be determined from their CPU shares.
+ CPU shares are given to a set of processes, called as the 
+\series bold
+project
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+Each class mentioned above has a set of class specific priorities, but,
+ the Solaris scheduler converts all those priorities to global priorities
+ and selects the maximum priority process to run.
+ Once selected, a thread can give up control, execute, or be preempted by
+ a higher priority process.
+ Multiple processes with the same priority are worked out in RR fashion.
+ Also note the fact that interrupts fall into the highest class of priorities
+ (not in these 6 classes), so that they are handled above everything else.
+\end_layout
+
+\begin_layout Subsection
+Windows XP Scheduling
+\end_layout
+
+\begin_layout Standard
+Windows XP uses a priority based preemptive scheduling algorithm.
+ As in Solaris, the highest priority process is always selected by the 
+\emph on
+dispatcher
+\emph default
+.
+ Once a process has been selected, either it can terminate, or run until
+ its time slice expires, or become 
+\family typewriter
+WAITING
+\family default
+ once it starts running, or be preempted by another higher priority process.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Theere are 32 levels of priority.
+ Priority 0 is for memory bound processes, priorities 1-15 are for variable
+ priority processes and 16-31 for real time processes.
+ In general, the Win32 API designates one of the following classes to a
+ process : 
+\family typewriter
+REALTIME
+\family default
+, 
+\family typewriter
+HIGH
+\family default
+, 
+\family typewriter
+ABOVE_NORMAL
+\family default
+, 
+\family typewriter
+NORMAL
+\family default
+, 
+\family typewriter
+BELOW_NORMAL
+\family default
+ and 
+\family typewriter
+IDLE
+\family default
+.
+ Any process may be assigned a subpriority within its own class as : 
+\family typewriter
+TIME_CRITICAL
+\family default
+, 
+\family typewriter
+HIGHEST
+\family default
+, 
+\family typewriter
+ABOVE_NORMAL
+\family default
+, 
+\family typewriter
+NORMAL
+\family default
+, 
+\family typewriter
+BELOW_NORMAL
+\family default
+, 
+\family typewriter
+LOWEST
+\family default
+ and 
+\family typewriter
+IDLE
+\family default
+.
+ The priority for a process is based upon both its class and relative priority.
+ Windows XP maintains a queue for each of the 32 levels, and for each selection,
+ it traverses all the levels until it finds a process to run.
+ If no processes are found, the idle thread is started.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Any process assigned a class is by default assigned its base priority, which
+ happens to be its 
+\family typewriter
+NORMAL
+\family default
+ subpriority, unless the process was created by an 
+\family typewriter
+IDLE
+\family default
+ class process or its priority was specified on creation.
+ When the time slice for a process runs out, its priority is reduced the
+ next time.
+ Consequently, if a process becomes 
+\family typewriter
+READY
+\family default
+, it is assigned a higher priority.
+ This limits the computational threads and makes graphical performance better.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Even the more, Windows XP assigns a higher priority to processes running
+ in the foreground than those running in the background, and assigns a 3x
+ time share for foreground processes, so that they are not preempted if
+ the user is working on them.
+\end_layout
+
+\begin_layout Subsection
+Linux Scheduling
+\end_layout
+
+\begin_layout Standard
+Traditionally, Linux used to run a variation of the UNIX scheduler.
+ Beginning version 2.5+, Linux uses a constant time scheduler 
+\begin_inset Formula $O(1)$
+\end_inset
+
+ which schedules jobs in constant time regardless of the number of jobs
+ on the system.
+ The new scheduler allows for processor affinity and load balancing, and
+ supports SMP.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The Linux scheduler is a preemptive priority based scheduler with 141 levels,
+ 0-99 as 
+\series bold
+real-time
+\series default
+ and 100-140 as 
+\series bold
+nice 
+\series default
+levels.
+ Processes are mapped to a global priority value, and the higher priority
+ processes are given larger time slices, unlike Solaris & WinXP schedulers
+ where higher priority processes were given shorter time slices.
+ Each processor in the SMP scheme maintains its own 
+\series bold
+runqueue
+\series default
+, which consists of two arrays of jobs - 
+\series bold
+active 
+\series default
+and 
+\series bold
+expired
+\series default
+, which schedule jobs in RR fashion.
+ The highest priority (lower values) jobs are selected from the active array
+\series bold
+ 
+\series default
+and assigned a quantum.
+ As the quantum expires, they are shifted into expired array.
+ This happens until the active array is empty.
+ Once all the jobs have been worked on, the active and the expired arrays
+ are swapped.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+As defined by POSIX.1b, real time tasks are assigned static priorities, while
+ interactive (nice) tasks are assigned dynamic priorities (
+\begin_inset Formula $\mbox{nice}\pm5$
+\end_inset
+
+).
+ If an interactive task has more sleep time and less wait time, it is assigned
+ a higher priority, and vice versa.
+ Once the active & expired arrays are swapped, the priorities and time slices
+ are recomputed.
+\end_layout
+
+\begin_layout Section
+Algorithm Evaluation
+\end_layout
+
+\begin_layout Standard
+Before deciding on which scheduling algorithm to use for a particular scenario,
+ it is essential to define the relative importance of the parameters we
+ want to extremise.
+ For instance, we might want to maximise CPU utilisation keeping the maximum
+ response time fixed to say, 1 seconds.
+ Once the criteria for extremisation has been decided, we evaluate the algorithm
+s and choose the best one.
+\end_layout
+
+\begin_layout Subsection
+Deterministic Modeling
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Analytic evaluation
+\series default
+ uses a specific case of a workload and an algorithm to produce a formula
+ or number by which the performance of the algorithm can be assessed.
+ 
+\series bold
+Deterministic modeling 
+\series default
+is a type of analytic evaluation in which we require a specific workload
+ input, and we evaluate that input for all the scheduling algorithms over
+ a parameter, and choose the algorithm which gives us the best value for
+ that parameter.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+For example, if we have some processes which all arrive at the same time,
+ but vary in bursts, and we wish to minimise average waiting time, then,
+ through calculations, SJF is found to be the algorithm of choice.
+ So, through deterministic modeling, a workload may be evaluated to indicate
+ that an algorithm is best suited for it, and upon repeated evaluations
+ on similar workloads, trends may be observed that can then be analysed
+ and proved separately.
+\end_layout
+
+\begin_layout Subsection
+Queueing Models
+\end_layout
+
+\begin_layout Standard
+For real systems, there is no fixed set of processes that repeatedly occur
+ in the ready queue, hence deterministic modeling is not of much help.
+ Such distributions can be measured and approximated.
+ Commonly, we analyse the arrival time distribution and CPU burst distribution,
+ which are exponential distributions expressed by their respective means.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+A real computer system, imitates a network of servers.
+ There are queues of processes and inputs, ready to be processed and handled.
+ Knowing arrival and dispatch rates, we can find CPU utilisation, average
+ queue length, average wait time and so on.
+ This approach forms the basis for the field of 
+\series bold
+queuing network analysis
+\series default
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Little's formula
+\series default
+, using this concept comes in handy on occasions when deterministic modeling
+ cannot be used to much avail.
+ In general, if a process system is in the steady state, then the rate of
+ influx of processes must equal the rate of process dispatch.
+ So, if 
+\begin_inset Formula $W$
+\end_inset
+
+ is the average time a process spends waiting in the ready queue, and 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ is the rate of process arrival, then the average queue length 
+\begin_inset Formula $n$
+\end_inset
+
+ comes out to be
+\begin_inset Formula 
+\[
+n=\lambda\times W
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+This follows from the fact that between the time a process enters the queue
+ and exits it, it spends 
+\begin_inset Formula $W$
+\end_inset
+
+ time in the queue, so 
+\begin_inset Formula $\lambda W$
+\end_inset
+
+ processes must have entered the queue in this time.
+ But since the average queue length is constant, equality ensues.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Queueing analysis is useful for many cases, but much of the theory is too
+ complicated and limited to specific algorithms.
+ Moreover, such analysis is in the end, an approximation for real time analysis,
+ so the accuracy of analysis is always subject to discussion.
+\end_layout
+
+\begin_layout Subsection
+Simulations
+\end_layout
+
+\begin_layout Standard
+To evaluate algorithm performance, the algorithms may be simulated and run
+ with randomly generated inputs (processes, bursts, arrivals etc.).
+ However, such inputs often lack the relation which successive processes
+ have under real conditions.
+ A solution is to record some time of scheduling activity onto 
+\series bold
+trace tapes
+\series default
+, which may be run afterwards using simulators.
+ Elaborate analysis using simulators can give an insight into what algorithm
+ is best suited for the required scenario.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Trace tapes may require, however, large storage space.
+ Finally, the design and implementation of the algorithms is a difficult
+ task in itself.
+\end_layout
+
+\begin_layout Subsection
+Implementation
+\end_layout
+
+\begin_layout Standard
+Often the best way to test a scheduling algorithm is to put it up for real
+ use.
+ The problem is the implementation, integration into an OS, and coding.
+ Moreover, most end users are not concerned about improving their systems.
+ Rather, they want to get their work done.
+ So, if in some implementation, interactive processes are given higher priority,
+ users might switch to interactive processes to get their work done.
+ Even application programmers might change their approach in a way specific
+ to their application.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The best algorithms are the ones which can be altered upon use.
+ While designing an algorithm, it is essential to know where the algorithm
+ would run the best - on a computationally extensive system, or on an interactio
+n extensive system.
+ There is no one way to test an algorithm.
+\end_layout
+
+\end_body
+\end_document

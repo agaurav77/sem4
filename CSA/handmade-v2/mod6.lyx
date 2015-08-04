@@ -1,0 +1,367 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter Inconsolata
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts true
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 10
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 4cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation 0bp
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+Bus Control
+\end_layout
+
+\begin_layout Subsection
+System Bus
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/6-4-system-bus.svg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Address Bus
+\end_layout
+
+\begin_layout Standard
+The CPU reads or writes data from the memory by addressing unique locations,
+ outputs the location of data, i.e.
+ the address on the address bus and the memory unit further uses the address
+ to access proper data.
+ Each IO device also has a unique address which the CPU traces on address
+ bus, and each device will detect if it is its own address or not, and act
+ accordingly.
+ The CPU never reads the address bus.
+\end_layout
+
+\begin_layout Subsection
+Data Bus
+\end_layout
+
+\begin_layout Standard
+When the CPU fetches the data from the memory, it first outputs the address
+ on the address bus, then the memory outputs the data on the data bus, and
+ CPU reads from the data bus.
+ A similar process is carried out for the write operation, and for IO devices
+ alike.
+\end_layout
+
+\begin_layout Subsection
+Control Bus
+\end_layout
+
+\begin_layout Standard
+It is a collection of individual control signals which indicate whether
+ the data is to be read or written.
+\end_layout
+
+\begin_layout Section
+Bus Types
+\end_layout
+
+\begin_layout Standard
+In general, buses are either
+\end_layout
+
+\begin_layout Itemize
+dedicated
+\end_layout
+
+\begin_layout Itemize
+multiplexed
+\end_layout
+
+\begin_layout Standard
+However, if 
+\series bold
+implementation
+\series default
+ is considered, then the two types of buses are -
+\end_layout
+
+\begin_layout Itemize
+parallel
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Data is carried out in parallel lines.
+ The downsides are
+\end_layout
+
+\begin_layout Itemize
+power consumption
+\end_layout
+
+\begin_layout Itemize
+timing skews (thus synchronisation might not be maintained)
+\end_layout
+
+\begin_layout Itemize
+introduction of crosstalk
+\end_layout
+
+\begin_layout Itemize
+electromagnetic interference
+\end_layout
+
+\begin_layout Standard
+However, the time for transfer of data reduces, so it's faster.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+serial
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Data is carried out in bit serial form.
+ Examples include USB, FireWire, SATA (Serial Advanced Technology Attachments)
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+
+\series bold
+Location 
+\series default
+wise, buses can be
+\end_layout
+
+\begin_layout Itemize
+internal
+\end_layout
+
+\begin_layout Itemize
+external
+\end_layout
+
+\begin_layout Section
+Programmed IO (PIO)
+\end_layout
+
+\begin_layout Standard
+It refers to the data transfer initiated by the CPU under driver software
+ control to access peripheral devices.
+ In general,
+\end_layout
+
+\begin_layout Itemize
+CPU issues a command, waits for the IO operation to complete.
+\end_layout
+
+\begin_layout Itemize
+CPU while waiting, must repeatedly poll (and check task status).
+\end_layout
+
+\begin_layout Standard
+Due to polling, the performance of the entire system is serially degraded.
+ Therefore, we use DMA.
+\end_layout
+
+\begin_layout Section
+Direct Memory Access (DMA)
+\end_layout
+
+\begin_layout Standard
+The CPU grants IO module the authority to read from or write to memory without
+ its own involvement.
+ The DMA module controls the exchange of data between main memory and the
+ IO device.
+ Because of DMA, a device can transfer data directly to or from memory,
+ rather than using the CPU as an intermediate, and thus can relieve congestion
+ on the bus.
+ With DMA, the CPU first initiates the transfer, then it does other operations
+ while the transfer is in progress, and finally receives an interrupt from
+ the DMA controller when the operation is done.
+ Data can be transferred in two ways -
+\end_layout
+
+\begin_layout Itemize
+burst transfer
+\end_layout
+
+\begin_layout Itemize
+cycle stalling, which allows DMA controller to transfer data bit by bit
+ at a time, after which it must return the control to CPU
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/6-4-dma-controller.svg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The CPU enables DS and RS to make DMA active.
+ At BG = 1, the CPU releases the buses and DMA takes over the communication
+ with the memory to the address bus and read or write signals.
+ The address register holds the address to read from memory, and is incremented
+ after each transfer.
+ The word count register holds the number of words, and is decremented after
+ each transfer, till it reaches zero.
+ Then the CPU initiates DMA by setting the following information via Data
+ Bus.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/6-4-dma2.svg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+The starting address of the memory block where data is available - read,
+ and where data is to be written - write.
+\end_layout
+
+\begin_layout Enumerate
+The word count which is the number of words in the memory block.
+\end_layout
+
+\begin_layout Enumerate
+Control to specify the mode of transfer.
+\end_layout
+
+\begin_layout Enumerate
+Control to start DMA transfer
+\end_layout
+
+\begin_layout Standard
+After this, the CPU stops communicating with the DMA until it receives the
+ signal which says that data transfer is complete.
+\end_layout
+
+\begin_layout Subsection*
+Working
+\end_layout
+
+\begin_layout Enumerate
+The IO peripheral device sends a request to DMA.
+\end_layout
+
+\begin_layout Enumerate
+DMA controller activates the BR line.
+\end_layout
+
+\begin_layout Enumerate
+CPU responds with the BG line.
+\end_layout
+
+\begin_layout Enumerate
+DMA then puts the current value of the address register into the address
+ bus and initiates the RD and WR signal and sends the DMA an acknowledgement.
+\end_layout
+
+\begin_layout Enumerate
+When the peripheral device receives DMA acknowledgement, it puts or retrieves
+ the words in the Data Bus.
+\end_layout
+
+\begin_layout Enumerate
+For each word transfered, DMA increments its address register, and decrements
+ its word count register.
+\end_layout
+
+\begin_layout Enumerate
+When the word counter reaches 0, DMA stops any further transfer, removes
+ its bus request, and informs the CPU by an interrupt.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/6-4-dma1.svg
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

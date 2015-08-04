@@ -1,0 +1,1263 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 4cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Memory Management Strategies
+\end_layout
+
+\begin_layout Section
+Background
+\end_layout
+
+\begin_layout Standard
+The memory is a large array of words or bytes, each with an address and
+ a value.
+ The CPU fetches instructions from the memory based on the program counter.
+ Afterwards, the instruction is decoded, and if the operands are required,
+ they are loaded from the memory.
+ The instruction executes and the result may be stored into the memory.
+ This is how the typical instruction cycle works.
+\end_layout
+
+\begin_layout Subsection
+Basic Hardware
+\end_layout
+
+\begin_layout Standard
+The CPU can access the main memory and its registers only.
+ CPU registers are accessible within a single clock cycle, and the main
+ memory access requires more cycles, because a transaction on the memory
+ bus is required.
+ A remedy is to use 
+\series bold
+cache
+\series default
+ memory.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+It is also essential that the CPU accesses valid memory addresses while
+ executing an instruction.
+ Also the hardware must be protected against modifying the kernel programs.
+ A scheme to address this need can be devised by maintaining two registers
+ - 
+\series bold
+base
+\series default
+ & 
+\series bold
+limit
+\series default
+.
+ In this scheme, the base register stores the lowest memory address an instructi
+on can access, whereas the limit register stores the range of addresses
+ an instruction can access.
+ Each address generated in a program is checked against the base and limit
+ registers before sending to CPU.
+ Also, these two registers can be set only by the kernel, in priviledged
+ mode.
+ A setup like this prevents the user from accidentally or intentionally
+ modifying essential kernel or OS data.
+\end_layout
+
+\begin_layout Subsection
+Address Binding
+\end_layout
+
+\begin_layout Standard
+To execute a program, its binary executable code must be brought from the
+ disk to memory, and assigned a process.
+ All processes on the disk waiting to be executed form the 
+\series bold
+input queue
+\series default
+.
+ The basic idea is to choose a process to be loaded from the input queue,
+ load it, execute it and free its used memory for other processes.
+ A process requiring access to memory locations must specify the address
+ of the location it wants to access.
+ There are many ways this address can be specified -
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Compile Time
+\series default
+ - If we know the exact location of process in the memory, we can specify
+ the absolute addresses.
+ If however, the starting address of the process changes, the addresses
+ must be recomputed, i.e.
+ the program must be recompiled.
+ An example is the .com files in MS-DOS system.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Load Time
+\series default
+ - If it is not known where the process will stay, at compile time, then
+ 
+\series bold
+relocatable code 
+\series default
+is generated, and final binding is delayed until load time.
+ If the location changes, we just need to reload the user code.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Execution Time 
+\series default
+- If a process can be moved from one memory segment to another during execution,
+ binding is done at execution.
+\end_layout
+
+\begin_layout Subsection
+Logical versus Physical Address Space
+\end_layout
+
+\begin_layout Standard
+Address binding at compile time and load time generates CPU seen addresses,
+ or 
+\series bold
+logical addresses
+\series default
+ and memory addresses, or actual 
+\series bold
+physical addresses
+\series default
+.
+ The set of all logical addresses constitutes the 
+\series bold
+logical address space
+\series default
+, whereas the set of all physical addresses
+\series bold
+ 
+\series default
+used in a program makes up the 
+\series bold
+physical address space
+\series default
+.
+ Because memory needs to be accessed, logical addresses used by the programmer
+ in the programs must be converted to physical addresses.
+ This task is done by the 
+\series bold
+memory management unit 
+\series default
+or MMU.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+A simple scheme to map logical addresses (or 
+\emph on
+virtual addresses
+\emph default
+) to physical addresses is to have relocation registers.
+ Then, for any program, a logical address typically corresponds to a value
+ from 0 to some 
+\family typewriter
+max
+\family default
+, whereas a physical address is from 
+\family typewriter
+R 
+\family default
+to 
+\family typewriter
+R+max
+\family default
+ for those logical addresses (
+\family typewriter
+R 
+\family default
+is the value of the relocation register).
+ MS-DOS on used this type of scheme.
+ Multiple other schemes exist, and such schemes are quite fundamental to
+ memory management.
+\end_layout
+
+\begin_layout Subsection
+Dynamic Loading
+\end_layout
+
+\begin_layout Standard
+For a process to execute, it is necessary that the process is kept in the
+ main memory.
+ This however, limits the size of the process.
+ However, programs may use libraries which must be imported at runtime,
+ the size of which might well exceed the process size limit.
+ A workaround is to load the basic instructions and then to load the functions
+ from the library, as required.
+ This way, only those functions are loaded from disk into memory, which
+ are actually required.
+ This is called 
+\series bold
+dynamic loading
+\series default
+.
+ Its implementation doesn't need much of OS support, but the programming
+ language or API might provide library functions which assist in the same.
+\end_layout
+
+\begin_layout Subsection
+Dynamic Linking & Shared Libraries
+\end_layout
+
+\begin_layout Standard
+In 
+\series bold
+static linking
+\series default
+, system language libraries are treated like any other object module and
+ integrate into the binary executable during execution.
+ However, the downside is that every program must carry a copy of the system
+ language libraries, and those libraries must be linked every time they
+ are used.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+But with 
+\series bold
+dynamic linking
+\series default
+, a 
+\emph on
+stub
+\emph default
+ is included in the program for each library reference.
+ A stub is a small piece of code that tells how to find the required system
+ routine.
+ Every time the stub is seen on linking, it checks the main memory to see
+ if the routine is already loaded into another process.
+ If it is loaded, it replaces itself with the routine address, otherwise,
+ it loads it.
+ This way, a library routine is loaded only once.
+ Even the more, the stub indicates what version of system libraries to use,
+ so the program doesn't support the newer libraries, it uses the older libraries
+, provided they are available.
+ This system of libraries is called 
+\series bold
+shared libraries
+\series default
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Please note that generally, it is not possible for processes to look into
+ other processes.
+ So, in such cases, the OS must do the needful and find the routine, if
+ it has been loaded into any other process.
+\end_layout
+
+\begin_layout Section
+Swapping
+\end_layout
+
+\begin_layout Standard
+A process must be in the memory to be executed.
+ A process, can be however, swapped temporarily out of memory to 
+\series bold
+backing store
+\series default
+ and then brought back again to be executed further.
+ This can be done, when say, the quantum for a process expires, or a process
+ is preempted by another process (and called back in, also called 
+\series bold
+roll in roll out
+\series default
+).
+ The process swapped out will be swapped back into the same memory space
+ it occupied earlier.
+ This is because of address binding, unless of course, the binding occurs
+ at runtime.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The backing store, commonly a fast disk is a readily accessible portion
+ of storage which maintains a ready queue of those processes which can be
+ swapped back.
+ When the CPU scheduler decides to run a process, it calls the dispatcher.
+ If the next process to be run is not already in memory, and there is no
+ free memory to accommodate it, a lower priority process is swapped out,
+ and the process is brought in.
+ Note the fact that the major portion of swapping is occupied by data transfer,
+ which is in turn, directly proportional to the amount of data being transferred.
+ To know the data being transferred, it is essential that the OS knows of
+ the memory occupation of various processes.
+ So, processes, must keep the OS updated about their memory needs, as they
+ increase or decrease.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Swapping is also limited by other factors.
+ For example, a process which is accessing IO buffers asynchronously may
+ appear idle, but cannot be swapped.
+ To handle IO issues, we can either stop swapping processes which have pending
+ IO, or execute IO only into OS buffers, which can be used by the process,
+ if the process is in memory.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+A modified version of swapping is found on UNIX.
+ Swapping is disabled normally, but it starts as soon as there are many
+ processes in the memory, which are using their 
+\emph on
+threshold
+\emph default
+ memory.
+ It again stops as the number of processes or memory used reduces.
+ Windows 3.1 also had swapping, to some extent.
+ As soon as there was a process which required entering the memory, and
+ adequate free space wasn't found, an old process was swapped out.
+ However, it had to be swapped in specifically by the user.
+\end_layout
+
+\begin_layout Section
+Contiguous Memory Allocation
+\end_layout
+
+\begin_layout Standard
+Memory is divided into two partitions - one for the resident OS, and one
+ for the user processes.
+ We can place the OS in either low memory or high memory, but generally
+ OS is kept in low memory, because the interrupt vector also happens to
+ be stored in low memory.
+ We need to consider now how to bring in processes in the input queue waiting
+ to enter the main memory.
+ One scheme is to allocate a contiguous block of memory to each process,
+ which is called 
+\series bold
+contiguous memory allocation
+\series default
+.
+\end_layout
+
+\begin_layout Subsection
+Memory Mapping & Protection
+\end_layout
+
+\begin_layout Standard
+An efficient way to ensure memory mapping & protection is by the use of
+ relocation and limit registers.
+ The relocation register contains the smallest physical address usable by
+ the process, and the limit register contains the range of logical addresses
+ possible.
+ The MMU checks every address against these registers and then maps the
+ logical addresses to physical addresses.
+ The relocation scheme is useful not only for user programs, but also comes
+ in handy for the system.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Consider the fact that an OS doesn't need all its device drivers at once.
+ Hence all these drivers may not be stored in the main memory, since that
+ would be waste of the main memory.
+ So, these are instead stored on the disk and brought into memory as needed.
+ Such code is often called 
+\series bold
+transient OS code
+\series default
+.
+ Using such code changes the size of the OS during CPU executions.
+\end_layout
+
+\begin_layout Subsection
+Memory Allocation
+\end_layout
+
+\begin_layout Standard
+One of the simplest ways to allocate memory is to divide memory into multiple
+ fixed size partitions, each of which can contain one process.
+ Here, the degree of multiprogramming, however would be bound by the number
+ of partitions.
+ When a process ends, its partition becomes free and available for any other
+ process to use.
+ This kind of memory allocation, called the 
+\series bold
+MFT
+\series default
+ was used in earlier computer systems, noticeably the IBM OS/360.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The next scheme for memory allocation is 
+\series bold
+MVT
+\series default
+, in which the OS keeps a table indicating which parts of memory are free
+ and which are not.
+ As processes enter the system, the OS computes the size of each process,
+ and allocates memory to the processes until the memory requirements of
+ the next process cannot be satisfied, i.e.
+ no hole big enough exists which can hold that process.
+ If no further memory allocation is possible, the OS waits until a hole
+ large enough to fit a process is created.
+ During memory allocation, if a large enough hole is found, a part of it
+ is allocated to the process and the rest of it is again updated in the
+ table.
+ After processes have been loaded into memory, they can compete for CPU.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+This method is a particular case of the general 
+\series bold
+dynamic storage allocation problem
+\series default
+, where the problem is to satisfy memory requirements for 
+\begin_inset Formula $n$
+\end_inset
+
+ processes.
+ One of the following strategies are commonly used - 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+first fit
+\series default
+, where we allocate a process the first hole it fits into
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+best fit
+\series default
+, where we allocate a process the smallest hole it fits into
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+worst fit
+\series default
+, where we allocate the process the largest hole it fits into
+\end_layout
+
+\begin_layout Standard
+In general, first fit and best fit are better than worst fit in terms of
+ decreasing time and storage utilisation.
+ Neither of first fit or best fit is the best, but first fit is faster.
+\end_layout
+
+\begin_layout Subsection
+Fragmentation
+\end_layout
+
+\begin_layout Standard
+Both first fit and best fit schemes suffer from external fragmentation.
+ 
+\series bold
+External fragmentation
+\series default
+ exists where there is enough memory to accommodate a process, but no hole
+ big enough exists which can hold the process, i.e.
+ the holes are smaller and separated.
+ If these holes were one big block, we could have run more processes.
+ The amount of fragmentation depends on the scheme of allocation, as well
+ as the end which is made free while a process is allocated.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Statistical analysis of first fit shows that for 
+\begin_inset Formula $N$
+\end_inset
+
+ allocated blocks 
+\begin_inset Formula $N/2$
+\end_inset
+
+ blocks will be wasted to fragmentation, on average.
+ This is the 
+\series bold
+50-percent rule
+\series default
+.
+ Note that apart from external fragmentation, there might be 
+\series bold
+internal fragmentation
+\series default
+.
+ Suppose we allocate a free block a process, but some space is left which
+ cannot be used by another process, since it happens to be too small.
+ Then, to reduce the overhead, we assign the entire free block to the first
+ process.
+ But, internally, that extra space is unused, and hence, wasted.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+One approach to handle fragmentation is 
+\series bold
+compaction
+\series default
+, whereby we can defragment the memory at regular intervals, by moving all
+ free blocks to one end of the memory and assigned processes to the other
+ end, such that all free blocks merge into a common hole.
+ The problem however, is address binding.
+ Compaction requires that address binding be done at runtime, otherwise
+ upon compaction, the previously used addresses will be rendered useless.
+ Another way is allow the process to have a non contiguous logical address
+ space.
+ This way, even the holes in which the process cannot fit will be utilised.
+ Other similar methods include paging and segmentation.
+\end_layout
+
+\begin_layout Section
+Paging
+\end_layout
+
+\begin_layout Standard
+Paging is a memory management scheme that allows the physical address space
+ of a process to be non contiguous.
+ It eliminates the need for compaction, and avoids external fragmentation.
+ Fragmentation occurs primarily due to variable memory allocation, that
+ creates small holes.
+ Even swapping doesn't help here, because, the swap memory itself may get
+ fragmented, and then it is not feasible to run compaction there because
+ swap access is considerably slower than main memory access.
+ Traditionally, paging support was integrated into hardware, but recent
+ designs have made OSes control paging.
+\end_layout
+
+\begin_layout Subsection
+Basic Method
+\end_layout
+
+\begin_layout Standard
+In paging, we break down the physical memory into 
+\series bold
+frames
+\series default
+ and the logical memory into 
+\series bold
+pages
+\series default
+.
+ Even the backing store is divided into frames.
+ Every address generated by the CPU has two parts - a 
+\series bold
+page number 
+\series default
+
+\begin_inset Formula $p$
+\end_inset
+
+ and 
+\series bold
+page offset
+\series default
+ 
+\begin_inset Formula $d$
+\end_inset
+
+.
+ The 
+\series bold
+page table
+\series default
+ is data structure maintained for each process which maps each page to the
+ frame it uses up on the physical memory.
+ In general, if any address has 
+\begin_inset Formula $m$
+\end_inset
+
+ bits, and the page size is 
+\begin_inset Formula $n$
+\end_inset
+
+ bits, then the first 
+\begin_inset Formula $m-n$
+\end_inset
+
+ bits must correspond to the page entry in the page table.
+ Paging in itself is a form of dynamic relocation.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+A paging scheme removes the possibility of external fragmentation and minimises
+ internal fragmentation (the last frame assigned to a process may not be
+ completely used).
+ An important aspect of paging is the fact that the user program views its
+ logical address space as a continuous block of addresses, whilst in actuality,
+ the space is scattered in the memory.
+ The user program can only access those locations which are present in the
+ page table, and hence, there is no need of extra overhead for protection.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The OS also maintains a table for the frames, called the 
+\series bold
+frame table
+\series default
+, which indicates what frames are free and what frames are occupied, and
+ the processes they are occupied with.
+ Note that the OS maintains a copy of frame table as well as copies of the
+ page tables of individual processes, which is used for logical to physical
+ address translation, if done by the OS.
+ Paging 
+\emph on
+increases
+\emph default
+ the context switch time.
+\end_layout
+
+\begin_layout Subsection
+Hardware Support
+\end_layout
+
+\begin_layout Standard
+Most OSes have a page table for each process.
+ A pointer to the page table is stored in the PCB of the process.
+ Hardware wise, we want fast access to the page table of an executing process.
+ Most simply, this can be done if the page table is implemented as a set
+ of dedicated registers, which have high speed logic.
+ An example is the DEC PDP-11.
+ However, as the size of the page table increases, it becomes infeasible
+ to have registers which store the page table for fast access.
+ In such cases, we can store the page table in the main memory, and have
+ a pointer to its base address stored in a nearby fast access register,
+ called the 
+\series bold
+page table base register
+\series default
+ or PTBR.
+ Changing page tables requires only changing the PTBR, thus reducing the
+ context switch time.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+However, even with a PTBR, page table access is slow which can cost the
+ OS in the long run.
+ The standard fix is to use cache 
+\series bold
+translation look-aside buffers
+\series default
+ or TLBs which can store key value pairs of data.
+ The TLB is costly, hence it generally supports storage of upto 1024 entries.
+ The TLB may not be able to store the entire page table, but it can be used
+ in this way.
+ Whenever a logical address is generated, it is looked up in the TLB.
+ If it exists, it is accessed (1 memory access + 1 TLB access), otherwise,
+ it is brought from the page table on the main memory into the TLB (2 memory
+ accesses + 1 TLB access), replacing a previously stored key value pair.
+ The latter case is referred to as a 
+\series bold
+TLB miss
+\series default
+, whereas the former is called a 
+\series bold
+TLB hit
+\series default
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Some TLBs store address space identifiers or 
+\series bold
+ASIDs
+\series default
+, which allows the storage of multiple page tables concurrently together.
+ If ASIDs are not supported, the TLB must be flushed every time a new process
+ demands a translation.
+ The percentage of TLB hits in all the TLB queries is called the 
+\series bold
+hit ratio
+\series default
+.
+ It is often desirable to have a high hit ratio, preferably 80% or above.
+ More hit ratio indicates a lesser slowdown in the time required for address
+ translation.
+\end_layout
+
+\begin_layout Subsection
+Protection
+\end_layout
+
+\begin_layout Standard
+Each page in a page table can have a bit which can specify whether the memory
+ address of that page is read only or not.
+ More generally, it is possible to have certain addresses to act as read
+ only, read-write, execute only etc.
+ as per the need.
+ However, even if most of the OSes do not implement this, a 
+\series bold
+valid invalid 
+\series default
+bit is usually associated with each process to decide whether access is
+ allowed to that page.
+ This is done because no process actually entirely uses up its address space.
+ However, having such a bit allows for internal fragmentation.
+ Most of the page table is generally unused.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Some systems provide hardware in the form of 
+\series bold
+page table length registers
+\series default
+ or PTLRs which designate the range of logical addresses a page table stores.
+ Failure of any generated address to lie within this range results in a
+ system trap.
+\end_layout
+
+\begin_layout Subsection
+Shared Pages
+\end_layout
+
+\begin_layout Standard
+An advantage of paging is the possibility of sharing of common code.
+ If a program code has been called multiple times, and assigned a process
+ each time, we need not keep the program code in each of the processes.
+ That would be waste of memory.
+ Instead, we can have one instance of program code in the main memory and
+ multiple separate instances of specific data space which link to the same
+ program code.
+ Note however, that the OS must guarantee the fact that the program code
+ is read only, otherwise a change in a process could result in problems
+ for other fellow processes.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+In the same way, it is possible to share compilers, database systems and
+ so on.
+ Sharing pages is an effective way of interprocess communication and having
+ shared memory, for some OSes.
+\end_layout
+
+\begin_layout Section
+Structure of the Page Table
+\end_layout
+
+\begin_layout Subsection
+Hierarchical Paging
+\end_layout
+
+\begin_layout Standard
+Most modern computer systems support a large logical address space ranging
+ from 
+\begin_inset Formula $2^{32}$
+\end_inset
+
+ addresses to 
+\begin_inset Formula $2^{64}$
+\end_inset
+
+ addresses.
+ Storing so many addresses into a single page table can increase the size
+ of the page table, so usually the page tables are divided.
+ A way is to use two level paging algorithm where the page tables are themselves
+ paged.
+ So for example, for a 32 bit machine where 
+\begin_inset Formula $d=12$
+\end_inset
+
+, and 
+\begin_inset Formula $p=20$
+\end_inset
+
+, we can have two page tables 
+\begin_inset Formula $p_{1}=10$
+\end_inset
+
+ and 
+\begin_inset Formula $p_{2}=10$
+\end_inset
+
+.
+ The first part of the address (
+\begin_inset Formula $p_{1}$
+\end_inset
+
+ bits) would then denote the offset of the current logical address in the
+ second inner page table.
+ Then that would define the offset in the memory.
+ 32 bit VAX architecture supports a variant of this kind of paging with
+ 
+\begin_inset Formula $p_{1}=2$
+\end_inset
+
+, 
+\begin_inset Formula $p_{2}=21$
+\end_inset
+
+ and 
+\begin_inset Formula $d=9$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+However, such a scheme for the 64 bit architecture is often not feasible.
+ 
+\begin_inset Formula $p$
+\end_inset
+
+ can then grow up to 
+\begin_inset Formula $2^{40}$
+\end_inset
+
+ and multiple levels of paging would increase the amount of memory accesses
+ to translate an address.
+\end_layout
+
+\begin_layout Subsection
+Hashed Page Tables
+\end_layout
+
+\begin_layout Standard
+A common approach for handling address spaces greater than 
+\begin_inset Formula $2^{32}$
+\end_inset
+
+ addresses is to use 
+\series bold
+hashed page tables
+\series default
+.
+ Each entry in the hash table has a linked list of elements that hash to
+ the same location in memory.
+ To translate a logical address, first its virtual page number is hashed
+ and the location is accessed, upon match.
+ Then the page frame is used to create the desired physical address from
+ there.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+A variation of this scheme, which particularly works fine for sparse address
+ spaces is to use 
+\series bold
+clustered page tables
+\series default
+.
+ In such tables, multiple virtual page numbers might hash to the same location.
+ Such tables are easier to implement, and the address space being sparse
+ doesn't cause much problems.
+\end_layout
+
+\begin_layout Subsection
+Inverted Page Tables
+\end_layout
+
+\begin_layout Standard
+One of the drawbacks of using a forward page table is that each page table
+ may consist of millions of entries, most of which may be unused.
+ So, in the end, we are consuming a large portion of the main memory to
+ store data about how the other part of it is storing data, which reduces
+ the capacity of main memory.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+One way to address this problem is to use an 
+\series bold
+inverted page table
+\series default
+.
+ In such a page table, every frame that is occupied by a page in the main
+ memory has a record in the main page table.
+ This drastically reduces the memory wastage, but the problem is that for
+ searching a page of a process, it might take an entire page table search
+ to find it, since the memory is not arranged sequentially.
+ So, we could have three parts (as in IBM RT) in the address process ID,
+ page number, and offset and the first two could be searched.
+ On a match, the corresponding physical address could be generated.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+To make searches faster, hash tables may be used.
+ Obviously, every level of search would increase the number of memory accesses.
+ It is also worth noting that systems using inverted page tables might have
+ difficulties in implementing shared pages, since each frame or physical
+ address has one entry in the inverted page table.
+ This can be solved by allowing at least one map per virtual address, even
+ if the physical addresses are the same.
+\end_layout
+
+\begin_layout Section
+Segmentation
+\end_layout
+
+\begin_layout Subsection
+Basic Method
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Segmentation 
+\series default
+is a memory management scheme that supports the user view of memory.
+ A logical address space can be viewed as set of segments, each of which
+ may have a name and a length.
+ The user can specify a segment by using its name and length or offset in
+ the memory.
+ For simplicity, we can have a segment number instead of a segment name.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+For instance, C programs could use segments to store code, global variables,
+ stack, heap etc.
+ Libraries linked in during compile time can be assigned different segments
+ by the loader.
+\end_layout
+
+\begin_layout Subsection
+Hardware
+\end_layout
+
+\begin_layout Standard
+Although the user can access memory addresses by two parameters, actual
+ address pertaining to that logical address is actually still a physical
+ address.
+ Thus, the segment accesses must be mapped to physical addresses.
+ This is done by maintaining a 
+\series bold
+segment table
+\series default
+ which consists of arranged segments with 
+\series bold
+base 
+\series default
+and 
+\series bold
+limit 
+\series default
+values.
+ The segment base value is the physical address of the start of the segment,
+ while the segment limit is the length of the segment.
+ A logical address consisting of segment number 
+\begin_inset Formula $s$
+\end_inset
+
+ and offset 
+\begin_inset Formula $d$
+\end_inset
+
+ must map to within base and base+limit addresses, otherwise a trap occurs.
+\end_layout
+
+\begin_layout Section
+Intel Pentium
+\end_layout
+
+\begin_layout Standard
+Intel Pentium architecture supports pure segmentation as well as segmentation
+ with paging.
+ On Pentium systems, the logical addresses generated by the CPU are converted
+ to a 
+\series bold
+linear addresses
+\series default
+ by the 
+\series bold
+segmentation unit
+\series default
+.
+ These linear addresses are then mapped to physical addresses by the 
+\series bold
+paging unit
+\series default
+.
+ Hence the segmentation and the paging unit form together an equivalent
+ of the memory management unit or MMU.
+\end_layout
+
+\begin_layout Subsection
+Pentium Segmentation
+\end_layout
+
+\begin_layout Standard
+The Pentium architecture allows a maximum segment size to be as large as
+ 4 GB and maximum 16K number of segments per process.
+ The logical address space of a process is partitioned into two partitions,
+ each of which may hold up to 8K segments.
+ One of these partition holds 8K segments that are private to a process,
+ while the other holds 8K segments which are shared with other processes.
+ The details about the private segments are stored in the 
+\series bold
+local descriptor table 
+\series default
+or LDT, while those about the public segments are stored in the 
+\series bold
+global descriptor table
+\series default
+ or GDT.
+ Each logical address consists of 16-bit selector which identifies a segment,
+ and 32-bit offset in the main memory.
+ The selector is further composed of 13-bit 
+\begin_inset Formula $s$
+\end_inset
+
+ which designates the segment number, 1-bit 
+\begin_inset Formula $g$
+\end_inset
+
+ which denotes whether LDT is used or GDT is used, and 2-bit 
+\begin_inset Formula $p$
+\end_inset
+
+ which deals with protection.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The machine has six segment registers and six 8-byte microprogram registers
+ for cache.
+ The segmentation unit forms a linear address of 32 bits using the selector
+ and offset.
+ This address is checked against the base and limit, and an invalid address
+ leads to a trap.
+ A valid address is given to the paging unit to be converted to a physical
+ address.
+\end_layout
+
+\begin_layout Subsection
+Pentium Paging
+\end_layout
+
+\begin_layout Standard
+The Pentium architecture allows for a page size of either 4 KB or 4 MB,
+ which is set by the 
+\family typewriter
+Page Size 
+\family default
+flag (set to 1 means the latter).
+ If the page size if 4 KB, the linear address follows a two level hierarchical
+ paging scheme where the first 10 bits represent location in the outer page
+ table, next 10 bits the location in inner page table, and last 12 bits
+ the offset in the memory.
+ If the page size is 4 MB, the first 10 bits represent the location in the
+ 4 MB page table, and the next 22 bits represent the offset in the memory.
+ Thus, the paging unit generates a valid physical address.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+To improve upon the efficiency of paging, the page table can be swapped
+ to disk.
+ Then, the information about it in the page directory can be stored by an
+ 
+\series bold
+invalid bit
+\series default
+, which can specify whether the page table exists on memory or in the backup
+ store, and the rest 31 bits can denote a physical address on either, as
+ required.
+\end_layout
+
+\begin_layout Subsection
+Linux on Pentium Systems
+\end_layout
+
+\begin_layout Standard
+Because Linux OSes are designed to run on multiple processor architectures,
+ it doesn't rely much on segmentation.
+ On the Pentium architecture, Linux uses six segments - for kernel code,
+ for kernel data, for user code, for user data, task state segment and a
+ default LDT segment.
+ Because the user code and data are globally used by all processes, its
+ information is stored in GDT.
+ Furthermore, each process has its own task state segment (TSS), which stores
+ the task state in case of a context switch.
+ Default LDT is shared by all processes and is not used as such, but if
+ required, a process can create its LDT.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Out of the 4 levels of protection, Linux recognises two - the user mode
+ and the kernel mode.
+ Although the Pentium uses a two to three level paging approach, Linux uses
+ a three level approach (global directory, middle directory, page table
+ and offset) to suit well to both 32 bit and 64 bit systems.
+ The middle level here, instead consists of zero bits.
+ The 
+\family typewriter
+CR3
+\family default
+ register points to the global directory of currently executing task.
+ During a context switch, the value of this register is saved.
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,281 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter Inconsolata
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts true
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 10
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 4cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation 0bp
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Synchronisation
+\end_layout
+
+\begin_layout Standard
+Cooperating processes share logical address space directly via threads,
+ or through files and messages.
+ However, concurrent access might lead to data inconsistency.
+\end_layout
+
+\begin_layout Section
+Background
+\end_layout
+
+\begin_layout Standard
+Consider the producer-consumer problem, where the producer produces items,
+ which are consumed by the consumer.
+ A possible solution is to maintain a buffer, which can hold the items.
+ But it might be needed to keep the count of total items at any point of
+ time, so a 
+\family typewriter
+counter
+\family default
+ may be kept, which can be incremented every time an item is produced, and
+ decremented any time an item is consumed.
+ However, a simultaneous access by the consumer and producer process is
+ possible.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Such a simultaneous access might leave the variable in a wrong state.
+ For instance, if 
+\family typewriter
+counter = 5
+\family default
+, and the producer and consumer simultaneously run 
+\family typewriter
+counter++
+\family default
+ and 
+\family typewriter
+counter--
+\family default
+ respectively, then the value of counter could anything amongst 4, 5 and
+ 6.
+ This is due to the possible nesting of increment and decrement in machine
+ code.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A situation like this, where several processes access and manipulate same
+ data concurrently and the outcome of the execution depends on the particular
+ order in which access occurs, is called a 
+\series bold
+race condition
+\series default
+.
+ To prevent such a situation, we need to ensure that at any time, only one
+ process manipulates 
+\family typewriter
+counter
+\family default
+.
+\end_layout
+
+\begin_layout Section
+Critical Section Problem
+\end_layout
+
+\begin_layout Standard
+Let there be 
+\begin_inset Formula $n$
+\end_inset
+
+ processes in a system 
+\begin_inset Formula $\{P_{o},P_{1}\cdots P_{n}\}$
+\end_inset
+
+.
+ Each process typically has a critical section, in which it modifies shared
+ variables used by other processes, modifies files, updates tables etc.
+ It is wanted in such a setup that only one process be allowed to execute
+ its critical section at a time, or otherwise data inconsistency might occur.
+ The critical section problem is design a protocol that processes can use
+ to cooperate.
+ We could have an entry request to execute critical section, and an exit
+ request to stop executing critical section.
+ So, a typical process implementing this kind of protocol would have a structure
+ like -
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=C"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+do {
+\end_layout
+
+\begin_layout Plain Layout
+
+	<entry-section>
+\end_layout
+
+\begin_layout Plain Layout
+
+	CRITICAL SECTION
+\end_layout
+
+\begin_layout Plain Layout
+
+	<exit-section>
+\end_layout
+
+\begin_layout Plain Layout
+
+	remainder section
+\end_layout
+
+\begin_layout Plain Layout
+
+} while (true);
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+What should the solution satisfy?
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Mutual Exclusion
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Only one process executes its critical section at a time.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Progress
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Processes which are not working on their remainder code can help in deciding
+ which of the requesting processes for critical section execution should
+ be allowed to execute critical section, and this shouldn't take much time.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Bounded Waiting
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+A requesting process must be allowed to enter critical section at some time
+ after the request, and this should happen within some fixed bound of time.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+When critical section requests are granted, there could be race conditions
+ on kernel level updates, like those to memory allocation records, open
+ file table etc.
+ It is upto the kernel developers to ensure that the OS is free of such
+ race conditions.
+\end_layout
+
+\begin_layout Subsection
+Approaches to handle Critical Section Requests
+\end_layout
+
+\begin_layout Itemize
+Preemptive Kernels
+\end_layout
+
+\begin_layout Itemize
+Nonpreemptive Kernels
+\end_layout
+
+\end_body
+\end_document

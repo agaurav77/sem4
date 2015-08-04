@@ -1,0 +1,5671 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter Inconsolata
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts true
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 10
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 4cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation 0bp
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Processor Basics
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Instructions 
+\series default
+are words of a computer language.
+ 
+\series bold
+Instruction Set 
+\series default
+is the vocabulary of commands understood by a given architecture.
+\end_layout
+
+\begin_layout Section
+ARM Instruction Set
+\end_layout
+
+\begin_layout Subsection
+Arithmetic
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ADD a, b, c; 
+\begin_inset space ~
+\end_inset
+
+// 
+\family default
+add contents of reg
+\family typewriter
+ b
+\family default
+, reg
+\family typewriter
+ c 
+\family default
+and store in reg
+\family typewriter
+ a
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Let us suppose we want to add four variables 
+\family typewriter
+b, c, d, e
+\family default
+ and store the result in 
+\family typewriter
+a
+\family default
+.
+ We would do something like
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ADD a, b, c; 
+\begin_inset space ~
+\end_inset
+
+// a = b + c
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ADD a, a, d; 
+\begin_inset space ~
+\end_inset
+
+// a = a + d = b + c + d
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ADD a, a, e; 
+\begin_inset space ~
+\end_inset
+
+// a = a + e = b + c + d + e
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ADD a, b, #c; // #c 
+\family default
+is a constant, also called immediate operand
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+SUB a, b, c; 
+\begin_inset space ~
+\end_inset
+
+// a = b - c
+\end_layout
+
+\begin_layout Subsection
+Data Transfer
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+LDR a, [b, #c]; // 
+\family default
+do
+\family typewriter
+ a = mem[b + #c], #c 
+\family default
+is offset
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+STR a, [b, #c]; // 
+\family default
+do
+\family typewriter
+ mem[b + #c] = a
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+SWP a, [b, #c]; // 
+\family default
+swap contents of
+\family typewriter
+ a, mem[b + #c]
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+MOV a, b;
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+// 
+\family default
+do 
+\family typewriter
+a = b
+\end_layout
+
+\begin_layout Subsection
+Logical
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+AND a, b, c; 
+\begin_inset space ~
+\end_inset
+
+// a = b & c
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ORR a, b, c; 
+\begin_inset space ~
+\end_inset
+
+// a = b | c
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+MVN a, b;
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+// a = ~b
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+LSL a, b, #c; // a = b << #c
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+LSR a, b, #c; // a = b >> #c
+\end_layout
+
+\begin_layout Subsection
+Conditional or Unconditional Branches
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+CMP a, b; // 
+\family default
+do
+\family typewriter
+ cond flag = a - b
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+BEQ L1; 
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+// 
+\family default
+branch to label
+\family typewriter
+ L1 
+\family default
+if 
+\family typewriter
+cond flag == 0
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+B Exit; 
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+// 
+\family default
+unconditional branch to label 
+\family typewriter
+Exit
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+BL;
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+// 
+\family default
+branch and link
+\end_layout
+
+\begin_layout Subsection*
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+ARM Assembly : General
+\end_layout
+
+\begin_layout Standard
+All ARM instructions are 32 bits long.
+ ARM implementation requires the CPU to have 16 CPU registers namely 
+\begin_inset Formula $\mathtt{R}_{0},\mathtt{R}_{1}\cdots\mathtt{R}_{12},\mathtt{sp},\mathtt{lr},\mathtt{pc}$
+\end_inset
+
+.
+ These are fast locations for data.
+ All arithmetic must be done using the contents of these registers.
+ Data transfer instructions may be employed to populate these registers
+ using data in main memory or 
+\family typewriter
+mem
+\family default
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The main memory generally has 
+\begin_inset Formula $2^{30}=1073741824$
+\end_inset
+
+ memory words of 4 bytes each, accessible as 
+\family typewriter
+mem[0]
+\family default
+, 
+\family typewriter
+mem[4]
+\family default
+, 
+\family typewriter
+mem[8]
+\family default
+ ...
+ 
+\family typewriter
+mem[4294967292]
+\family default
+ via instructions.
+ These memory words hold data structures, arrays, spilled registers etc.
+ Due to the 
+\series bold
+alignment restrictions
+\series default
+, we have faster data transfers in this multibyte scheme than we would have
+ for single bit schemes.
+ Because words are 4 byte locations, there are two possible schemes for
+ memory access -
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Little Endian Scheme (widely used)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\family typewriter
+{4294967295, 4294967294, 4294967293, 4294967292} = mem[4294967292]
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+................................................
+ 
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+{ 
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+7, 
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+6,
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+5,
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+4} = mem[4]
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+{
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+3, 
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+2,
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+1,
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+0} = mem[0]
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Big Endian Scheme
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\family typewriter
+{4294967292, 4294967293, 4294967294, 4294967295} = mem[4294967295]
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+................................................
+ 
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+{ 
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+4, 
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+5,
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+6,
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+7} = mem[7]
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+{
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+0, 
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+1,
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+2,
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+3} = mem[3]
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+The compiler tries to keep the most frequently used variables in CPU registers
+ and rest in main memory, in spilling registers.
+ CPU registers have less access time and higher throughput than main memory
+ registers since they can be directly operated upon.
+ Using CPU registers conserves energy as well.
+\end_layout
+
+\begin_layout Subsection*
+General Design Principles
+\end_layout
+
+\begin_layout Itemize
+Simplicity favours regularity.
+\end_layout
+
+\begin_layout Itemize
+Smaller is faster.
+\end_layout
+
+\begin_layout Itemize
+Make the common case fast.
+\end_layout
+
+\begin_layout Itemize
+Good designs require good compromises.
+\end_layout
+
+\begin_layout Subsection*
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Signed & Unsigned Numbers
+\end_layout
+
+\begin_layout Standard
+The conventional way to implement integers (including negative numbers)
+ is to have a 
+\series bold
+sign bit
+\series default
+.
+ However, using a bit as the sign bit and other bits for the magnitude poses
+ a problem - there are two representations for 0, more intuitively +0 and
+ -0.
+ Also, any adder circuitry will require an extra step to set the sign.
+ Multiple number representations exist to solve these problems, the most
+ popular of which is the 
+\series bold
+two's complement representation
+\series default
+.
+ Here is representation of 4 bit numbers using two's complement representation.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+0111 = +7 = 
+\begin_inset Formula $\mathtt{+}\mathtt{2}^{\mathtt{3}}\mathtt{-1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+0110 = +6
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+0101 = +5
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+0100 = +4
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+0011 = +3
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+0010 = +2
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+0001 = +1
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+0000 = 0
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+1111 = -1
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+1110 = -2
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+1101 = -3
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+1100 = -4
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+1011 = -5
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+1010 = -6
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+1001 = -7
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+1000 = -8 = 
+\begin_inset Formula $-\mathtt{2}^{\mathtt{3}}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The leading bit is the sign bit.
+ A leading bit of 
+\family typewriter
+0 
+\family default
+represents a positive number and 
+\family typewriter
+1 
+\family default
+represents a negative number.
+ For a n-bit scheme, the range of numbers which can be represented using
+ two's complement representation is 
+\begin_inset Formula $-2^{n-1}$
+\end_inset
+
+ to 
+\begin_inset Formula $+(2^{n-1}-1)$
+\end_inset
+
+.
+ Furthermore, to find out the magnitude of a negative number, invert its
+ bits and add 
+\family typewriter
+1
+\family default
+, ignoring the last carry.
+ So, the magnitude of 
+\family typewriter
+1011 
+\family default
+is 
+\family typewriter
+0100 + 1 = 0101 = 5
+\family default
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To represent a number in a higher bit scheme, extend the sign bit leftwards,
+ i.e.
+ 
+\family typewriter
+1010
+\family default
+, which is 
+\family typewriter
+-6 
+\family default
+in 4-bit scheme, would be represented as 
+\family typewriter
+11111010 = -6 
+\family default
+in 8-bit scheme.
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Representing Instructions
+\end_layout
+
+\begin_layout Subsection
+Data Processing Instructions
+\end_layout
+
+\begin_layout Standard
+The typical format is
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathtt{COND-IF-I-CODE-S-REGN-REGD-OPR2XXXXXXXX}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+IF 
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+= 
+\family default
+instruction format
+\family typewriter
+ = 00 
+\family default
+for data processing
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+I 
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+= 
+\family default
+is
+\family typewriter
+ OPR2 
+\family default
+immediate? yes means
+\family typewriter
+ I = 1
+\family default
+, no means
+\family typewriter
+ I = 0
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+S 
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+= 
+\family default
+set condition code
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+REGN = 
+\family default
+source reg 1
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+REGD = 
+\family default
+destination reg
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+OPR2 = 
+\family default
+source reg 2 of 12 bits
+\end_layout
+
+\begin_layout Subsection
+Data Transfer Instructions
+\end_layout
+
+\begin_layout Standard
+The typical format is
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathtt{COND-IF-OPCODE-REGN-REGD-OFF12XXXXXXX}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+IF = 
+\family default
+instruction format
+\family typewriter
+ = 01 
+\family default
+for data transfer
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+OFF12 = 
+\family default
+offset of 12 bits
+\end_layout
+
+\begin_layout Subsection*
+Examples of Data Processing & Data Transfer Instructions
+\end_layout
+
+\begin_layout Standard
+Let us see some examples of how assembly code is translated into machine
+ language, following the conventions we saw earlier.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ADD X, Y, Z; 
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+// X = Y + Z
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+COND - IF - I - CODE - S - REGN - REGD - OPR2XXXXXXXX
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+1110 - 00 - 0 - 0100 - 0 - REGY - REGX - REGZXXXXXXXX
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ADDI X, Y, #Z; 
+\begin_inset space ~
+\end_inset
+
+// X = Y + #Z
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+COND - IF - I - CODE - S - REGN - REGD - OPR2XXXXXXXX
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+1110 - 00 - 1 - 0100 - 0 - REGY - REGX - CONSTANTZXXX
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+SUB X, Y, Z; 
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+// X = Y - Z
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+COND - IF - I - CODE - S - REGN - REGD - OPR2XXXXXXXX
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+1110 - 00 - 0 - 0010 - 0 - REGY - REGX - REGZXXXXXXXX
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+LDR X, [Y, #Z]; // X = mem[Y + #Z]
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+COND - IF - OPCODE - REGN - REGD - OFF12XXXXXXX
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+1110 - 01 - 011000 - REGY - REGY - CONSTANTZXXX
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+STR X, [Y, #Z]; // mem[Y + #Z] = X
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+COND - IF - OPCODE - REGN - REGD - OFF12XXXXXXX
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+1110 - 01 - 011001 - REGY - REGY - CONSTANTZXXX
+\end_layout
+
+\begin_layout Subsection
+Shift Operations
+\end_layout
+
+\begin_layout Standard
+In ARM, shift operations are not separate instructions, but are instead
+ meant to be used on second operand 
+\family typewriter
+OPR2
+\family default
+ or 
+\family typewriter
+OFF12
+\family default
+ as parts of data processing or transfer instructions.
+ The shifting is done by a constant value found in a register, or a value
+ passed immediate.
+ Some examples include
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+MOV R6, R5, LSR #4; 
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+//
+\family default
+ do 
+\family typewriter
+R6 = R5 >> 4
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+MOV R6, R5, LSR R3; 
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+//
+\family default
+ do 
+\family typewriter
+R6 = R5 >> R3
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ADD R5, R1, R2, LSL #2; //
+\family default
+ do 
+\family typewriter
+R5 = R1 + (R2 << 4)
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\family default
+To support shift operations, 
+\family typewriter
+OPR2
+\family default
+ or 
+\family typewriter
+OFF12
+\family default
+ has 12 bits, although an immediate operand or register can be specified
+ in 4 bits.
+ The machine code equivalent of the commands take the form
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathtt{REGS-C-SH-I-REGM}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 0.5
+where
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\family typewriter
+REGS-C = 
+\family default
+register whose contents are to be shifted (then 
+\family typewriter
+C = 0
+\family default
+) 
+\end_layout
+
+\begin_layout Standard
+\align center
+or 5-bit immediate constant to be shifted
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+SH
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+= 
+\family default
+2-bit shift amount
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+I
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+= 
+\family default
+is
+\family typewriter
+ OPR2 
+\family default
+immediate? yes means
+\family typewriter
+ I = 1
+\family default
+, no means
+\family typewriter
+ I = 0
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+REGM
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+= 
+\family default
+register used as 
+\family typewriter
+OPR2
+\end_layout
+
+\begin_layout Subsection
+Branching Instructions
+\end_layout
+
+\begin_layout Standard
+The format of branching instructions follow 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathtt{COND-CODE-ADDRESSXXXXXXXXXXXXXXXXX}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\family typewriter
+CODE = opcode
+\family default
+ 
+\family typewriter
+= 12
+\family default
+ for all branching instructions.
+\end_layout
+
+\begin_layout Standard
+Typically, a branch instruction in ARM relies on the value of condition
+ flag.
+ Its value can be manually set using 
+\family typewriter
+CMP
+\family default
+ function.
+ An example is
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\family typewriter
+CMP R1, R2; // 
+\family default
+do
+\family typewriter
+ cond flag = R1 - R2
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+BEQ L1; 
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+// 
+\family default
+branch to label
+\family typewriter
+ L1 
+\family default
+if 
+\family typewriter
+cond flag == 0
+\family default
+, i.e.
+ 
+\family typewriter
+R1 == R2
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\family default
+Similarly, we can also use a 
+\family typewriter
+BNE
+\family default
+ (branch if not equal) instruction, which is usually more efficient than
+ 
+\family typewriter
+BEQ
+\family default
+ in most of the cases.
+ 
+\series bold
+Unconditional branching
+\series default
+ is also possible, like 
+\family typewriter
+B Exit
+\family default
+ always branches to label 
+\family typewriter
+Exit
+\family default
+.
+ In such cases, the assembler relieves the compiler and assembly language
+ compiler from the tedium of calculating addresses for branches.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Its useful to define a 
+\series bold
+basic block
+\series default
+ of code here.
+ A basic block is a sequence of instructions without branches, except possibly
+ at the end and without branch targets or branch labels, except possibly
+ at the beginning.
+\end_layout
+
+\begin_layout Subsection
+Conditional Execution
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+CMP 
+\family default
+sets the condition flag whose value is in a special purpose register, and
+ it may be used any time after the flag is set, not just on the very next
+ statement.
+ Condition flag can also be set via many other instructions, where the result
+ of the instruction are compared with 0.
+ For example, in data processing instructions which follow a format like
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family typewriter
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+COND-IF-I-CODE-S-REGN-REGD-OPR2XXXXXXXX
+\family default
+, the bit 
+\family typewriter
+S
+\family default
+ specifies whether to set the condition flag or not.
+ So, while an instruction like 
+\family typewriter
+SUB a, b, c 
+\family default
+might work normally, 
+\family typewriter
+SUBS a, b, c
+\family default
+ performs the operation and set the value of comparison flag according to
+ the comparison between 
+\family typewriter
+b - c
+\family default
+ and 0.
+ The 
+\family typewriter
+COND 
+\family default
+flag works accordingly.
+ It can have 16 values as
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+0 
+\begin_inset space ~
+\end_inset
+
+- EQ
+\family default
+ = if cond flag is 0 (equality)
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+1 
+\begin_inset space ~
+\end_inset
+
+- NE
+\family default
+ = if cond flag is not 0 (inequality)
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+2 
+\begin_inset space ~
+\end_inset
+
+- HS
+\family default
+ = higher or same
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+3 
+\begin_inset space ~
+\end_inset
+
+- LO
+\family default
+ = lower
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+4 
+\begin_inset space ~
+\end_inset
+
+- MI
+\family default
+ = if condition flag < 0
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+5 
+\begin_inset space ~
+\end_inset
+
+- PL
+\family default
+ = if condition flag > 0
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+6 
+\begin_inset space ~
+\end_inset
+
+- VS
+\family default
+ = if overflow occurred, set
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+7 
+\begin_inset space ~
+\end_inset
+
+- VC
+\family default
+ = if overflow occurred, clear
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+8 
+\begin_inset space ~
+\end_inset
+
+- HI
+\family default
+ = higher
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+9 
+\begin_inset space ~
+\end_inset
+
+- LS
+\family default
+ = lower or same
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+10 - GE
+\family default
+ = greater than or equal to
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+11 - LT
+\family default
+ = less than
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+12 - GT
+\family default
+ = greater than
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+13 - LE
+\family default
+ = less than equal to
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+14 - AL
+\family default
+ = always execute (default)
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+15 - NV
+\family default
+ = reserved
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Most instructions can be executed conditionally in ARM using the 
+\family typewriter
+COND 
+\family default
+flag.
+ This is done by appending the desired condition to the instruction name,
+ and it uses the last set values of the condition flag.
+ Therefore, we could do something like
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+CMP R3, R4;
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ADDEQ R0, R1, R2;
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+SUBNE R0, R2, R3;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This would do 
+\family typewriter
+R0 = R1 + R2 
+\family default
+if 
+\family typewriter
+R3 == R4
+\family default
+, otherwise 
+\family typewriter
+R0 = R2 + R3
+\family default
+ would be done.
+ This is equivalent to a similar if else block written using 
+\family typewriter
+BNE
+\family default
+ and 
+\family typewriter
+B
+\family default
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Also, it might appear that 
+\family typewriter
+COND = 2, 3, 8, 9
+\family default
+ do the same thing as 
+\family typewriter
+COND = 10, 11, 12, 13
+\family default
+.
+ However, 
+\family typewriter
+COND = 2, 3, 8, 9
+\family default
+ is used for unsigned comparisons, while 
+\family typewriter
+COND = 10, 11, 12, 13
+\family default
+ are used for signed comparisons.
+\end_layout
+
+\begin_layout Subsection*
+Switch Case Statements in High Level Languages
+\end_layout
+
+\begin_layout Standard
+The switch-case statement, a common construct in high level languages, when
+ converted to assembly has all the addresses stored in a table.
+ When a case is evaluated and found to be correct, the table is read, and
+ the corresponding address is jumped to.
+\end_layout
+
+\begin_layout Subsection*
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+PC Relative Addressing
+\end_layout
+
+\begin_layout Standard
+The fifteenth register is 
+\family typewriter
+PC
+\family default
+, also called the 
+\series bold
+program counter
+\series default
+.
+ It is utilised to store the address of current instruction being executed.
+ The 24 bits in any 
+\family typewriter
+ADDRESS
+\family default
+ suffice for the relative position from the value in program counter (
+\family typewriter
+ADDRESS
+\family default
+ is in branch instructions).
+ The contents of 
+\family typewriter
+PC 
+\family default
+require 1 byte, so the entire address becomes 4 bytes.
+ 
+\family typewriter
+Thus
+\family default
+ we can go to 
+\family typewriter
+PC
+\family default
+
+\begin_inset Formula $\pm$
+\end_inset
+
+
+\family typewriter
+
+\begin_inset Formula $\mathtt{2^{\mathtt{24}}}$
+\end_inset
+
+
+\family default
+ bytes from current address using 
+\family typewriter
+ADDRESS
+\family default
+.
+ More relevantly, actually the branch occurs with respect to 
+\family typewriter
+PC + 8
+\family default
+ instead of 
+\family typewriter
+PC
+\family default
+, since the 
+\family typewriter
+PC
+\family default
+ can change early during execution.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This kind of addressing is called PCRA, or 
+\series bold
+PC relative addressing
+\series default
+.
+ In ARM, the 24 bit 
+\family typewriter
+ADDRESS
+\family default
+ refers to words to the next instruction, and since 1 word = 4 bytes, we
+ can go to 
+\family typewriter
+PC
+\begin_inset Formula $\mathtt{\pm}\mathtt{2^{\mathtt{26}}}$
+\end_inset
+
+
+\family default
+ bytes from current address.
+ So, ARM instructions can branch 4x as compared to other instruction sets.
+\end_layout
+
+\begin_layout Subsection*
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Functions in ARM
+\end_layout
+
+\begin_layout Standard
+The steps to write a function using ARM instruction set follows a general
+ idea like :
+\end_layout
+
+\begin_layout Enumerate
+Put the parameters in a place where the procedure can access them, like
+ between 
+\family typewriter
+R0-R3.
+\end_layout
+
+\begin_layout Enumerate
+Transfer control to procedure.
+\end_layout
+
+\begin_layout Enumerate
+Acquire the storage resources required for a procedure from the stack.
+\end_layout
+
+\begin_layout Enumerate
+Perform the needed tasks.
+\end_layout
+
+\begin_layout Enumerate
+Put the result value where calling program can access it, i.e in 
+\family typewriter
+R0
+\family default
+ or 
+\family typewriter
+R1
+\family default
+.
+\end_layout
+
+\begin_layout Enumerate
+Return control to origin point.
+ Note the fact that the sixteenth register 
+\family typewriter
+lr
+\family default
+ or link register contains the return address, in general.
+\end_layout
+
+\begin_layout Standard
+Any registers used by the caller must be restored to values that they contained
+ before the procedure was invoked.
+ Thus we need to spill registers into memory - aka the stack.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The stack needs a pointer to most recently allocated address in the stack
+ to show where the next procedure should place the registers to be spilled
+ or where old register values are found.
+ This pointer is stored in the fourteenth register, namely 
+\family typewriter
+sp
+\family default
+.
+ It is adjusted by one word for each register saved or restored.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+So, for any function in ARM, 
+\family typewriter
+R0-R3
+\family default
+ and 
+\family typewriter
+R12
+\family default
+ are 
+\series bold
+argument
+\series default
+ or scratch registers whose values are not preserved by the procedure.
+ If more registers are needed, then stack may be used.
+ Also 
+\family typewriter
+R4-R11
+\family default
+ are
+\series bold
+ variable
+\series default
+ registers whose values must be preserved on procedure call, hence they
+ serve as storage space for global variables.
+\end_layout
+
+\begin_layout Subsection*
+Branch & Link
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+bl ADDRESS
+\family default
+ instruction jumps to an address (
+\family typewriter
+ADDRESS
+\family default
+), and simultaneously saves the address of the following instruction in
+ 
+\family typewriter
+lr
+\family default
+, since logically after completing the new procedure, it might be desired
+ to go back to original execution flow.
+ Thus, a link is formed that points to the calling site to allow the procedure
+ to return to proper address.
+\end_layout
+
+\begin_layout Subsection*
+Unconditional Branches using 
+\family typewriter
+mov
+\end_layout
+
+\begin_layout Standard
+A statement like 
+\family typewriter
+mov pc, lr
+\family default
+ stores the value of 
+\family typewriter
+lr
+\family default
+ into 
+\family typewriter
+pc
+\family default
+.
+ So, it works like an unconditional branch to 
+\family typewriter
+lr
+\family default
+, which after a branch & link instruction, is generally 
+\family typewriter
+pc + 4
+\family default
+.
+\end_layout
+
+\begin_layout Subsection*
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+High Level to Assembly Examples
+\end_layout
+
+\begin_layout Subsection*
+Example 1
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=C,basicstyle={\small\ttfamily},showstringspaces=false,keywordstyle={\color{blue}}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+int func(int a, int b, int c, int d) {
+\end_layout
+
+\begin_layout Plain Layout
+
+	int e;
+\end_layout
+
+\begin_layout Plain Layout
+
+	e = (a + b) - (c + d);
+\end_layout
+
+\begin_layout Plain Layout
+
+	return e;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Equivalent code in ARM assembly :
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\series bold
+func:
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ 
+\family typewriter
+R0
+\family default
+, 
+\family typewriter
+R1
+\family default
+, 
+\family typewriter
+R2
+\family default
+, 
+\family typewriter
+R3
+\family default
+ have 
+\family typewriter
+a
+\family default
+, 
+\family typewriter
+b
+\family default
+, 
+\family typewriter
+c
+\family default
+, 
+\family typewriter
+d
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ empty 
+\family typewriter
+R4
+\family default
+, 
+\family typewriter
+R5
+\family default
+, 
+\family typewriter
+R6
+\family default
+ to stack
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+SUB sp, sp, #12;
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+STR R6, [sp, #8];
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+STR R5, [sp, #4];
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+STR R4, [sp, #0];
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ compute 
+\family typewriter
+e
+\family default
+ into 
+\family typewriter
+R4
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ADD R5, R0, R1;
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ADD R6, R2, R3;
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+SUB R4, R5, R6;
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ store 
+\family typewriter
+e
+\family default
+ in 
+\family typewriter
+R0
+\family default
+ to make it available from calling function
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+MOV R0, R4;
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+// refill 
+\family typewriter
+R4
+\family default
+, 
+\family typewriter
+R5
+\family default
+, 
+\family typewriter
+R6
+\family default
+ from stack
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+LDR R4, [sp, #0];
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+LDR R5, [sp, #4];
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+LDR R6, [sp, #8];
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ADD sp, sp, #12;
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+// go to calling function
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+MOV pc, lr;
+\end_layout
+
+\begin_layout Subsection*
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Example 2
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=C,basicstyle={\small\ttfamily},showstringspaces=false,keywordstyle={\color{blue}}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+int fact(int n) {
+\end_layout
+
+\begin_layout Plain Layout
+
+	if (n < 1) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		return 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else {
+\end_layout
+
+\begin_layout Plain Layout
+
+		return n*fact(n-1);
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Equivalent code in ARM assembly :
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\series bold
+fact:
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ 
+\family typewriter
+R0
+\family default
+ has 
+\family typewriter
+n
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ recursive, so empty 
+\family typewriter
+n
+\family default
+, 
+\family typewriter
+lr
+\family default
+ into stack
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+SUB sp, sp, #8;
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+STR lr, [sp, #4];
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+STR R0, [sp, #0];
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ compare 
+\family typewriter
+n
+\family default
+ with 
+\family typewriter
+1
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+CMP R0, #1
+\family default
+;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ if 
+\family typewriter
+n >= 1
+\family default
+, move to else block
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+BGE else;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ return 
+\family typewriter
+1
+\family default
+ via 
+\family typewriter
+R0
+\family default
+ and go to calling function
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+MOV R0, #1;
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ADD sp, sp, #8;
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+MOV pc, lr;
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\series bold
+else:
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ calculate 
+\family typewriter
+fact(n-1)
+\family default
+, store in 
+\family typewriter
+R12
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+SUB R0, R0, #1;
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+BL fact;
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+MOV R12, R0;
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ refill 
+\family typewriter
+n
+\family default
+, 
+\family typewriter
+lr
+\family default
+ from stack
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+LDR R0, [sp, #0];
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+LDR lr, [sp, #4];
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ADD sp, sp, #8;
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ store 
+\family typewriter
+n*fact(n-1)
+\family default
+ in 
+\family typewriter
+R0
+\family default
+ and go to calling function
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+MUL R0, R0, R12;
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+MOV pc, lr;
+\end_layout
+
+\begin_layout Subsection*
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Example 3
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=C,basicstyle={\small\ttfamily},showstringspaces=false,keywordstyle={\color{blue}}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+int sum(int n, int acc) {
+\end_layout
+
+\begin_layout Plain Layout
+
+	while (n > 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		acc = acc + n;
+\end_layout
+
+\begin_layout Plain Layout
+
+		n = n - 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	return acc;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(
+\series bold
+Iterative equivalent of next example
+\series default
+)
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\series bold
+sum:
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ 
+\family typewriter
+R0
+\family default
+, 
+\family typewriter
+R1
+\family default
+ have 
+\family typewriter
+n
+\family default
+, 
+\family typewriter
+acc
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ compare 
+\family typewriter
+n
+\family default
+ with 
+\family typewriter
+0
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+CMP R0, #0;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ if 
+\family typewriter
+n <= 0
+\family default
+, go to 
+\family typewriter
+sum_exit
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+BLE sum_exit;
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ reduce 
+\family typewriter
+n
+\family default
+, increase 
+\family typewriter
+acc
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ADD R1, R1, R0;
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+SUB R0, R0, #1;
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+B sum;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\series bold
+sum_exit:
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ store 
+\family typewriter
+acc
+\family default
+ into R0, return to calling function
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+MOV R0, R1;
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+MOV pc, lr;
+\end_layout
+
+\begin_layout Subsection*
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Example 4
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=C,basicstyle={\small\ttfamily},showstringspaces=false,keywordstyle={\color{blue}}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+int sum(int n, int acc) {
+\end_layout
+
+\begin_layout Plain Layout
+
+	if (n > 0) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		return sum(n-1, acc+n);
+\end_layout
+
+\begin_layout Plain Layout
+
+	} else {
+\end_layout
+
+\begin_layout Plain Layout
+
+		return acc;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(
+\series bold
+Recursive equivalent of preceding example
+\series default
+)
+\series bold
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\series bold
+sum:
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ 
+\family typewriter
+R0
+\family default
+, 
+\family typewriter
+R1
+\family default
+ have 
+\family typewriter
+n
+\family default
+, 
+\family typewriter
+acc
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ empty 
+\family typewriter
+R0
+\family default
+, 
+\family typewriter
+R1
+\family default
+, 
+\family typewriter
+lr
+\family default
+ into stack (since function is recursive)
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+SUB sp, sp, #12;
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+STR lr, [sp, #8];
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+STR R1, [sp, #4];
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+STR R0, [sp, #0];
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ compare 
+\family typewriter
+n
+\family default
+ with 
+\family typewriter
+0
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+CMP R0, #0;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ if 
+\family typewriter
+n > 0
+\family default
+, go to 
+\family typewriter
+sum_rec
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+BGT sum_rec;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ otherwise store 
+\family typewriter
+acc
+\family default
+ in 
+\family typewriter
+R0
+\family default
+, empty stack and return to calling function
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+MOV R0, R1;
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ADD sp, sp, #12;
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+MOV pc, lr;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\series bold
+sum_rec:
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ reduce 
+\family typewriter
+n
+\family default
+, increase 
+\family typewriter
+acc
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ADD R1, R1, R0;
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+SUB R0, R0, #1;
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ branch and link
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+BL sum;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ refill 
+\family typewriter
+R0
+\family default
+, 
+\family typewriter
+R1
+\family default
+, 
+\family typewriter
+lr
+\family default
+ from stack
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+LDR R0, [sp, #0];
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+LDR R1, [sp, #4];
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+LDR lr, [sp, #8];
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ADD sp, sp, #12;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ go to calling function
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+MOV pc, lr;
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Example 5
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=C,basicstyle={\small\ttfamily},showstringspaces=false,keywordstyle={\color{blue}}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+void strcpy(char x[], char y[]) {
+\end_layout
+
+\begin_layout Plain Layout
+
+	int i = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+	while ((x[i] = y[i]) != '
+\backslash
+0') {
+\end_layout
+
+\begin_layout Plain Layout
+
+		i = i + 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Equivalent code in ARM assembly :
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\series bold
+strcpy:
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ base addr of 
+\family typewriter
+x
+\family default
+, 
+\family typewriter
+y
+\family default
+ in 
+\family typewriter
+R0
+\family default
+, 
+\family typewriter
+R1
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ empty 
+\family typewriter
+R4
+\family default
+ into stack, store 
+\family typewriter
+i = 0
+\family default
+ in 
+\family typewriter
+R3
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+SUB sp, sp, #4;
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+STR R4, [sp, #0];
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+MOV R4, #0;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\series bold
+label1:
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ compute addresses of 
+\family typewriter
+x[i]
+\family default
+, 
+\family typewriter
+y[i]
+\family default
+ into 
+\family typewriter
+R12
+\family default
+, 
+\family typewriter
+R2
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ADD R12, R0, R4;
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ADD R2, R1, R4;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ load char from addr 
+\family typewriter
+R2
+\family default
+ into 
+\family typewriter
+R3
+\family default
+, store into addr 
+\family typewriter
+R12
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+LDRB R3, [R2, #0];
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+STRB R3, [R12, #0];
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ check if char loaded is 
+\family typewriter
+0
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+CMP R3, #0;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ if 
+\family typewriter
+0
+\family default
+, go to 
+\family typewriter
+label2
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+BEQ label2;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ increment 
+\family typewriter
+i
+\family default
+, loop back to 
+\family typewriter
+label1
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ADD R4, R4, #1;
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+B label1;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\series bold
+label2:
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ refill 
+\family typewriter
+R4
+\family default
+ from stack, go to calling function
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+LDR R4, [sp, #0];
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ADD sp, sp, #4;
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+MOV pc, lr;
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Storing Larger Constants
+\end_layout
+
+\begin_layout Standard
+Because registers can store 4 bytes of data, and at the most we can provide
+ a 12-bit immediate operand, it is not directly possible to create 32-bit
+ constants in ARM.
+ But, ARM designers allowed for tricks to create 32-bit constants.
+ In DP instructions, 12-bit 
+\family typewriter
+OPR12
+\family default
+ is divided into 4-bit rotate right field (
+\family typewriter
+RR 
+\family default
+or
+\family typewriter
+ i
+\family default
+) and 8-bit immediate value field (
+\family typewriter
+X
+\family default
+).
+ The value in the immediate field is circularly rotated by 2 times the value
+ of 
+\family typewriter
+RR
+\family default
+.
+ So, by a rotate right, 
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+0000-0000-0000-0000-0000-0000-1101-1001
+\family default
+ (
+\family typewriter
+RR = 0
+\family default
+)
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+1001-0000-0000-0000-0000-0000-0000-1101
+\family default
+ (
+\family typewriter
+RR = 1
+\family default
+)
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+1101-1001-0000-0000-0000-0000-0000-0000
+\family default
+ (
+\family typewriter
+RR = 2
+\family default
+)
+\end_layout
+
+\begin_layout Standard
+and so on.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In general, this pattern can be written as 
+\family typewriter
+
+\begin_inset Formula $\mathtt{X}\cdot\mathtt{2}^{\mathtt{2i}}$
+\end_inset
+
+
+\family default
+.
+ Other patterns include 
+\begin_inset Formula $\mathtt{T\cdot2^{30}+W}$
+\end_inset
+
+, 
+\begin_inset Formula $\mathtt{T\cdot2^{30}+W}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathtt{T}\cdot\mathtt{2}^{\mathtt{30}}+\mathtt{W}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Instruction Types by Number of Operands
+\end_layout
+
+\begin_layout Itemize
+3-address
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\family typewriter
+MUL R1, A, B;
+\family default
+ 
+\family typewriter
+// R1
+\family default
+ = 
+\family typewriter
+A*B
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+2-address
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\family typewriter
+MUL R1, A; // R1
+\family default
+ = 
+\family typewriter
+R1*A
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+MOV R2, C; // R2 
+\family default
+=
+\family typewriter
+ C
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+1-address
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+The destination register is by default, the accumulator register 
+\family typewriter
+AC
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+MUL B; // AC 
+\family default
+=
+\family typewriter
+ AC*B
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+LDR X; // AC = X
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+STR X; // X = AC
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+0-address
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Examples include 
+\family typewriter
+PUSH
+\family default
+, 
+\family typewriter
+POP
+\family default
+ etc.
+ In such instructions, the order in which the operands are present in the
+ stack is the order in which they are acted upon.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Addressing Modes
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Immediate
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Example is 
+\family typewriter
+ADD R2, R0, #5;
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathtt{Cond-F-Opcode-Rn-Rd-Immediate}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Register
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Example is 
+\family typewriter
+ADD R2, R0, R1;
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathtt{Cond-F-Opcode-Rn-Rd\cdots Rm}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Scaled Register
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Example is 
+\family typewriter
+ADD R2, R0, R1, LSL #5;
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathtt{Cond-F-Opcode-Rn-Rd\cdots Rm\,(shifted)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+PC Relative
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Example is 
+\family typewriter
+BEQ addr;
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathtt{Cond-Opcode-Offset}\,\mathtt{(from\,\,PC)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Immediate Offset
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Example is 
+\family typewriter
+LDR R2, [R0, #8];
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathtt{Cond-F-Opcode-Rn-Rd-Offset\,(from}\,\,\mathtt{Rn)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Register Offset
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Example is 
+\family typewriter
+LDR R2, [R0, R1];
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathtt{Cond-F-Opcode-Rn-Rd\cdots Rm}\,\mathtt{(added\,\,to\,\,Rn)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Scaled Register Offset
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Example is 
+\family typewriter
+LDR R2, [R0, R1, LSL #2];
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathtt{Cond-F-Opcode-Rn-Rd\cdots Rm\,(shifted,\,\,added\,\,to\,\,Rn)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Immediate Offset Pre Indexed
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+This mode is used while accessing memory sequentially, like reading arrays.
+ In the pre indexed mode, the index is incremented early, and then memory
+ is accessed.
+ Then the index is incremented again, and the process goes on.
+ An example is 
+\family typewriter
+LDR R2, [R0, #4]!;
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathtt{Cond-F-Opcode-Rn-Rd-Offset\,(using}\,\,\mathtt{pre\,\,incrementing)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Immediate Offset Post Indexed
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+This mode is like the previous mode, except the fact that first the memory
+ is accessed, and the the index is incremented.
+ An example is 
+\family typewriter
+LDR R2, [R0], #4;
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathtt{Cond-F-Opcode-Rn-Rd-Offset\,(using}\,\,\mathtt{post\,\,incrementing)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Register Offset Pre Indexed
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+This mode utilises the contents of a register for offset.
+ An example is 
+\family typewriter
+LDR R2, [R0, R1]!;
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathtt{Cond-F-Opcode-Rn-Rd\cdots Rm\,(using}\,\,\mathtt{pre\,\,incrementing)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Register Offset Post Indexed
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+An example is 
+\family typewriter
+LDR R2, [R0], R1;
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathtt{Cond-F-Opcode-Rn-Rd\cdots Rm\,(using}\,\,\mathtt{post\,\,incrementing)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Scaled Register Offset Pre Indexed
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+An example is 
+\family typewriter
+LDR R2, [R0, R1, LSL #2];
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathtt{Cond-F-Opcode-Rn-Rd\cdots Rn\,(shifted,\,\,added}\,\,\mathtt{to\,\,Rn})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Other modes also exist, which can be derived from the pattern aforementioned.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Parallelism and Instruction Synchronisation
+\end_layout
+
+\begin_layout Standard
+This is usually harder to do when the tasks are cooperating, since we then
+ need to determine when a task has finished working so it is safe for another
+ to read.
+ If not, a data race will occur and the results of the program will change
+ according to the order of events.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Lock and Unlock Synchronisation
+\series default
+ is used to create regions where only a single processor can operate, also
+ called 
+\series bold
+mutual exclusion
+\series default
+.
+ For this, we need a set of hardware primitives with the ability to atomically
+ read and modify a memory location.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Atomic exchange
+\series default
+ or 
+\series bold
+swapping
+\series default
+ is interchanging of values in a register for the values in memory.
+ In such context, a lock of 0 means 
+\family typewriter
+free
+\family default
+ and a lock of 1 means 
+\family typewriter
+unavailable
+\family default
+, i.e.
+ currently undergoing the exchange.
+ The processor acquires a lock by exchanging the value of 1 present in the
+ register.
+ The value returned is 0 on success and 1 if the lock was already present.
+ A new processor might come immediately after the first exchanges 1 and
+ set the lock, returning 0.
+ When it tries to do the same thing, it cannot exchange 1 and return 0,
+ hence, at the end, we will have only one processor at the most having the
+ lock at a time.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The same analogy is used in single processor systems during context switches
+ between two instructions by the OS.
+\end_layout
+
+\begin_layout Subsection
+Assembler
+\end_layout
+
+\begin_layout Standard
+An assembler takes care of, apart from other things, the 
+\series bold
+pseudo instructions
+\series default
+, or the instructions which are not implemented by the hardware, but can
+ be done via variations in machine language instructions.
+ Some terminology -
+\end_layout
+
+\begin_layout Itemize
+An 
+\series bold
+object file 
+\series default
+is a combination of machine language instructions, data, and information
+ needed to place instructions properly in memory.
+\end_layout
+
+\begin_layout Itemize
+To determine the binary version of each instruction in assembly language
+ programs, the addresses corresponding to all the labels are needed by the
+ assembler.
+ The 
+\series bold
+symbol table
+\series default
+ has the labels used in branches and data transfer instructions.
+ It contains symbol - address pairs.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A simple object file in UNIX consists of the following portions -
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+object file header
+\series default
+, containing the size and positions of other pieces of object file.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+text segment
+\series default
+, containing machine language code.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+static data
+\series default
+, having the data allocated for the program.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+relocation information
+\series default
+, which includes the instructions and data words that need absolute addresses
+ when the program is loaded into memory.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+symbol table
+\series default
+, having external references for undefined labels.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+debugging information
+\series default
+, having a description of how the modules were compiled, so that a debugger
+ can associate machine instructions with the C source file.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that relocation information and symbol table are used by the linker
+ to resolve undefined labels, occurring in branch instructions, jump instruction
+s and data addresses.
+\end_layout
+
+\begin_layout Subsection
+Linker
+\end_layout
+
+\begin_layout Standard
+For library routines, recompiling every single time is a waste of time and
+ resources, since the routines never change.
+ An alternative is to compile and assemble each procedure independently
+ - such that change to one line of a procedure requires recompiling and
+ re-assembling that procedure only.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\series bold
+linker
+\series default
+ takes all independently assembled machine language programs and puts them
+ together.
+\end_layout
+
+\begin_layout Itemize
+it places code and data modules symbolically in memory
+\end_layout
+
+\begin_layout Itemize
+it determines the address of data and instruction labels
+\end_layout
+
+\begin_layout Itemize
+it patches internal and external references
+\end_layout
+
+\begin_layout Standard
+When all the references are resolved, the linker determines the memory locations
+ which each data module would occupy.
+ In general, an assembler doesn't know where a module's data and instructions
+ would be placed relative to other modules.
+ When a linker places a module in memory, all absolute references must be
+ relocated to reflect true location.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The executable file has no unresolved references.
+ It may however, have a symbol table and debugging information section (if
+ its not stripped).
+ Relocation information may be included for the loader.
+\end_layout
+
+\begin_layout Subsection
+Loader
+\end_layout
+
+\begin_layout Standard
+A loader serves the following purposes -
+\end_layout
+
+\begin_layout Itemize
+it reads executable file header to determine the size of text and data segments
+\end_layout
+
+\begin_layout Itemize
+it creates an address space large enough for text and data
+\end_layout
+
+\begin_layout Itemize
+it copies the parameters to main program onto the stack
+\end_layout
+
+\begin_layout Itemize
+it initialises the machine registers and sets the stack pointer to first
+ free location
+\end_layout
+
+\begin_layout Itemize
+it jumps to a start up routine that copies parameters into argument registers
+ and calls the main routine of the program
+\end_layout
+
+\begin_layout Standard
+After the main routine returns, the start up terminates the program with
+ an exit system call.
+\end_layout
+
+\begin_layout Subsection
+DLLs
+\end_layout
+
+\begin_layout Standard
+Possible disadvantages of static linking include -
+\end_layout
+
+\begin_layout Itemize
+Library routines become a part of the executable code.
+ On the release of a new version of library routines, the program executable
+ keeps using the older version.
+\end_layout
+
+\begin_layout Itemize
+It loads all the routines in the library that are called anywhere in the
+ executable even if those calls are never executed.
+ The whole library is often too large compared to the main program.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A 
+\series bold
+DLL
+\series default
+ is not loaded or linked until the program runs.
+ Both the program and the library routines keep extra information on the
+ location of non local procedures and their names.
+ An 
+\emph on
+approach
+\emph default
+ is to have the loader run the dynamic linker, using the extra information
+ in file to find appropriate libraries and to update all external references.
+ The 
+\emph on
+problem
+\emph default
+ however, is that all routines that might be called should be linked, rather
+ than the few of them which actually are required when the program is run.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A possible fix is to go for 
+\series bold
+lazy procedure linkage
+\series default
+, i.e.
+ each routine should be linked after being called for the first time.
+ Following such a procedure, the first time a library routine is called
+ -
+\end_layout
+
+\begin_layout Itemize
+the program could call a dummy entry, and follow an indirect jump
+\end_layout
+
+\begin_layout Itemize
+this would point to the code (puts a number in a register) that would identify
+ the desired routine and then make a jump to dynamic linker or loader.
+\end_layout
+
+\begin_layout Itemize
+the dynamic linker or loader would find the desired routine, remap it, and
+ change the address in the indirect jump location to point to that location,
+ and then jump to it.
+\end_layout
+
+\begin_layout Standard
+Subsequent calls to mapped library routines would jump to the routine directly.
+ DLLs require extra space for information required for dynamic linking,
+ but the advantage is that they avoid the linking of the whole library.
+\end_layout
+
+\begin_layout Subsection
+Program Execution Cycle
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/program-exec.png
+	scale 85
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Example on Dynamic Labeling
+\end_layout
+
+\begin_layout Standard
+Suppose we have a C procedure like
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=C,basicstyle={\small\ttfamily},showstringspaces=false,keywordstyle={\color{blue}}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+void swap(int v[], int k) {
+\end_layout
+
+\begin_layout Plain Layout
+
+	int temp = v[k];
+\end_layout
+
+\begin_layout Plain Layout
+
+	v[k] = v[k+1];
+\end_layout
+
+\begin_layout Plain Layout
+
+	v[k+1] = temp;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Equivalent code in ARM assembly, using labeling :
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ labels, passed 
+\family typewriter
+v
+\family default
+, 
+\family typewriter
+k
+\family default
+ in 
+\family typewriter
+R0
+\family default
+, 
+\family typewriter
+R1
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+v R0; //
+\family default
+ base address of 
+\family typewriter
+v
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+k R1; //
+\family default
+ index 
+\family typewriter
+k
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+temp R2;
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+temp2 R3;
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+vkAddr R12; //
+\family default
+ address of 
+\family typewriter
+v[k]
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\series bold
+swap:
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ calculate the address of 
+\family typewriter
+v[k]
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ADD vkAddr, v, k, LSL #2;
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ swap v[k], v[k+1]
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+LDR temp, [vkAddr, #0];
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+LDR temp2, [vkAddr, #4];
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+STR temp2, [vkAddr, #4];
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+STR temp, [vkAddr, #0];
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ return to calling function
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+MOV pc, lr;
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Arrays vs Pointers (examples)
+\end_layout
+
+\begin_layout Subsection
+Example 1 : Arrays
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=C,basicstyle={\small\ttfamily},showstringspaces=false,keywordstyle={\color{blue}}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+void clear(int array[], int size) {
+\end_layout
+
+\begin_layout Plain Layout
+
+	for (int i = 0; i < size; i++) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		arr[i] = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Equivalent code in ARM assembly:
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ using dynamic labeling
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\series bold
+clear1:
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ set 
+\family typewriter
+i = 0
+\family default
+, create constant 
+\family typewriter
+zero
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+MOV i, #0;
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+MOV zero, #0;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\series bold
+loop1:
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ do 
+\family typewriter
+arr[i] = 0
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+STR zero, [array, i, LSL #2];
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ loop
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ADD i, i, #1;
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+CMP i, size;
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+BLT loop1;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ return to calling function
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+MOV pc, lr;
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Example 2 : Pointers
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=C,basicstyle={\small\ttfamily},showstringspaces=false,keywordstyle={\color{blue}}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+void clear(int *array, int size) {
+\end_layout
+
+\begin_layout Plain Layout
+
+	for (int *p = &array[0]; p < &array[size]; p++) {
+\end_layout
+
+\begin_layout Plain Layout
+
+		*p = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Equivalent code in ARM assembly:
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ using dynamic labeling
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\series bold
+clear2:
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ set 
+\family typewriter
+p = &array[0] = array
+\family default
+, create constant 
+\family typewriter
+zero
+\family default
+, 
+\family typewriter
+arraySize
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+MOV p, array;
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+MOV zero, #0;
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ADD arraySize, array, [size, LSL #2];
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\series bold
+loop2:
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ do 
+\family typewriter
+*p = 0
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+STR zero, [p], #4;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ loop
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+CMP p, arraySize;
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+BLT loop2;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+//
+\family default
+ return to calling function
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+MOV pc, lr;
+\end_layout
+
+\end_body
+\end_document

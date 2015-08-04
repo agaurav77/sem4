@@ -1,0 +1,1352 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation 0bp
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Processor Basics
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Instructions 
+\series default
+are words of a computer language.
+ 
+\series bold
+Instruction Set 
+\series default
+is the vocabulary of commands understood by a given architecture.
+\end_layout
+
+\begin_layout Section
+ARM Instruction Set
+\end_layout
+
+\begin_layout Subsection
+Arithmetic
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ADD a, b, c; 
+\begin_inset space ~
+\end_inset
+
+// add contents of reg b, reg c and store in reg a
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Let us suppose we want to add four variables 
+\family typewriter
+b, c, d, e
+\family default
+ and store the result in 
+\family typewriter
+a
+\family default
+.
+ We would do something like
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ADD a, b, c; 
+\begin_inset space ~
+\end_inset
+
+// a = b + c
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ADD a, a, d; 
+\begin_inset space ~
+\end_inset
+
+// a = a + d = b + c + d
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ADD a, a, e; 
+\begin_inset space ~
+\end_inset
+
+// a = a + e = b + c + d + e
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ADD a, b, #c; // c is a constant, also called immediate operand
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+SUB a, b, c; 
+\begin_inset space ~
+\end_inset
+
+// a = b - c
+\end_layout
+
+\begin_layout Subsection
+Data Transfer
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+LDR a, [b, #c]; // do a ← mem[b + c], c is offset
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+STR a, [b, #c]; // do mem[b+c] ← a
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+SWP a, [b, #c]; // swap contents on a, mem[b+c]
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+MOV a, b;
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+// do a ← b
+\end_layout
+
+\begin_layout Subsection
+Logical
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+AND a, b, c; 
+\begin_inset space ~
+\end_inset
+
+// a = b & c
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ORR a, b, c; 
+\begin_inset space ~
+\end_inset
+
+// a = b | c
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+MVN a, b;
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+// a = ~b
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+LSL a, b, #c; // a = b << c
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+LSR a, b, #c; // a = b >> c
+\end_layout
+
+\begin_layout Subsection
+Conditional or Unconditional Branches
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+CMP a, b; // do cond flag ← a - b
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+BEQ L1; 
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+// branch to label L1 if cond flag == 0
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+B Exit; 
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+// unconditional branch to label Exit
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+BL;
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+// branch and link
+\end_layout
+
+\begin_layout Section
+ARM Assembly : General
+\end_layout
+
+\begin_layout Standard
+All ARM instructions are 32 bits long.
+ ARM implementation requires the CPU to have 16 CPU registers namely 
+\begin_inset Formula $\mathtt{R}_{0},\mathtt{R}_{1}\cdots\mathtt{R}_{12},\mathtt{sp},\mathtt{lr},\mathtt{pc}$
+\end_inset
+
+.
+ These are fast locations for data.
+ All arithmetic must be done using the contents of these registers.
+ Data transfer instructions may be employed to populate these registers
+ using data in main memory or 
+\family typewriter
+mem
+\family default
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The main memory generally has 
+\begin_inset Formula $2^{30}=1073741824$
+\end_inset
+
+ memory words of 4 bytes each, accessible as 
+\family typewriter
+mem[0]
+\family default
+, 
+\family typewriter
+mem[4]
+\family default
+, 
+\family typewriter
+mem[8]
+\family default
+ ...
+ 
+\family typewriter
+mem[4294967292]
+\family default
+ via instructions.
+ These memory words hold data structures, arrays, spilled registers etc.
+ Due to the 
+\series bold
+alignment restrictions
+\series default
+, we have faster data transfers in this multibyte scheme than we would have
+ for single bit schemes.
+ Because words are 4 byte locations, there are two possible schemes for
+ memory access -
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Little Endian Scheme (widely used)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\family typewriter
+{4294967295, 4294967294, 4294967293, 4294967292} = mem[4294967292]
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+................................................
+ 
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+{ 
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+7, 
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+6,
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+5,
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+4} = mem[4]
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+{
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+3, 
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+2,
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+1,
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+0} = mem[0]
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Big Endian Scheme
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\family typewriter
+{4294967292, 4294967293, 4294967294, 4294967295} = mem[4294967295]
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+................................................
+ 
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+{ 
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+4, 
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+5,
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+6,
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+7} = mem[7]
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+{
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+0, 
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+1,
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+2,
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+3} = mem[3]
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+The compiler tries to keep the most frequently used variables in CPU registers
+ and rest in main memory, in spilling registers.
+ CPU registers have less access time and higher throughput than main memory
+ registers since they can be directly operated upon.
+ Using CPU registers conserves energy as well.
+\end_layout
+
+\begin_layout Subsection*
+General Design Principles
+\end_layout
+
+\begin_layout Itemize
+Simplicity favours regularity.
+\end_layout
+
+\begin_layout Itemize
+Smaller is faster.
+\end_layout
+
+\begin_layout Itemize
+Make the common case fast.
+\end_layout
+
+\begin_layout Itemize
+Good designs require good compromises.
+\end_layout
+
+\begin_layout Section
+Signed & Unsigned Numbers
+\end_layout
+
+\begin_layout Standard
+The conventional way to implement integers (including negative numbers)
+ is to have a 
+\series bold
+sign bit
+\series default
+.
+ However, using a bit as the sign bit and other bits for the magnitude poses
+ a problem - there are two representations for 0, more intuitively +0 and
+ -0.
+ Also, any adder circuitry will require an extra step to set the sign.
+ Multiple number representations exist to solve these problems, the most
+ popular of which is the 
+\series bold
+two's complement representation
+\series default
+.
+ Here is representation of 4 bit numbers using two's complement representation.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+0111 = +7 = 
+\begin_inset Formula $\mathtt{+}\mathtt{2}^{\mathtt{3}}\mathtt{-1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+0110 = +6
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+0101 = +5
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+0100 = +4
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+0011 = +3
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+0010 = +2
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+0001 = +1
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+0000 = 0
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+1111 = -1
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+1110 = -2
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+1101 = -3
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+1100 = -4
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+1011 = -5
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+1010 = -6
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+1001 = -7
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+1000 = -8 = 
+\begin_inset Formula $-\mathtt{2}^{\mathtt{3}}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The leading bit is the sign bit.
+ A leading bit of 
+\family typewriter
+0 
+\family default
+represents a positive number and 
+\family typewriter
+1 
+\family default
+represents a negative number.
+ For a n-bit scheme, the range of numbers which can be represented using
+ two's complement representation is 
+\begin_inset Formula $-2^{n-1}$
+\end_inset
+
+ to 
+\begin_inset Formula $+(2^{n-1}-1)$
+\end_inset
+
+.
+ Furthermore, to find out the magnitude of a negative number, invert its
+ bits and add 
+\family typewriter
+1
+\family default
+, ignoring the last carry.
+ So, the magnitude of 
+\family typewriter
+1011 
+\family default
+is 
+\family typewriter
+0100 + 1 = 0101 = 5
+\family default
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To represent a number in a higher bit scheme, extend the sign bit leftwards,
+ i.e.
+ 
+\family typewriter
+1010
+\family default
+, which is 
+\family typewriter
+-6 
+\family default
+in 4-bit scheme, would be represented as 
+\family typewriter
+11111010 = -6 
+\family default
+in 8-bit scheme.
+\end_layout
+
+\begin_layout Section
+Representing Instructions
+\end_layout
+
+\begin_layout Subsection
+Data Processing Instructions
+\end_layout
+
+\begin_layout Standard
+The typical format is
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathtt{COND\,FF\,I\,CODE\,S\,REGN\,REGD\,OPR2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\family typewriter
+FF = 00
+\family default
+ 
+\end_layout
+
+\end_body
+\end_document

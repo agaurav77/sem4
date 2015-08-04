@@ -1,0 +1,425 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Introduction
+\end_layout
+
+\begin_layout Standard
+An operating system is a program which acts as a negotiator between the
+ hardware and the user.
+ It is designed to be convenient and efficient.
+\end_layout
+
+\begin_layout Section
+What Operating Systems Do
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/11.png
+	lyxscale 50
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Computer systems consist of four parts - the hardware, OS, programs and
+ the users.
+\end_layout
+
+\begin_layout Itemize
+The 
+\series bold
+hardware 
+\series default
+consists of CPU, memory and input/output devices.
+ It provides the basic resources for computations.
+\end_layout
+
+\begin_layout Itemize
+The 
+\series bold
+OS
+\series default
+ coordinates the use of hardware.
+\end_layout
+
+\begin_layout Itemize
+The 
+\series bold
+programs
+\series default
+ actually use the hardware for tasks.
+\end_layout
+
+\begin_layout Itemize
+The 
+\series bold
+users 
+\series default
+use the programs.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+OSes from different perspectives
+\end_layout
+
+\begin_layout Standard
+From the 
+\series bold
+user
+\series default
+ 
+\series bold
+perspective
+\series default
+, an OS is supposed to be easy and fast.
+ General people often don't care about resource utilisation.
+ People in offices, on the other hand use 
+\emph on
+shared computers
+\emph default
+, which must be responsive.
+ 
+\emph on
+Mobiles
+\emph default
+, or handheld computers, popular these days are resource poor devices optimised
+ for battery life and simple use through OSes shipped alongwith.
+ 
+\emph on
+Embedded systems
+\emph default
+ can also be thought of as having OSes, but these run with little or no
+ user interference.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+From the 
+\series bold
+system perspective
+\series default
+, an OS is a simple resource allocator, which manages programs and resources.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/12.jpg
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+OS : Definition
+\end_layout
+
+\begin_layout Standard
+The basic goal of computers is to make problem solving easier.
+ For this, we need the hardware, and the OS interface which can utilise
+ the hardware for tasks.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+So, an approximate definition is 
+\end_layout
+
+\begin_layout Quote
+\begin_inset Quotes eld
+\end_inset
+
+everything that a vendor ships when you buy an OS
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+But as such, there is no universally accepted definition of an OS.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Computer System Operation
+\end_layout
+
+\begin_layout Subsection
+Firmware
+\end_layout
+
+\begin_layout Standard
+To start the OS, it is required to run an initial program, called the 
+\series bold
+bootstrap 
+\series default
+or 
+\series bold
+firmware 
+\series default
+program.
+ It is stored in a relatively permanent memory, like ROM or EEPROM.
+ When run, it initialises all the aspects of the system, from CPU registers
+ to device controllers and memories, and then finally loads the OS kernel
+ and start executing it.
+\end_layout
+
+\begin_layout Subsection
+Kernel
+\end_layout
+
+\begin_layout Standard
+The kernel mediates access to various computer resources.
+ It is the program, which essentially 
+\begin_inset Quotes eld
+\end_inset
+
+runs at all times
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/14.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Interrupt Mechanism
+\end_layout
+
+\begin_layout Standard
+A modern day computer system comprises of one or more CPUs and multiple
+ input-output devices, each of which can execute concurrently.
+ These devices are connected to the 
+\emph on
+main memory
+\emph default
+ via a shared bus.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/15.png
+	lyxscale 30
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Typically, whenever the hardware or the software requires the attention
+ of the OS, it creates an interrupt.
+ The interrupt is picked up by the OS.
+ For example, each input device has a 
+\series bold
+device controller
+\series default
+, which has a 
+\series bold
+local buffer
+\series default
+.
+ When the user provides an input, it is stored in the local buffer.
+ After the input has been taken, the controller creates an 
+\series bold
+interrupt
+\series default
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+The OS picks up the interrupt and responds by giving control of the CPU
+ to the ISR, or the 
+\series bold
+interrupt service routine
+\series default
+ (
+\emph on
+interrupt handler
+\emph default
+).
+ The CPU stops its current task (saves task address) and moves the input
+ data from the local buffer to the main memory.
+ After the input has been taken into the main memory, the CPU reloads its
+ previously stopped task into the program counter and starts on it again.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/16.png
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Likewise, if a software requires the attention of the OS (due to a request
+ or an error), it generates a 
+\series bold
+trap
+\series default
+.
+ Note the fact that while processing an interrupt, other interrupts are
+ disabled.
+\end_layout
+
+\begin_layout Subsection
+Types of Interrupt Mechanisms
+\end_layout
+
+\begin_layout Standard
+There are in general, two ways in which major OSes handle interrupts - 
+\series bold
+polled 
+\series default
+and 
+\series bold
+vectored
+\series default
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+In the polled mechanism, whenever a piece of hardware requires attention,
+ it causes an interrupt
+\end_layout
+
+\end_body
+\end_document

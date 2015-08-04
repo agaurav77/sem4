@@ -1,0 +1,823 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 4cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation 0bp
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Datapath Design
+\end_layout
+
+\begin_layout Section
+Addition/Subtraction
+\end_layout
+
+\begin_layout Standard
+In general, there is an overflow when two suitable numbers of the same sign
+ are added, or two suitable numbers of different sign are subtracted.
+ The sign bit is set with a bit concerned with magnitude rather than sign.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+With unsigned numbers, however, the overflow is ignored (actually it should
+ be set with the largest possible value in same cases rather than cycling
+ back to negative extremum).
+ As we saw earlier, the two 
+\family typewriter
+COND
+\family default
+ flags associated with overflow are 
+\family typewriter
+BVS
+\family default
+ (branch if overflow set) and 
+\family typewriter
+BVC
+\family default
+ (branch if overflow clear)
+\family typewriter
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The arithmetic instruction needs to append the value of 
+\family typewriter
+S
+\family default
+ to set cond flag before the branch occurs.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="4">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Instruction
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Operand 1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Operand 2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Wrong Answer (Overflow Case)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+A + B
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\begin_inset Formula $\geq$
+\end_inset
+
+ 0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\begin_inset Formula $\geq$
+\end_inset
+
+ 0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\begin_inset Formula $<$
+\end_inset
+
+ 0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+A + B
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\begin_inset Formula $<$
+\end_inset
+
+ 0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\begin_inset Formula $<$
+\end_inset
+
+ 0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\begin_inset Formula $\geq$
+\end_inset
+
+ 0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+A - B
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\begin_inset Formula $\geq$
+\end_inset
+
+ 0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\begin_inset Formula $<$
+\end_inset
+
+ 0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\begin_inset Formula $<$
+\end_inset
+
+ 0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+A - B
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\begin_inset Formula $<$
+\end_inset
+
+ 0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\begin_inset Formula $\geq$
+\end_inset
+
+ 0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\begin_inset Formula $\geq$
+\end_inset
+
+ 0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Multiplication
+\end_layout
+
+\begin_layout Subsection
+Algorithm 1
+\end_layout
+
+\begin_layout Standard
+\align center
+	
+\begin_inset Graphics
+	filename img/mul1.svg
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Algorithm 2
+\end_layout
+
+\begin_layout Standard
+\align center
+	
+\begin_inset Graphics
+	filename img/mul2.svg
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Algorithm 3
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/mul3.svg
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Signed Multiplication
+\end_layout
+
+\begin_layout Enumerate
+Check for the sign bit of operands (same or different, by 
+\family typewriter
+XOR
+\family default
+)
+\end_layout
+
+\begin_layout Enumerate
+Convert negative operand(s) to positive, such that their magnitude is retained.
+\end_layout
+
+\begin_layout Enumerate
+Multiply the two positive operands.
+\end_layout
+
+\begin_layout Enumerate
+If signs in step 1 are found to be different, then answer is negative, so
+ make the result negative, retaining the magnitude of result.
+\end_layout
+
+\begin_layout Subsection*
+Booth's Algorithm
+\end_layout
+
+\begin_layout Standard
+It implements the multiplication of the two's complement of the two operands.
+ Its a variant of 
+\emph on
+Algorithm 3
+\emph default
+ in that instead of adding multiplicand to the left half of the product
+ register on having 
+\family typewriter
+Product0 == 1
+\family default
+, we examine 
+\family typewriter
+Product0
+\family default
+ and the shifted out bit.
+ Then we take a decision like
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+Product0
+\family default
+, shifted out bit 
+\family typewriter
+= 00
+\family default
+ or 
+\family typewriter
+11
+\family default
+, then do nothing.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+Product0
+\family default
+, shifted out bit
+\family typewriter
+ = 01
+\family default
+, then add multiplicand to left half of product register.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+Product0
+\family default
+, shifted out bit
+\family typewriter
+ = 10
+\family default
+, then subtract multiplicand from left half of product register.
+\end_layout
+
+\begin_layout Standard
+(Shifting extends the sign bit.) In ARM, the instruction 
+\family typewriter
+MUL
+\family default
+ places the lower 32 bits of the product in the destination register.
+ It is upto the software to check if the product is too big to fit into
+ 32 bits, since in ARM, overflows are ignored.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Division
+\end_layout
+
+\begin_layout Subsection
+Algorithm 1
+\end_layout
+
+\begin_layout Standard
+Initialisations - 
+\end_layout
+
+\begin_layout Itemize
+Divisor Register (64-bit)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+divisor in left half, zeroes in right half
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Remainder Register (64-bit)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+dividend as it is padded with zeroes to left
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Quotient Register (32-bit)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+quotient as it is
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/div1.svg
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Algorithm 2
+\end_layout
+
+\begin_layout Standard
+Initialisations - 
+\end_layout
+
+\begin_layout Itemize
+Divisor Register (32-bit)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+divisor as it is
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Remainder Register (64-bit)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+dividend in right half padded with zeroes
+\end_layout
+
+\begin_layout Itemize
+at the end contains the remainder in left half
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Quotient Register (32-bit)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+quotient as it is
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/div2.svg
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Algorithm 3
+\end_layout
+
+\begin_layout Standard
+Initialisations - 
+\end_layout
+
+\begin_layout Itemize
+Remainder Register (64-bit)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+dividend in right half padded with zeroes
+\end_layout
+
+\begin_layout Itemize
+at the end contains the remainder in left half, quotient in right half
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Divisor Register (32-bit)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+divisor as it is
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/div3.svg
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Signed Divison
+\end_layout
+
+\begin_layout Itemize
+Quotient is negative if the divisor and dividend are of the opposite sign.
+\end_layout
+
+\begin_layout Itemize
+The remainder has the same sign as the dividend.
+\end_layout
+
+\begin_layout Standard
+Using these two rules, a signed division algorithm can be constructed from
+ any of the aforementioned three algorithms.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Floating Point
+\end_layout
+
+\begin_layout Standard
+In scientific notation, we tend to have a single digit to the left of the
+ decimal.
+ Dropping all the leading zeroes leads us to the 
+\series bold
+normalised notation
+\series default
+ for the number.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In floating point numbers, the binary point is not fixed, i.e.
+ we shift the point by as many bits as needed to have one non zero digit
+ to the left of the binary point (and thus keep it normalised).
+ The base is increased by the same number of bits.
+ This leads to 
+\end_layout
+
+\begin_layout Itemize
+simplified exchange of data
+\end_layout
+
+\begin_layout Itemize
+uniform notation, arithmetic becomes easier
+\end_layout
+
+\begin_layout Itemize
+increases the accuracy of the stored number
+\end_layout
+
+\end_body
+\end_document
